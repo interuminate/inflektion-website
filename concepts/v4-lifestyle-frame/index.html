@@ -6,16 +6,16 @@
   <title>Inflektion: partnerships for health and wellness brands</title>
   <meta name="description" content="Inflektion is the influencer and affiliate platform built for health and wellness: find the right partners, launch them in one flow, and give each one a portal in your brand and a funnel made for their audience.">
   <meta name="theme-color" content="#FFFFFF">
-  <link rel="icon" href="../../assets/favicon.svg?v=11" type="image/svg+xml">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png?v=11">
+  <link rel="icon" href="../../assets/favicon.svg?v=12" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png?v=12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="../shared/tokens.css?v=11">
-  <link rel="stylesheet" href="../shared/kit.css?v=11">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="../shared/tokens.css?v=12">
+  <link rel="stylesheet" href="../shared/kit.css?v=12">
+  <link rel="stylesheet" href="style.css?v=12">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="main.js?v=11" defer></script>
+  <script src="main.js?v=12" defer></script>
 </head>
 <body class="v4">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -95,13 +95,14 @@
   <section class="sec logos railed" aria-labelledby="logos-title">
     <div class="wrap">
       <h2 id="logos-title" class="logos-title">Trusted by health and wellness brands, from startups to category leaders</h2>
-      <ul role="list" class="logo-cells">
-        <li><img src="../../assets/clients/oura-logo.svg" alt="Oura" width="86" height="29"></li>
-        <li><img src="../../assets/clients/muse-logo.svg" alt="Muse" width="112" height="27"></li>
-        <li><img src="../../assets/clients/pp-logo.svg" alt="Power Plate" width="149" height="47"></li>
-        <li><img src="../../assets/clients/powerdot-logo.svg" alt="PowerDot" width="154" height="21"></li>
-        <li><img src="../../assets/clients/mara-labs-logo.png" alt="Mara Labs" width="96" height="39"></li>
-        <li><img src="../../assets/clients/the-dna-company-logo.svg" alt="The DNA Company" width="72" height="47"></li>
+      <button type="button" class="logo-pause" aria-pressed="false" data-logo-pause><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14"><path class="i-pause" d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path class="i-play" d="M8 5l11 7-11 7z" fill="currentColor"/></svg><span class="visually-hidden">Pause logo animation</span></button>
+      <ul role="list" class="logo-cells" data-logo-cells>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" src="../../assets/clients/oura-logo.svg" alt="Oura" width="86" height="29"><img data-tall src="../../assets/clients/truly-free-home-logo.png" alt="Truly Free Home" width="270" height="88"><img src="../../assets/clients/more/sensate.svg" alt="Sensate" width="512" height="78"></span></li>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" src="../../assets/clients/muse-logo.svg" alt="Muse" width="112" height="27"><img src="../../assets/clients/aires-tech-logo.png" alt="Aires Tech" width="400" height="108"><img src="../../assets/clients/more/rest.svg" alt="Rest" width="60" height="23"></span></li>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" data-tall src="../../assets/clients/pp-logo.svg" alt="Power Plate" width="149" height="47"><img data-tall src="../../assets/clients/upgraded-formulas-logo.png" alt="Upgraded Formulas" width="400" height="172"><img src="../../assets/clients/more/apollo.png" alt="Apollo Neuro" width="450" height="98"></span></li>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" src="../../assets/clients/powerdot-logo.svg" alt="PowerDot" width="154" height="21"><img src="../../assets/clients/more/shiftwave.svg" alt="Shiftwave" width="2100" height="400"><img src="../../assets/clients/more/ozlo.svg" alt="Ozlo" width="87" height="23"></span></li>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" src="../../assets/clients/mara-labs-logo.png" alt="Mara Labs" width="96" height="39"><img src="../../assets/clients/more/heartmath.png" alt="HeartMath" width="400" height="50"><img src="../../assets/clients/more/bioniq-lab.svg" alt="Bioniq Lab" width="194" height="32"></span></li>
+        <li class="logo-cell"><span class="logo-cell__stack"><img class="is-active" data-tall src="../../assets/clients/the-dna-company-logo.svg" alt="The DNA Company" width="72" height="47"><img src="../../assets/clients/more/sensai.png" alt="Sens.ai" width="480" height="135"></span></li>
       </ul>
     </div>
   </section>
@@ -201,10 +202,14 @@
           <li><span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><span><strong>FAQs in any language</strong> Custom FAQs and a multilingual portal.</span></li>
         </ul>
       </div>
-      <div class="portal-stage">
+      <div class="portal-stage" data-theme-cycle data-brand="sleep">
         <figure class="photo photo--portal">
           <img src="../../assets/lifestyle/creator.jpg" width="1400" height="1050" loading="lazy" alt="A wellness creator filming a video on her phone at home.">
         </figure>
+        <div class="kit theme-decal" aria-hidden="true">
+          <span class="theme-decal__swatch"></span>
+          <span class="theme-decal__label" data-theme-label>Sleep tech</span>
+        </div>
         <div class="kit mini-portal" aria-hidden="true">
           <div class="mini-portal__side">
             <span class="mp-brand"></span>
@@ -273,15 +278,17 @@
   <!-- 8. Proof: asymmetric quote wall -->
   <section class="sec proof" id="results" aria-labelledby="proof-title">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 id="proof-title">Built for real programs, real complexity and <span class="hl">real growth</span>.</h2>
-        <p class="lead">Moving from another platform? Program transition is included on Enterprise and available as an add-on on every other plan.</p>
-      </div>
-      <div class="carousel" data-carousel>
+      <div class="proof-head">
+        <div class="sec-head">
+          <h2 id="proof-title">Built for real programs, real complexity and <span class="hl">real growth</span>.</h2>
+          <p class="lead">Moving from another platform? Program transition is included on Enterprise and available as an add-on on every other plan.</p>
+        </div>
         <div class="carousel__controls">
           <button type="button" class="carousel__btn" data-prev aria-label="Previous testimonials" aria-controls="quote-track"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
           <button type="button" class="carousel__btn" data-next aria-label="Next testimonials" aria-controls="quote-track"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
+      </div>
+      <div class="carousel" data-carousel>
         <ul role="list" class="carousel__track" id="quote-track" tabindex="0" aria-label="Customer testimonials, scroll for more">
         <li class="slide"><figure class="q-card">
           <img class="q-logo" src="../../assets/clients/oura-logo.svg" width="86" height="29" alt="" loading="lazy">
@@ -309,7 +316,7 @@
           <figcaption><span class="q-name">Summer Martin</span><span class="q-role">Head of Community Partners, Muse</span></figcaption>
         </figure></li>
         </ul>
-      </div>
+        <div class="carousel__ticks" aria-hidden="true" data-ticks></div>
       </div>
     </div>
   </section>
@@ -328,6 +335,7 @@
         <a class="btn btn--secondary" href="https://partners.inflektion.ai">Join the network</a>
       </div>
       <div class="creators-stage kit" aria-hidden="true">
+        <span class="decal decal--a"></span><span class="decal decal--b"></span><span class="decal decal--c"></span>
         <div class="asset-stack">
           <div class="asset"><span class="asset__thumb"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="asset__text"><span class="k-title">Email</span><span class="k-meta">Ready to send</span></span><span class="k-check"></span></div>
           <div class="asset"><span class="asset__thumb"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 15l4-4 4 4 3-3 5 5"/></svg></span><span class="asset__text"><span class="k-title">Social post</span><span class="k-meta">Ready to share</span></span><span class="k-check"></span></div>
