@@ -414,7 +414,7 @@ html:not(.js) .slide { scroll-snap-align: start; }
 .quote-dialog__body p + p { margin-top: var(--sp-4); }
 .quote-dialog__scroll::after { content: ""; position: absolute; left: 0; right: calc(var(--pad) - var(--sp-3)); bottom: 0; height: var(--sp-7); background: linear-gradient(to top, #FFFFFF 15%, rgb(255 255 255 / 0)); pointer-events: none; opacity: 0; transition: opacity var(--dur-2) var(--ease-out); }
 .quote-dialog__scroll.is-scrollable:not(.is-end)::after { opacity: 1; }
-.quote-dialog__who { display: grid; gap: 2px; padding-top: var(--sp-4); border-top: 1px solid var(--line); }
+.quote-dialog__who { display: grid; gap: 2px; }
 .quote-dialog__close { position: absolute; top: var(--sp-3); right: var(--sp-3); width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid transparent; border-radius: 50%; background: transparent; color: var(--brand-navy); cursor: pointer; }
 .quote-dialog__close:hover { border-color: var(--line-ui); }
 @media (prefers-reduced-motion: no-preference) {
