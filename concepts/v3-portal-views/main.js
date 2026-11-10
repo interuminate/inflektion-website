@@ -141,6 +141,8 @@
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitAll);
 
     const body = dialog.querySelector('[data-body]');
+    const scroller = dialog.querySelector('[data-scroll]');
+    body.addEventListener('scroll', () => scroller.classList.toggle('is-end', body.scrollTop + body.clientHeight >= body.scrollHeight - 2), { passive: true });
     let opener = null;
     function openQuote(card, paras, btn) {
       opener = btn;
@@ -151,7 +153,8 @@
       dialog.querySelector('[data-role]').textContent = card.querySelector('.t-role').textContent;
       dialog.showModal();
       body.scrollTop = 0;
-      body.classList.toggle('is-scrollable', body.scrollHeight > body.clientHeight + 1);
+      scroller.classList.toggle('is-scrollable', body.scrollHeight > body.clientHeight + 1);
+      scroller.classList.remove('is-end');
     }
     dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });

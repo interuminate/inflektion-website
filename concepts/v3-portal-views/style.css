@@ -369,13 +369,20 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .t-more::after { content: ""; position: absolute; inset: -12px -6px; } /* 44px tall hit area */
 .t-more:hover { color: var(--primary); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
 
-.quote-dialog { width: min(800px, calc(100vw - 2 * var(--gutter))); max-height: min(600px, calc(100dvh - 2 * var(--gutter))); padding: 0; border: 1px solid #E5E7EB; border-radius: var(--radius-lg); background: #FFFFFF; color: #04093F; box-shadow: 0 24px 64px -12px rgb(4 9 63 / 0.35); overflow: hidden; }
+.quote-dialog { color-scheme: light; width: min(800px, calc(100vw - 2 * var(--gutter))); max-height: min(600px, calc(100dvh - 2 * var(--gutter))); padding: 0; border: 1px solid #E5E7EB; border-radius: var(--radius-lg); background: #FFFFFF; color: #04093F; box-shadow: 0 24px 64px -12px rgb(4 9 63 / 0.35); overflow: hidden; }
 .quote-dialog::backdrop { background: rgb(4 9 63 / 0.55); }
 .quote-dialog[open] { display: flex; }
-.quote-dialog__inner { position: relative; display: flex; flex-direction: column; gap: var(--sp-5); width: 100%; max-height: inherit; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+.quote-dialog__inner { --pad: clamp(1.5rem, 1rem + 2vw, 2.5rem); position: relative; display: flex; flex-direction: column; gap: var(--sp-5); width: 100%; max-height: inherit; padding: var(--pad); }
 .quote-dialog__logo img { height: 32px; width: auto; }
-.quote-dialog__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; font-size: var(--fs-lead); line-height: 1.6; padding-bottom: var(--sp-6); }
-.quote-dialog__body.is-scrollable { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--sp-6)), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - var(--sp-6)), transparent); }
+/* The scroll area runs out to near the dialog edge, so the scrollbar sits in the side padding, not against the text */
+.quote-dialog__scroll { position: relative; flex: 1 1 auto; min-height: 0; display: flex; margin-right: calc(var(--sp-3) - var(--pad)); }
+.quote-dialog__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; font-size: var(--fs-lead); line-height: 1.6; padding: 0 calc(var(--pad) - var(--sp-3)) var(--sp-5) 0; scrollbar-width: thin; scrollbar-color: #C9CCD6 transparent; }
+.quote-dialog__body::-webkit-scrollbar { width: 8px; }
+.quote-dialog__body::-webkit-scrollbar-track { background: transparent; }
+.quote-dialog__body::-webkit-scrollbar-thumb { background: #C9CCD6; border-radius: 4px; }
+/* White fade above the author, over the text only (not the scrollbar); hidden once scrolled to the end */
+.quote-dialog__scroll::after { content: ""; position: absolute; left: 0; right: calc(var(--pad) - var(--sp-3)); bottom: 0; height: var(--sp-7); background: linear-gradient(to top, #FFFFFF 15%, rgb(255 255 255 / 0)); pointer-events: none; opacity: 0; transition: opacity var(--dur-2) var(--ease-out); }
+.quote-dialog__scroll.is-scrollable:not(.is-end)::after { opacity: 1; }
 .quote-dialog__body p + p { margin-top: var(--sp-4); }
 .quote-dialog__who { display: grid; gap: 2px; }
 .quote-dialog__close { position: absolute; top: var(--sp-3); right: var(--sp-3); width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-pill); background: transparent; color: #04093F; cursor: pointer; }
