@@ -105,6 +105,56 @@
     update();
   }
 
+  /* Testimonials: clamp each quote to a few lines with "… Read more", full text in a dialog */
+  const quotes = document.querySelector('[data-quotes]');
+  const dialog = document.querySelector('.quote-dialog');
+  if (quotes && dialog && typeof dialog.showModal === 'function') {
+    const cards = [...quotes.querySelectorAll('.t-card')].map((card) => {
+      const p = card.querySelector('blockquote p');
+      const name = card.querySelector('.t-name').textContent;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 't-more';
+      btn.innerHTML = 'Read more<span class="visually-hidden">: ' + name + '’s full testimonial</span>';
+      btn.addEventListener('click', () => openQuote(card, full, btn));
+      const full = p.textContent;
+      return { card, p, full, btn, lines: card.classList.contains('t-card--feature') ? 8 : 4 };
+    });
+
+    const fit = ({ p, full, btn, lines }) => {
+      p.textContent = full;
+      const max = parseFloat(getComputedStyle(p).lineHeight) * lines + 2;
+      if (p.offsetHeight <= max) return;
+      const words = full.split(' ');
+      let lo = 1, hi = words.length - 1;
+      const tryK = (k) => { p.textContent = words.slice(0, k).join(' ').replace(/[\s,.;:!?—–-]+$/, '') + '… '; p.append(btn); return p.offsetHeight <= max; };
+      while (lo < hi) { const mid = Math.ceil((lo + hi) / 2); if (tryK(mid)) lo = mid; else hi = mid - 1; }
+      tryK(lo);
+    };
+    const fitAll = () => cards.forEach(fit);
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fitAll, 120); });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitAll);
+
+    const body = dialog.querySelector('[data-body]');
+    let opener = null;
+    function openQuote(card, full, btn) {
+      opener = btn;
+      const logo = card.querySelector('.t-logo');
+      dialog.querySelector('[data-logo]').replaceChildren(...(logo ? [logo.cloneNode()] : []));
+      const q = document.createElement('p'); q.textContent = full;
+      body.replaceChildren(q);
+      dialog.querySelector('[data-name]').textContent = card.querySelector('.t-name').textContent;
+      dialog.querySelector('[data-role]').textContent = card.querySelector('.t-role').textContent;
+      dialog.showModal();
+      body.scrollTop = 0;
+      body.classList.toggle('is-scrollable', body.scrollHeight > body.clientHeight + 1);
+    }
+    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => { if (opener) opener.focus(); });
+  }
+
   /* Section reveal */
   if (!reduce.matches && 'IntersectionObserver' in window) {
     const targets = document.querySelectorAll('.section-head, .problem-copy, .why-now, .brand-demo, .funnels-head, .plaques, .proof-grid, .creators-copy, .final-inner');
