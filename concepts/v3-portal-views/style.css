@@ -376,7 +376,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .quote-dialog__logo img { height: 32px; width: auto; }
 /* The scroll area runs out to near the dialog edge, so the scrollbar sits in the side padding, not against the text */
 .quote-dialog__scroll { position: relative; flex: 1 1 auto; min-height: 0; display: flex; margin-right: calc(var(--sp-3) - var(--pad)); }
-.quote-dialog__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; font-size: var(--fs-lead); line-height: 1.6; padding: 0 calc(var(--pad) - var(--sp-3)) var(--sp-5) 0; scrollbar-width: thin; scrollbar-color: #C9CCD6 transparent; }
+.quote-dialog__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; font-size: var(--fs-body); line-height: 1.6; padding: 0 calc(var(--pad) - var(--sp-3)) var(--sp-5) 0; scrollbar-width: thin; scrollbar-color: #C9CCD6 transparent; }
 .quote-dialog__body::-webkit-scrollbar { width: 8px; }
 .quote-dialog__body::-webkit-scrollbar-track { background: transparent; }
 .quote-dialog__body::-webkit-scrollbar-thumb { background: #C9CCD6; border-radius: 4px; }
