@@ -94,7 +94,7 @@ Both use the same narrative and copy, Inter, and the pink/violet brand anchors. 
 ### v3: Portal views (soft-UI illustration-led)
 References: Ramp for Startups, Cohere. Calm, light, editorial. Large soft-UI compositions of abstracted portal screens carry the story. They are built from a token-driven kit (panel, sidebar, stat tile, chart, list row, chip, avatar, button) in HTML/CSS, with inline SVG for charts and line work. Colour is mostly neutral with pink as the single action colour and violet for depth. The sticky "How it works" swaps the panel state per chapter.
 
-### v4: Thematic, "The wellness shelf"
+### v4: Thematic, "The wellness shelf" (reworked and renamed "Lifestyle frame" after the first v4 review)
 References: Gumroad's illustrated hard-offset shadows, the client mockup, Fluz's confident display type. The product is presented as if it were stocked on a wellness shelf: sections become **packaging and labels**. A "What's inside" ingredient-style panel lists the platform. Awards become seals on the pack. Pricing reads like a label line. It uses flat colour blocks from the brand palette, thick ink outlines and solid offset shadows, with simplified placeholder product panels in the same style.
 
 Alternative themes if the shelf doesn't fit: **matchmaking** (brand and creator cards paired, tickets and stamps), or **training log** (program as a progress journal).

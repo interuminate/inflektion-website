@@ -1,6 +1,6 @@
 # Inflektion website: design foundations
 
-These are the foundations for the round 2 homepage concepts (`concepts/v3-portal-views`, `concepts/v4-wellness-shelf`). They are anchored in the product design system (Partner Portal, Figma): **Inter**, the **pink primary** and **violet secondary** ramps, and Tailwind grays. The website can carry more emotion and emphasis than the product. The brand anchors stay the same.
+These are the foundations for the round 2 homepage concepts (`concepts/v3-portal-views`, `concepts/v4-lifestyle-frame`). They are anchored in the product design system (Partner Portal, Figma): **Inter**, the **pink primary** and **violet secondary** ramps, and Tailwind grays. The website can carry more emotion and emphasis than the product. The brand anchors stay the same.
 
 Tokens live in `concepts/shared/tokens.css`. The soft-UI illustration kit lives in `concepts/shared/kit.css`. Pages use token names, never raw values.
 
@@ -80,7 +80,7 @@ Two queries, three bands: narrow `max-width: 767.98px`, medium `max-width: 1023.
 - Content width: `--w-page 1200px`, `--w-text 40rem`
 
 ## Shape and depth
-| Token | v3 Portal views | v4 Wellness shelf |
+| Token | v3 Portal views | v4 Lifestyle frame |
 |---|---|---|
 | `--radius-sm` | 8px | 6px |
 | `--radius-md` | 14px | 12px |

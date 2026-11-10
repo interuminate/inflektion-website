@@ -5,7 +5,7 @@
     { id: 'v1', n: '01', name: 'Minimal', dir: 'v1-minimal' },
     { id: 'v2', n: '02', name: 'Illustrated', dir: 'v2-illustrated' },
     { id: 'v3', n: '03', name: 'Portal views', dir: 'v3-portal-views' },
-    { id: 'v4', n: '04', name: 'Wellness shelf', dir: 'v4-wellness-shelf' }
+    { id: 'v4', n: '04', name: 'Lifestyle frame', dir: 'v4-lifestyle-frame' }
   ];
   var current = 'v1';
   versions.forEach(function (v) { v.href = '../' + v.dir + '/'; if (here.indexOf(v.dir) > -1) current = v.id; });
