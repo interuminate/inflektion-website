@@ -1,46 +1,49 @@
 # Publishing the review site at inflektion.codeart.mk
 
-## How Power Plate is hosted (checked from its public response headers)
+## Agreed setup (matches Power Plate)
 
-`powerplate.codeart.mk` is served by **GitHub Pages** (`x-github-request-id`, Fastly cache) behind **Cloudflare** (the `codeart.mk` DNS zone uses Cloudflare name servers and the record is proxied). So the same setup should work here: GitHub Pages builds the site from a repo, and Cloudflare points `inflektion.codeart.mk` at it.
+Power Plate is published from a public repo on its owner's GitHub account with GitHub Pages. A `CNAME` file names the custom domain, and a single DNS record in the `codeart.mk` zone points the subdomain at the account's `github.io` host. Inflektion follows the same pattern:
 
-## What this repo already provides
+| | Power Plate | Inflektion |
+|---|---|---|
+| Repo | public, owner's account (`krworkin-tech`) | public, owner's account (`interuminate/inflektion-website`) |
+| Pages | one repo, a folder per version, a small picker at `/` | one repo, `site/` holds the picker at `/` and both versions |
+| Version links | `/classic/`, `/dynamic/` | `/concepts/v1-portal-views/`, `/concepts/v2-lifestyle-frame/` |
+| Custom domain | `CNAME` file + Pages settings | `site/CNAME` + Pages settings |
+| DNS | `CNAME powerplate → krworkin-tech.github.io` | `CNAME inflektion → interuminate.github.io` |
 
-- `site/` holds everything that should be public: the version picker and the two versions. Docs, design notes, tools and the round 1 archive live outside it and are never published.
-- `.github/workflows/pages.yml` publishes `site/` to GitHub Pages on every push to `main` that touches `site/`, and can be run by hand from the Actions tab.
-- `site/robots.txt` and the picker's `noindex` meta keep the review site out of search engines.
+The one difference is how GitHub publishes. Power Plate publishes the repo as it is. Here a GitHub Actions workflow (`.github/workflows/pages.yml`) publishes only `site/`, so the docs, design notes, tools and round 1 archive stay out of the live site. The outcome is the same.
 
 ## Steps
 
-1. **Merge the PR into `main`.** The workflow only publishes from `main`.
-2. **Decide where the repo lives** (ask the Codeart admin, email below). The repo is currently **private** under the personal account `interuminate`. GitHub Pages for a private repo needs a paid plan (GitHub Pro, Team or Enterprise). The usual options:
-   - transfer the repo, or a copy of it, to the Codeart GitHub organisation that hosts Power Plate, or
-   - keep it here on a paid personal plan, or
-   - make it public. This is not recommended, because the docs folder contains client research.
-3. **Turn on Pages** in the repo that will publish: Settings → Pages → Build and deployment → Source: **GitHub Actions**.
-4. **Add the custom domain**: Settings → Pages → Custom domain: `inflektion.codeart.mk`. If the owning account or org has verified `codeart.mk` (Settings → Pages → Verified domains), this is immediate.
-5. **DNS (Codeart admin, in Cloudflare):** add `CNAME inflektion → <owner>.github.io`, where `<owner>` is the account or org that owns the repo. Use **DNS only** (grey cloud) until GitHub has issued the certificate. After that, turn the proxy on if Codeart wants to match Power Plate, with SSL mode **Full**.
-6. **Enforce HTTPS** in Settings → Pages once the certificate is ready.
-7. **Run the workflow** (Actions → Deploy review site → Run workflow), or push any change under `site/`.
-8. Check https://inflektion.codeart.mk, then open both versions from the picker and go back with the browser's back button.
+1. **Make the repo public** (Settings → General → Danger zone → Change visibility). The repo, its history and the `round-1-concepts` tag become readable by anyone. The team has accepted this.
+2. **Switch on Pages** (Settings → Pages → Build and deployment → Source: **GitHub Actions**).
+3. **Set the custom domain** (Settings → Pages → Custom domain: `inflektion.codeart.mk`, then Save). `site/CNAME` carries the same value.
+4. **DNS, done by the Codeart admin.** In the `codeart.mk` zone, add:
+   - Type: `CNAME`
+   - Name/Host: `inflektion`
+   - Value: `interuminate.github.io`
+5. **Turn on Enforce HTTPS** (Settings → Pages) once GitHub has seen the DNS record. The certificate usually takes a few minutes to an hour.
+6. **Publish**: Actions → Deploy review site → Run workflow (or re-run the first run, which failed only because Pages was off).
+7. **Test**: open https://inflektion.codeart.mk, open both versions, and use the browser's back button to return to the picker.
+
+Until the DNS record is live, the site is also reachable at `https://interuminate.github.io/inflektion-website/`. All links are relative, so they work there too.
 
 ## Email to the Codeart admin (draft)
 
-> **Subject:** New review subdomain: inflektion.codeart.mk (same setup as powerplate.codeart.mk)
+> **Subject:** DNS record for inflektion.codeart.mk (same setup as powerplate.codeart.mk)
 >
 > Hi,
 >
-> I'd like to publish the Inflektion homepage concepts for client review the same way as Power Plate, at **inflektion.codeart.mk**.
+> Could you add one DNS record in the codeart.mk zone, set up the same way as Power Plate?
 >
-> The site is plain static HTML with no build step, in the GitHub repo `interuminate/inflektion-website` (currently private). The repo includes a GitHub Actions workflow that publishes only the `site/` folder to GitHub Pages, plus a `robots.txt` that keeps it out of search engines.
+> - Type: CNAME
+> - Name/Host: inflektion
+> - Value: interuminate.github.io
 >
-> Could you help with the following?
+> The site is published with GitHub Pages from the public repo `interuminate/inflektion-website`. The custom domain is already set on the GitHub side, so once the record is live I'll turn on HTTPS and send the link around.
 >
-> 1. **Where should the repo live?** Should I transfer it, or a copy, to the Codeart GitHub organisation that hosts Power Plate, or keep it on my account? (Pages on a private repo needs a paid plan, so I'd rather follow whatever Power Plate uses.)
-> 2. **DNS:** please add `CNAME inflektion` pointing to `<owner>.github.io` in the `codeart.mk` Cloudflare zone. Please keep it DNS only until GitHub issues the certificate, then proxy it like Power Plate, with SSL set to Full.
-> 3. **Domain verification:** if `codeart.mk` is already verified for GitHub Pages in the Codeart org, the custom domain should attach straight away once the repo is there.
->
-> Once the repo is in place, I'll turn on Pages (source: GitHub Actions), set the custom domain to `inflektion.codeart.mk` and run the deploy.
+> If the zone is proxied through Cloudflare like Power Plate, please keep this record **DNS only** until GitHub has issued the certificate. After that it can be proxied, with SSL set to **Full**.
 >
 > Thanks!
 
