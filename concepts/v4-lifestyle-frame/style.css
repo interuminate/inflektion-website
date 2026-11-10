@@ -1,5 +1,5 @@
 /* v4: light, technical frame. Type, colour and sizing follow v3 (Inter 400/600, pink-700 actions,
-   pink highlights in titles). What sets v4 apart: hairline rails and crosshairs instead of colour
+   pink highlights in titles). What sets v4 apart: hairline rails instead of colour
    blocks, flat offset "block" shadows in pale violet instead of blur, and lifestyle photography. */
 
 .v4 {
@@ -7,8 +7,7 @@
   --tint: #F8F7FD;               /* alternate surface */
   --line: #E7E5F3;               /* hairlines and rails */
   --line-ui: #D4D1E6;            /* control borders */
-  --cross: #A9A3CF;              /* crosshair marks (decorative) */
-  --block: 6px 6px 0 #ECE9FB;    /* flat offset shadow, violet-tinted */
+    --block: 6px 6px 0 #ECE9FB;    /* flat offset shadow, violet-tinted */
   --block-sm: 4px 4px 0 #ECE9FB;
   --block-pink: 6px 6px 0 #FBE3F1;
   --radius: 14px;
@@ -28,18 +27,11 @@ strong, b { font-weight: 600; }
 .tint { background: var(--tint); }
 a { text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
 
-/* ---------- Frame: section hairlines, side rails and crosshairs (desktop) ---------- */
+/* ---------- Frame: section hairlines and side rails (desktop) ---------- */
 .sec { border-top: 1px solid var(--line); }
 .sec > .wrap { position: relative; padding-block: var(--section-y-compact, 6.25rem); }
 @media (min-width: 1024px) {
   .sec > .wrap, .site-header .wrap { border-inline: 1px solid var(--line); padding-inline: clamp(2rem, 1rem + 2.5vw, 3.5rem); }
-  .sec > .wrap::before, .sec > .wrap::after {
-    content: "+"; position: absolute; top: 0; width: 15px; height: 15px; display: grid; place-items: center;
-    font: 300 15px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--cross); background: var(--page); translate: 0 -50%;
-  }
-  .sec.tint > .wrap::before, .sec.tint > .wrap::after { background: var(--tint); }
-  .sec > .wrap::before { left: -8px; }
-  .sec > .wrap::after { right: -8px; }
 }
 
 /* ---------- Buttons and links ---------- */
@@ -285,7 +277,6 @@ html:not(.js) .audience-tabs { display: none; }
 .site-footer { background: var(--tint); }
 .site-footer > .wrap { padding-block: var(--sp-8) var(--sp-6); }
 .site-footer > .footer-legal { padding-block: var(--sp-5); border-top: 1px solid var(--line); }
-.site-footer > .footer-legal::before, .site-footer > .footer-legal::after { background: var(--tint); }
 .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-7); }
 .footer-brand { display: grid; gap: var(--sp-4); align-content: start; justify-items: start; }
 .footer-brand .logo { height: 30px; }

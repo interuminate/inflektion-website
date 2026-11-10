@@ -139,6 +139,6 @@ There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px box
 ## v4 frame (first v4 review)
 
 - Light header and footer; no dark bands.
-- Sections are divided by 1px `#E7E5F3` hairlines. On desktop the content column has side rails in the same hairline, with small `+` crosshairs where a section line meets a rail. The hero and final CTA add a faint 48px grid that fades out.
+- Sections are divided by 1px `#E7E5F3` hairlines. On desktop the content column has side rails in the same hairline,; there are no crosshair marks where they meet. The hero and final CTA add a faint 48px grid that fades out.
 - Logos, the four stages and the award plaques sit in hairline cells that run to the rails.
 - Lifestyle photos (from the client's mockup, placeholders until licensed or replaced) carry the hero and portal; soft UI is reduced to small white cards with a hairline and a flat violet block shadow.
