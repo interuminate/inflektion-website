@@ -9,24 +9,26 @@
   <meta property="og:description" content="The influencer and affiliate platform built for health and wellness brands.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#04093F">
-  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="../shared/tokens.css?v=3">
-  <link rel="stylesheet" href="../shared/kit.css?v=3">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="../shared/tokens.css?v=4">
+  <link rel="stylesheet" href="../shared/kit.css?v=4">
+  <link rel="stylesheet" href="style.css?v=4">
   <script>
     document.documentElement.classList.add('js');
     /* Particle field presets. Edit these to tune the backgrounds; see ../shared/fx-particles.js for every parameter. */
     window.INFLEKTION_FX = {
-      hero:  { density: 1.1, speed: 12, opacity: 0.5, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.2, rise: 0.72, bend: 0.6, curveOpacity: 0.28 },
+      hero:  { density: 1.1, speed: 12, size: '1.4,3.6', opacity: 0.6, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.2, rise: 0.72, bend: 0.6, curveOpacity: 0.28 },
       final: { density: 1.0, speed: 10, opacity: 0.45, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.24, rise: 0.6, bend: 0.55, curveOpacity: 0.25 },
       light: { density: 0.6, opacity: 0.35, colors: '#6946F4,#FF14B9,#B9A8FF', spread: 0.18, rise: 0.55, bend: 0.65, curveOpacity: 0.22, curveColor: '#6946F4', motion: 'static', seed: 11 },
     };
   </script>
-  <script src="../shared/fx-particles.js?v=3" defer></script>
-  <script src="main.js?v=3" defer></script>
+  <script src="../shared/fx-particles.js?v=4" defer></script>
+  <script src="main.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -72,7 +74,7 @@
     <canvas class="fx-particles" data-fx="hero" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <h1 id="hero-title">Scale the partnerships. Not the work.</h1>
+        <h1 id="hero-title">Scale the <span class="hl">partnerships</span>. Not the work.</h1>
         <p class="lead">Inflektion is the influencer and affiliate platform built for health and wellness. Find the right partners, launch them in one flow, and give each of them a portal in your brand and a funnel made for their audience.</p>
         <div class="cta-row">
           <a class="btn btn--primary btn--lg" href="#demo">Book a demo</a>
@@ -95,16 +97,12 @@
               <div class="k-main">
                 <div class="k-row k-row--between"><span class="k-title">Dashboard</span><span class="k-chip">Last 30 days</span></div>
                 <div class="k-grid-4">
-                  <div class="k-stat k-stat--a"><span>Commission</span><b>$5.3k</b></div>
+                  <div class="k-stat k-stat--a"><span>Earnings</span><b>$5.3k</b></div>
                   <div class="k-stat k-stat--b"><span>Per click</span><b>$4.25</b></div>
                   <div class="k-stat k-stat--c"><span>Conversions</span><b>478</b></div>
                   <div class="k-stat k-stat--d"><span>Rate</span><b>38%</b></div>
                 </div>
-                <div class="k-panel k-pad k-chart">
-                  <svg viewBox="0 0 240 80" preserveAspectRatio="none"><line class="axis" x1="0" y1="79" x2="240" y2="79"/>
-                    <g class="bar-g"><rect x="4" y="44" width="10" height="35" rx="2"/><rect x="20" y="62" width="10" height="17" rx="2"/><rect x="36" y="40" width="10" height="39" rx="2"/><rect x="52" y="30" width="10" height="49" rx="2"/><rect x="68" y="56" width="10" height="23" rx="2"/><rect x="84" y="24" width="10" height="55" rx="2"/><rect x="100" y="50" width="10" height="29" rx="2"/><rect x="116" y="36" width="10" height="43" rx="2"/><rect x="132" y="14" width="10" height="65" rx="2"/><rect x="148" y="46" width="10" height="33" rx="2"/><rect x="164" y="28" width="10" height="51" rx="2"/><rect x="180" y="20" width="10" height="59" rx="2"/><rect x="196" y="38" width="10" height="41" rx="2"/><rect x="212" y="10" width="10" height="69" rx="2"/><rect x="228" y="26" width="10" height="53" rx="2"/></g>
-                  </svg>
-                </div>
+                <div class="pm-charts"><div class="k-panel pm-chart"><div class="pm-chart__head"><span class="k-title">Commission</span></div><svg viewBox="0 0 240 72" preserveAspectRatio="none"><g class="pm-grid"><line x1="0" y1="16.5" x2="240" y2="16.5"/><line x1="0" y1="43.5" x2="240" y2="43.5"/><line x1="0" y1="70.5" x2="240" y2="70.5"/></g><g class="pm-c1"><rect x="4" y="18" width="10" height="52" rx="2"/><rect x="19" y="6" width="10" height="64" rx="2"/><rect x="34" y="30" width="10" height="40" rx="2"/><rect x="49" y="34" width="10" height="36" rx="2"/><rect x="64" y="44" width="10" height="26" rx="2"/><rect x="79" y="44" width="10" height="26" rx="2"/><rect x="94" y="56" width="10" height="14" rx="2"/><rect x="109" y="30" width="10" height="40" rx="2"/><rect x="124" y="12" width="10" height="58" rx="2"/><rect x="139" y="18" width="10" height="52" rx="2"/><rect x="154" y="6" width="10" height="64" rx="2"/><rect x="169" y="50" width="10" height="20" rx="2"/><rect x="184" y="30" width="10" height="40" rx="2"/><rect x="199" y="12" width="10" height="58" rx="2"/><rect x="214" y="6" width="10" height="64" rx="2"/><rect x="229" y="56" width="10" height="14" rx="2"/></g></svg></div><div class="k-panel pm-chart"><div class="pm-chart__head"><span class="k-title">Conversions</span></div><svg viewBox="0 0 240 72" preserveAspectRatio="none"><g class="pm-grid"><line x1="0" y1="16.5" x2="240" y2="16.5"/><line x1="0" y1="43.5" x2="240" y2="43.5"/><line x1="0" y1="70.5" x2="240" y2="70.5"/></g><g class="pm-c2"><rect x="4" y="24" width="10" height="46" rx="2"/><rect x="19" y="44" width="10" height="26" rx="2"/><rect x="34" y="18" width="10" height="52" rx="2"/><rect x="49" y="24" width="10" height="46" rx="2"/><rect x="64" y="44" width="10" height="26" rx="2"/><rect x="79" y="44" width="10" height="26" rx="2"/><rect x="94" y="40" width="10" height="30" rx="2"/><rect x="109" y="56" width="10" height="14" rx="2"/><rect x="124" y="50" width="10" height="20" rx="2"/><rect x="139" y="44" width="10" height="26" rx="2"/><rect x="154" y="12" width="10" height="58" rx="2"/><rect x="169" y="6" width="10" height="64" rx="2"/><rect x="184" y="50" width="10" height="20" rx="2"/><rect x="199" y="24" width="10" height="46" rx="2"/><rect x="214" y="50" width="10" height="20" rx="2"/><rect x="229" y="34" width="10" height="36" rx="2"/></g></svg></div><div class="k-panel pm-chart"><div class="pm-chart__head"><span class="k-title">Clicks</span></div><svg viewBox="0 0 240 72" preserveAspectRatio="none"><g class="pm-grid"><line x1="0" y1="16.5" x2="240" y2="16.5"/><line x1="0" y1="43.5" x2="240" y2="43.5"/><line x1="0" y1="70.5" x2="240" y2="70.5"/></g><g class="pm-c3"><rect x="4" y="40" width="10" height="30" rx="2"/><rect x="19" y="40" width="10" height="30" rx="2"/><rect x="34" y="24" width="10" height="46" rx="2"/><rect x="49" y="50" width="10" height="20" rx="2"/><rect x="64" y="34" width="10" height="36" rx="2"/><rect x="79" y="40" width="10" height="30" rx="2"/><rect x="94" y="24" width="10" height="46" rx="2"/><rect x="109" y="34" width="10" height="36" rx="2"/><rect x="124" y="30" width="10" height="40" rx="2"/><rect x="139" y="56" width="10" height="14" rx="2"/><rect x="154" y="40" width="10" height="30" rx="2"/><rect x="169" y="56" width="10" height="14" rx="2"/><rect x="184" y="24" width="10" height="46" rx="2"/><rect x="199" y="56" width="10" height="14" rx="2"/><rect x="214" y="24" width="10" height="46" rx="2"/><rect x="229" y="18" width="10" height="52" rx="2"/></g></svg></div><div class="k-panel pm-chart"><div class="pm-chart__head"><span class="k-title">Email leads</span></div><svg viewBox="0 0 240 72" preserveAspectRatio="none"><g class="pm-grid"><line x1="0" y1="16.5" x2="240" y2="16.5"/><line x1="0" y1="43.5" x2="240" y2="43.5"/><line x1="0" y1="70.5" x2="240" y2="70.5"/></g><g class="pm-c4"><rect x="4" y="44" width="10" height="26" rx="2"/><rect x="19" y="56" width="10" height="14" rx="2"/><rect x="34" y="40" width="10" height="30" rx="2"/><rect x="49" y="24" width="10" height="46" rx="2"/><rect x="64" y="50" width="10" height="20" rx="2"/><rect x="79" y="6" width="10" height="64" rx="2"/><rect x="94" y="56" width="10" height="14" rx="2"/><rect x="109" y="50" width="10" height="20" rx="2"/><rect x="124" y="6" width="10" height="64" rx="2"/><rect x="139" y="40" width="10" height="30" rx="2"/><rect x="154" y="40" width="10" height="30" rx="2"/><rect x="169" y="30" width="10" height="40" rx="2"/><rect x="184" y="56" width="10" height="14" rx="2"/><rect x="199" y="50" width="10" height="20" rx="2"/><rect x="214" y="44" width="10" height="26" rx="2"/><rect x="229" y="12" width="10" height="58" rx="2"/></g></svg></div></div>
               </div>
             </div>
           </div>
@@ -140,7 +138,7 @@
   <section class="problem section bg-tint" aria-labelledby="problem-title">
     <div class="wrap problem-grid">
       <div class="problem-copy">
-        <h2 id="problem-title">Wellness partnerships run on trust. Manual programs can’t keep up.</h2>
+        <h2 id="problem-title">Wellness partnerships run on <span class="hl">trust</span>. Manual programs can’t keep up.</h2>
         <p class="lead">In health and wellness, partners sell through education and credibility, so fit matters more than reach. Most programs still run on spreadsheets, inboxes and one-size-fits-all landing pages.</p>
         <ul role="list" class="pain-list">
           <li><span class="pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M3 7l6 6 4-4 8 8M21 11v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance is hit and miss.</li>
@@ -151,21 +149,23 @@
         <p class="category-line">Built for supplements, fitness, health technology, functional foods, beauty and mental health brands.</p>
       </div>
 
-      <div class="why-now">
-        <p class="why-now__stat"><strong>Over 81%</strong> of brands have an affiliate program, but <strong>51%</strong> spend less than 10% on the channel.</p>
-        <figure class="roas">
-          <figcaption class="roas__caption">Return on ad spend by channel</figcaption>
-          <svg role="img" aria-labelledby="roas-title roas-desc" viewBox="0 0 400 168" class="roas__chart">
-            <title id="roas-title">Return on ad spend by channel</title>
-            <desc id="roas-desc">Affiliate 12x, Google Ads 5.3x, Meta Ads 3.0x.</desc>
-            <g class="roas__labels"><text x="0" y="30">Affiliate</text><text x="0" y="90">Google Ads</text><text x="0" y="150">Meta Ads</text></g>
-            <rect class="roas__bar roas__bar--hi" x="100" y="12" width="250" height="28" rx="6"/>
-            <rect class="roas__bar" x="100" y="72" width="110.4" height="28" rx="6"/>
-            <rect class="roas__bar" x="100" y="132" width="62.5" height="28" rx="6"/>
-            <g class="roas__values"><text x="358" y="32">12x</text><text x="218" y="92">5.3x</text><text x="170" y="152">3.0x</text></g>
-          </svg>
-        </figure>
-        <p class="source">Source: figures as cited on inflektion.ai/who-we-help. Original source to be confirmed.</p>
+      <div class="why-now-wrap">
+        <div class="why-now">
+          <p class="why-now__stat"><strong>Over 81%</strong> of brands have an affiliate program, but <strong>51%</strong> spend less than 10% on the channel.</p>
+          <figure class="roas">
+            <figcaption class="roas__caption">Return on ad spend by channel</figcaption>
+            <svg role="img" aria-labelledby="roas-title roas-desc" viewBox="0 0 400 168" class="roas__chart">
+              <title id="roas-title">Return on ad spend by channel</title>
+              <desc id="roas-desc">Affiliate 12x, Google Ads 5.3x, Meta Ads 3.0x.</desc>
+              <g class="roas__labels"><text x="0" y="30">Affiliate</text><text x="0" y="90">Google Ads</text><text x="0" y="150">Meta Ads</text></g>
+              <rect class="roas__bar roas__bar--hi" x="100" y="12" width="250" height="28" rx="6"/>
+              <rect class="roas__bar" x="100" y="72" width="110.4" height="28" rx="6"/>
+              <rect class="roas__bar" x="100" y="132" width="62.5" height="28" rx="6"/>
+              <g class="roas__values"><text x="358" y="32">12x</text><text x="218" y="92">5.3x</text><text x="170" y="152">3.0x</text></g>
+            </svg>
+          </figure>
+        </div>
+        <p class="source">Source: figures as cited on inflektion.ai/who-we-help.</p>
       </div>
     </div>
   </section>
@@ -174,7 +174,7 @@
   <section class="how section" id="platform" aria-labelledby="how-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="how-title">From the right partner to a relationship that keeps growing.</h2>
+        <h2 id="how-title">From the right partner to a relationship that <span class="hl">keeps growing</span>.</h2>
         <p class="lead">One platform for the whole partner lifecycle, with the repetitive work automated along the way.</p>
       </div>
 
@@ -255,7 +255,7 @@
   <section class="portal section bg-tint" aria-labelledby="portal-title">
     <div class="wrap">
       <div class="section-head section-head--center section-head--wide">
-        <h2 id="portal-title">Your brand on the portal. Everything your partners need inside it.</h2>
+        <h2 id="portal-title"><span class="hl">Your brand</span> on the portal. Everything your partners need inside it.</h2>
         <p class="lead">Every partner logs into a portal styled as your brand, not ours. Links, assets, payments and performance live in one place, so partners spend their time promoting instead of asking.</p>
       </div>
 
@@ -332,7 +332,7 @@
     <div class="wrap">
       <div class="funnels-head">
         <div>
-          <h2 id="funnels-title">One campaign. A funnel for every audience.</h2>
+          <h2 id="funnels-title">One campaign. A funnel for <span class="hl">every audience</span>.</h2>
           <p class="lead">Change headlines, images and copy for each partner’s audience in real time. No designer, copywriter or developer needed for every variation.</p>
         </div>
         <p class="big-stat"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></span><span class="big-stat__text"><strong>Up to 200%</strong> <span>higher conversion rates with personalized funnels</span></span></p>
@@ -376,7 +376,7 @@
   <section class="recognition section bg-tint" id="recognition" aria-labelledby="recognition-title">
     <div class="wrap">
       <div class="section-head section-head--center">
-        <h2 id="recognition-title">Recognized for the technology behind it.</h2>
+        <h2 id="recognition-title">Recognized for the <span class="hl">technology</span> behind it.</h2>
         <p class="lead">A gold winner in 2025, and shortlisted three years running.</p>
       </div>
       <ul role="list" class="plaques">
@@ -405,7 +405,7 @@
     <canvas class="fx-particles" data-fx="light" data-curve-opacity="0.8" data-opacity="0.5" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="section-head">
-        <h2 id="proof-title">Built for real programs, real complexity and real growth.</h2>
+        <h2 id="proof-title">Built for real programs, real complexity and <span class="hl">real growth</span>.</h2>
         <p class="lead">Moving from another platform? Program transition is included on Enterprise and available as an add-on on every other plan.</p>
       </div>
       <div class="proof-grid">
@@ -432,7 +432,7 @@
   <section class="creators section bg-tint" id="creators" aria-labelledby="creators-title">
     <div class="wrap creators-grid">
       <div class="creators-copy">
-        <h2 id="creators-title">Creator or affiliate? More ways to earn, less work to promote.</h2>
+        <h2 id="creators-title">Creator or affiliate? <span class="hl">More ways to earn</span>, less work to promote.</h2>
         <p>Join the Inflektion network to connect with leading health and wellness brands. Get personalized content and funnels made for you, and start promoting without chasing links, assets or approvals.</p>
         <ul role="list" class="check-list">
           <li>Find brands that fit your audience</li>
@@ -456,7 +456,7 @@
   <!-- 10. Final CTA (footer navy, joins the footer) -->
   <section class="final surface-dark" id="demo" aria-labelledby="final-title">
     <div class="wrap final-inner">
-      <h2 id="final-title">Make partnerships your most scalable growth channel.</h2>
+      <h2 id="final-title">Make partnerships your <span class="hl">most scalable growth channel</span>.</h2>
       <div class="final-actions">
         <div class="cta-row">
           <a class="btn btn--primary btn--lg" href="#demo">Book a demo</a>

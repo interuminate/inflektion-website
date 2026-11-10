@@ -42,7 +42,7 @@
         setActive(0);
         observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => { if (entry.isIntersecting) setActive(items.indexOf(entry.target)); });
-        }, { rootMargin: '-45% 0px -45% 0px' });
+        }, { rootMargin: '-28% 0px -62% 0px' });
         items.forEach((el) => observer.observe(el));
       } else {
         if (observer) observer.disconnect();
