@@ -57,7 +57,7 @@
 
   /* Funnel audience tabs */
   const variants = {
-    generic: { url: 'brand.com', partner: 'Your brand’s homepage', headline: 'A sleep lab, wrapped around your finger.', body: 'Track, analyse and improve how your body recovers.' },
+    generic: { url: 'brand.com', partner: 'Your brand’s homepage', headline: 'A sleep lab, wrapped around your finger.', body: 'Track, analyze and improve how your body recovers.' },
     bio: { url: 'brand.com/biohackers', partner: 'Shared by a biohacking creator', headline: 'Recovery data you can actually act on.', body: 'Sleep stages, HRV and readiness, tracked every night.' },
     moms: { url: 'brand.com/mothers', partner: 'Shared by a parenting creator', headline: 'Better rest that fits around real life.', body: 'Gentle insights for broken nights and busy days.' },
     hcp: { url: 'brand.com/practitioners', partner: 'Shared by a health care professional', headline: 'Sleep insights to share with your patients.', body: 'Long-term trends that make conversations easier.' },
