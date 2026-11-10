@@ -1,6 +1,6 @@
 # Inflektion website: working rules
 
-Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/content-architecture.md` (approved narrative) before changing any page. Preview with `.claude/launch.json` ("concepts", `python3 -m http.server 4321`).
+Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/content-architecture.md` (approved narrative) before changing any page. Preview with `.claude/launch.json` ("concepts", `python3 tools/serve.py 4321`, which sends no-cache headers).
 
 ## Scope
 - Only the homepage is built. Other pages (Who we help, Why Inflektion, Pricing) appear as **inactive** nav items: `aria-disabled="true"`, no `href`, with "(coming soon)" for screen readers.
