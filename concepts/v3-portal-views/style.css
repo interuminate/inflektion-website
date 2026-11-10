@@ -88,7 +88,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 }
 
 /* 1. Hero (dark + particle field) */
-.hero { padding-block: clamp(3rem, 2rem + 4vw, 6rem) var(--section-y-compact, clamp(3.5rem, 1rem + 6.5vw, 6.25rem)); overflow: clip; }
+.hero { padding-block: calc(var(--sp-7) + var(--sp-3)); overflow: clip; } /* 60px top and bottom */
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
 .hero-copy { display: grid; gap: var(--sp-5); justify-items: start; }
 .hero-copy h1 { max-width: 12ch; }
@@ -112,7 +112,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 }
 
 /* 2. Logos (lighter navy band) */
-.logos { background: var(--bg-subtle); padding-block: var(--sp-7); }
+.logos { background: var(--bg-subtle); padding-block: calc(var(--sp-5) + var(--sp-2) * 0.75); } /* 30px */
 .logos-title { font-size: var(--fs-body); font-weight: 400; letter-spacing: 0; color: var(--text-muted); text-align: center; margin-bottom: var(--sp-6); }
 .logo-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--sp-6) clamp(2rem, 1rem + 4vw, 4rem); margin: 0; }
 .logo-row img { height: 28px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
@@ -263,7 +263,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .funnel-label { transition: opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out); }
 .funnel-label.is-swapping { opacity: 0; transform: translateY(6px); }
 .funnel-label strong { color: var(--text); font-weight: 700; }
-.funnel-frame { width: 100%; max-width: calc((100svh - 290px) * 2.05); margin-inline: auto; background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-2); overflow: hidden; }
+.funnel-frame { width: 100%; max-width: calc((100svh - 320px) * 2.05); margin-inline: auto; background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-2); overflow: hidden; }
 .funnel-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-subtle); }
 .funnel-bar .k-dot { background: rgb(4 9 63 / 0.15); }
 .funnel-url { margin-left: var(--sp-3); font-size: var(--fs-small); color: var(--text-muted); background: #fff; border: 1px solid var(--border); padding: var(--sp-1) var(--sp-3); border-radius: var(--radius-pill); }
@@ -271,7 +271,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .funnel-shot figure { background: #fff; }
 .funnel-shot img { width: 100%; height: auto; }
 .funnel-shot figcaption { padding: var(--sp-3) var(--sp-4); font-weight: 600; }
-.funnel-progress { display: none; justify-content: center; gap: 6px; }
+.funnel-progress { display: none; justify-content: center; gap: 6px; margin-top: var(--sp-5); }
 .funnel-progress span { width: 28px; height: 4px; border-radius: 2px; background: rgb(4 9 63 / 0.12); }
 .funnel-progress span.is-active { background: var(--brand-pink); }
 
@@ -365,9 +365,9 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 }
 
 /* Testimonial "Read more" (JS only; without JS the full quote shows) */
-.t-more { display: inline; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--primary); cursor: pointer; white-space: nowrap; position: relative; }
+.t-more { display: inline; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: #4B5563; cursor: pointer; transition: color var(--dur-2) var(--ease-out); white-space: nowrap; position: relative; }
 .t-more::after { content: ""; position: absolute; inset: -12px -6px; } /* 44px tall hit area */
-.t-more:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
+.t-more:hover { color: var(--primary); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
 
 .quote-dialog { width: min(800px, calc(100vw - 2 * var(--gutter))); max-height: min(600px, calc(100dvh - 2 * var(--gutter))); padding: 0; border: 1px solid #E5E7EB; border-radius: var(--radius-lg); background: #FFFFFF; color: #04093F; box-shadow: 0 24px 64px -12px rgb(4 9 63 / 0.35); overflow: hidden; }
 .quote-dialog::backdrop { background: rgb(4 9 63 / 0.55); }

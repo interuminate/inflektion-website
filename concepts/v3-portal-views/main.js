@@ -105,20 +105,24 @@
     update();
   }
 
-  /* Testimonials: clamp each quote to a few lines with "… Read more", full text in a dialog */
-  const quotes = document.querySelector('[data-quotes]');
+  /* Testimonials: clamp each quote to its card's line count with "… Read more"; full text in a dialog */
   const dialog = document.querySelector('.quote-dialog');
-  if (quotes && dialog && typeof dialog.showModal === 'function') {
-    const cards = [...quotes.querySelectorAll('.t-card')].map((card) => {
-      const p = card.querySelector('blockquote p');
+  const quoteCards = document.querySelectorAll('.t-card[data-lines]');
+  if (quoteCards.length && dialog && typeof dialog.showModal === 'function') {
+    const cards = [...quoteCards].map((card) => {
+      const bq = card.querySelector('blockquote');
+      const paras = [...bq.querySelectorAll('p')].map((p) => p.textContent);
+      const start = Number(card.dataset.start || 0);
+      const full = (start ? '“… ' : '') + paras.slice(start).join(' ');
+      const p = document.createElement('p');
+      bq.replaceChildren(p);
       const name = card.querySelector('.t-name').textContent;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 't-more';
       btn.innerHTML = 'Read more<span class="visually-hidden">: ' + name + '’s full testimonial</span>';
-      btn.addEventListener('click', () => openQuote(card, full, btn));
-      const full = p.textContent;
-      return { card, p, full, btn, lines: card.classList.contains('t-card--feature') ? 8 : 4 };
+      btn.addEventListener('click', () => openQuote(card, paras, btn));
+      return { p, full, btn, lines: Number(card.dataset.lines) };
     });
 
     const fit = ({ p, full, btn, lines }) => {
@@ -138,12 +142,11 @@
 
     const body = dialog.querySelector('[data-body]');
     let opener = null;
-    function openQuote(card, full, btn) {
+    function openQuote(card, paras, btn) {
       opener = btn;
       const logo = card.querySelector('.t-logo');
       dialog.querySelector('[data-logo]').replaceChildren(...(logo ? [logo.cloneNode()] : []));
-      const q = document.createElement('p'); q.textContent = full;
-      body.replaceChildren(q);
+      body.replaceChildren(...paras.map((t) => { const q = document.createElement('p'); q.textContent = t; return q; }));
       dialog.querySelector('[data-name]').textContent = card.querySelector('.t-name').textContent;
       dialog.querySelector('[data-role]').textContent = card.querySelector('.t-role').textContent;
       dialog.showModal();
