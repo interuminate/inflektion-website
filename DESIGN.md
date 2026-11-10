@@ -114,5 +114,19 @@ Animate only `opacity` and `transform`. Under `prefers-reduced-motion: reduce`, 
 ## Soft-UI illustration kit (`kit.css`)
 Primitives: `.k-panel`, `.k-side`, `.k-bar`, `.k-stat`, `.k-chip`, `.k-row`, `.k-avatar`, `.k-btn`, `.k-line` (skeleton text), `.k-chart` (inline SVG). Each reads `--kit-*` tokens (surface, ink, stroke, radius, shadow, accent), so v3 and v4 render the same primitives in their own style. Kit compositions are decorative (`aria-hidden="true"`) and carry a visually hidden one-sentence description where the image adds meaning. Hand-drawn product illustrations from the designer replace them later.
 
+## Particle field and inflection curve (`concepts/shared/fx-particles.js`)
+A canvas background: a particle cloud that drifts up a logistic inflection curve, optionally with the curve drawn as a faint line. Dark surfaces animate it subtly; light surfaces use a static render (`motion: "static"`). It pauses off-screen and in hidden tabs, and draws a single still frame under `prefers-reduced-motion`. It's always `aria-hidden` and sits behind the content (`z-index: -1` inside an isolated section).
+
+Tune it per preset in the page's `window.INFLEKTION_FX` block, or per canvas with `data-*` attributes: `density`, `size`, `speed`, `opacity`, `colors`, `spread`, `rise`, `bend`, `steepness`, `curve`, `curveOpacity`, `curveColor`, `motion`, `seed`. The defaults are documented in the file header. The continuous loop is a deliberate, user-requested exception to the "no infinite decorative loops" rule.
+
+## v3 background rhythm
+v3 is a fixed light page (`data-theme="light"`) with dark bookends:
+- Dark navy hero (animated particles), then a lighter navy logo band.
+- Violet-50 and white alternating: problem, how it works, portal, funnels, recognition, proof (static particles), creators (static particles).
+- Dark final CTA (animated particles), then the deepest navy footer with a logo-mark watermark.
+- `.surface-dark` re-maps the role tokens for navy sections. Product-UI kit panels stay light everywhere.
+
+Testimonials use one card style everywhere (`.t-card`): a white card with the name in pink-700 `#D32691`. Brand pink `#FF14B9` fails text contrast on white (3.6:1), so it isn't used for the name.
+
 ## Imagery and icons
 There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px boxes. Client logos are monochrome (inverted in dark mode).

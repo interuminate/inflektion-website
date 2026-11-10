@@ -1,6 +1,7 @@
 // v3 Portal views: progressive enhancement only. Without JS every section is readable in order.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const swapDelay = () => (reduce.matches ? 0 : 150);
 
   /* Mobile menu */
   const btn = document.querySelector('.menu-btn');
@@ -24,15 +25,15 @@
   if (chapters) {
     const stage = chapters.querySelector('[data-stage]');
     const items = [...chapters.querySelectorAll('[data-chapter]')];
-    const dots = [...stage.querySelectorAll('.chapters__progress span')];
+    const bars = [...stage.querySelectorAll('.chapters__progress span')];
     const visuals = items.map((item) => item.querySelector('.chapter__visual'));
     const wide = window.matchMedia('(min-width: 1024px)');
     let observer;
 
     const setActive = (i) => {
       items.forEach((el, n) => el.classList.toggle('is-active', n === i));
-      visuals.forEach((el, n) => el.classList.toggle('is-active', n === i));
-      dots.forEach((el, n) => el.classList.toggle('is-active', n === i));
+      visuals.forEach((el, n) => { el.classList.toggle('is-active', n === i); el.classList.toggle('is-before', n < i); });
+      bars.forEach((el, n) => el.classList.toggle('is-done', n <= i));
     };
 
     const mount = () => {
@@ -40,14 +41,12 @@
         visuals.forEach((v) => stage.insertBefore(v, stage.lastElementChild));
         setActive(0);
         observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActive(items.indexOf(entry.target));
-          });
+          entries.forEach((entry) => { if (entry.isIntersecting) setActive(items.indexOf(entry.target)); });
         }, { rootMargin: '-45% 0px -45% 0px' });
         items.forEach((el) => observer.observe(el));
       } else {
         if (observer) observer.disconnect();
-        visuals.forEach((v, n) => items[n].appendChild(v));
+        visuals.forEach((v, n) => { v.classList.remove('is-active', 'is-before'); items[n].appendChild(v); });
         items.forEach((el) => el.classList.remove('is-active'));
       }
     };
@@ -55,58 +54,59 @@
     wide.addEventListener('change', mount);
   }
 
-  /* Funnel audience tabs */
-  const variants = {
-    generic: { url: 'brand.com', partner: 'Your brand’s homepage', headline: 'A sleep lab, wrapped around your finger.', body: 'Track, analyze and improve how your body recovers.' },
-    bio: { url: 'brand.com/biohackers', partner: 'Shared by a biohacking creator', headline: 'Recovery data you can actually act on.', body: 'Sleep stages, HRV and readiness, tracked every night.' },
-    moms: { url: 'brand.com/mothers', partner: 'Shared by a parenting creator', headline: 'Better rest that fits around real life.', body: 'Gentle insights for broken nights and busy days.' },
-    hcp: { url: 'brand.com/practitioners', partner: 'Shared by a health care professional', headline: 'Sleep insights to share with your patients.', body: 'Long-term trends that make conversations easier.' },
-  };
-  const tablist = document.querySelector('.funnel-tabs');
-  const panel = document.getElementById('funnel-panel');
-  if (tablist && panel) {
-    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
-    const page = panel.querySelector('[data-page]');
-    const copy = panel.querySelector('.browser__copy');
-    const fields = {
-      url: panel.querySelector('[data-url]'), partner: panel.querySelector('[data-partner]'),
-      headline: panel.querySelector('[data-headline]'), body: panel.querySelector('[data-body]'),
+  /* White-label brand switcher */
+  const demo = document.querySelector('[data-brand-demo]');
+  if (demo) {
+    const mock = demo.querySelector('.portal-mock');
+    const status = demo.querySelector('[data-theme-status]');
+    const buttons = [...demo.querySelectorAll('[data-theme-key]')];
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      if (b.getAttribute('aria-pressed') === 'true') return;
+      buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      const apply = () => { mock.dataset.brand = b.dataset.themeKey; mock.classList.remove('is-swapping'); };
+      mock.classList.add('is-swapping');
+      setTimeout(apply, swapDelay());
+      status.textContent = `Portal preview shown in the ${b.textContent.trim()} theme.`;
+    }));
+  }
+
+  /* Funnel: scroll position picks the audience variation */
+  const funnel = document.querySelector('[data-funnel]');
+  if (funnel) {
+    const shots = [...funnel.querySelectorAll('.funnel-shot')];
+    const dots = [...funnel.querySelectorAll('.funnel-progress span')];
+    const label = funnel.querySelector('[data-funnel-label]');
+    const url = funnel.querySelector('[data-funnel-url]');
+    let current = 0, ticking = false;
+
+    const show = (i) => {
+      if (i === current) return;
+      current = i;
+      shots.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('is-active', n === i));
+      url.textContent = shots[i].dataset.url;
+      label.classList.add('is-swapping');
+      setTimeout(() => { label.textContent = shots[i].dataset.label; label.classList.remove('is-swapping'); }, swapDelay());
     };
-    const select = (tab, focus) => {
-      tabs.forEach((t) => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
-      panel.setAttribute('aria-labelledby', tab.id);
-      const key = tab.dataset.variant;
-      const apply = () => {
-        Object.entries(fields).forEach(([k, el]) => { el.textContent = variants[key][k]; });
-        page.dataset.page = key;
-        copy.classList.remove('is-swapping');
-      };
-      if (reduce.matches) apply();
-      else { copy.classList.add('is-swapping'); setTimeout(apply, 150); }
-      if (focus) tab.focus();
+    const update = () => {
+      ticking = false;
+      const r = funnel.getBoundingClientRect();
+      const travel = r.height - window.innerHeight;
+      const p = travel > 0 ? Math.min(0.999, Math.max(0, -r.top / travel)) : 0;
+      show(Math.floor(p * shots.length));
     };
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => select(tab, false));
-      tab.addEventListener('keydown', (e) => {
-        let n = null;
-        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-        if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        if (e.key === 'Home') n = 0;
-        if (e.key === 'End') n = tabs.length - 1;
-        if (n !== null) { e.preventDefault(); select(tabs[n], true); }
-      });
-    });
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
   }
 
   /* Section reveal */
   if (!reduce.matches && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.section-head, .problem-copy, .why-now, .portal-copy, .funnels-head, .awards, .proof-grid, .creators-copy, .final-inner');
+    const targets = document.querySelectorAll('.section-head, .problem-copy, .why-now, .brand-demo, .funnels-head, .plaques, .proof-grid, .creators-copy, .final-inner');
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); } });
     }, { rootMargin: '0px 0px -10% 0px' });
     targets.forEach((t) => {
-      const r = t.getBoundingClientRect();
-      if (r.top < window.innerHeight) return; // already in view: leave visible
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
       t.classList.add('reveal'); io.observe(t);
     });
   }

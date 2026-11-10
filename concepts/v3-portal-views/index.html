@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,13 +16,22 @@
   <link rel="stylesheet" href="../shared/tokens.css">
   <link rel="stylesheet" href="../shared/kit.css">
   <link rel="stylesheet" href="style.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    /* Particle field presets. Edit these to tune the backgrounds; see ../shared/fx-particles.js for every parameter. */
+    window.INFLEKTION_FX = {
+      hero:  { density: 1.1, speed: 12, opacity: 0.5, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.2, rise: 0.72, bend: 0.6, curveOpacity: 0.28 },
+      final: { density: 1.0, speed: 10, opacity: 0.45, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.24, rise: 0.6, bend: 0.55, curveOpacity: 0.25 },
+      light: { density: 0.6, opacity: 0.35, colors: '#6946F4,#FF14B9,#B9A8FF', spread: 0.18, rise: 0.55, bend: 0.65, curveOpacity: 0.22, curveColor: '#6946F4', motion: 'static', seed: 11 },
+    };
+  </script>
+  <script src="../shared/fx-particles.js" defer></script>
   <script src="main.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
+<header class="site-header surface-dark">
   <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Inflektion home"><svg class="logo" aria-hidden="true" focusable="false" width="146" height="24" viewBox="0 0 173 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M19.0824 21.7308C15.264 25.1568 10.0158 27.491 4.29888 27.491H0V23.0201H4.29888C8.80984 23.0201 13.0258 21.1687 16.1146 18.3973C19.228 15.6038 21.3832 11.628 21.3832 8.39971H25.8367C25.8367 13.2186 22.8761 18.3269 19.0824 21.7308Z" fill="#FF14B9"/>
@@ -58,8 +67,9 @@
 
 <main id="main">
 
-  <!-- 1. Hero -->
-  <section class="hero" id="top" aria-labelledby="hero-title">
+  <!-- 1. Hero (dark) -->
+  <section class="hero surface-dark" id="top" aria-labelledby="hero-title">
+    <canvas class="fx-particles" data-fx="hero" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1 id="hero-title">Scale the partnerships. Not the work.</h1>
@@ -111,8 +121,8 @@
     </div>
   </section>
 
-  <!-- 2. Logos -->
-  <section class="logos" aria-labelledby="logos-title">
+  <!-- 2. Logos (lighter navy) -->
+  <section class="logos surface-dark" aria-labelledby="logos-title">
     <div class="wrap">
       <h2 id="logos-title" class="logos-title">Trusted by health and wellness brands, from startups to category leaders</h2>
       <ul role="list" class="logo-row">
@@ -126,17 +136,17 @@
     </div>
   </section>
 
-  <!-- 3. Problem / why now -->
-  <section class="problem section" aria-labelledby="problem-title">
+  <!-- 3. Problem / why now (violet-50) -->
+  <section class="problem section bg-tint" aria-labelledby="problem-title">
     <div class="wrap problem-grid">
       <div class="problem-copy">
         <h2 id="problem-title">Wellness partnerships run on trust. Manual programs can’t keep up.</h2>
         <p class="lead">In health and wellness, partners sell through education and credibility, so fit matters more than reach. Most programs still run on spreadsheets, inboxes and one-size-fits-all landing pages.</p>
         <ul role="list" class="pain-list">
-          <li>Performance is hit and miss.</li>
-          <li>You can’t find enough of the right affiliates to scale.</li>
-          <li>It’s too laborious for the team you have.</li>
-          <li>Success is fleeting. Every month starts from zero.</li>
+          <li><span class="pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M3 7l6 6 4-4 8 8M21 11v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance is hit and miss.</li>
+          <li><span class="pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4.5-4.5M8.5 11h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>You can’t find enough of the right affiliates to scale.</li>
+          <li><span class="pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>It’s too laborious for the team you have.</li>
+          <li><span class="pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Success is fleeting. Every month starts from zero.</li>
         </ul>
         <p class="category-line">Built for supplements, fitness, health technology, functional foods, beauty and mental health brands.</p>
       </div>
@@ -148,19 +158,11 @@
           <svg role="img" aria-labelledby="roas-title roas-desc" viewBox="0 0 400 168" class="roas__chart">
             <title id="roas-title">Return on ad spend by channel</title>
             <desc id="roas-desc">Affiliate 12x, Google Ads 5.3x, Meta Ads 3.0x.</desc>
-            <g class="roas__labels">
-              <text x="0" y="30">Affiliate</text>
-              <text x="0" y="90">Google Ads</text>
-              <text x="0" y="150">Meta Ads</text>
-            </g>
+            <g class="roas__labels"><text x="0" y="30">Affiliate</text><text x="0" y="90">Google Ads</text><text x="0" y="150">Meta Ads</text></g>
             <rect class="roas__bar roas__bar--hi" x="100" y="12" width="250" height="28" rx="6"/>
             <rect class="roas__bar" x="100" y="72" width="110.4" height="28" rx="6"/>
             <rect class="roas__bar" x="100" y="132" width="62.5" height="28" rx="6"/>
-            <g class="roas__values">
-              <text x="358" y="32">12x</text>
-              <text x="218" y="92">5.3x</text>
-              <text x="170" y="152">3.0x</text>
-            </g>
+            <g class="roas__values"><text x="358" y="32">12x</text><text x="218" y="92">5.3x</text><text x="170" y="152">3.0x</text></g>
           </svg>
         </figure>
         <p class="source">Source: figures as cited on inflektion.ai/who-we-help. Original source to be confirmed.</p>
@@ -168,7 +170,7 @@
     </div>
   </section>
 
-  <!-- 4. How it works (sticky chapters) -->
+  <!-- 4. How it works (white, compact sticky chapters) -->
   <section class="how section" id="platform" aria-labelledby="how-title">
     <div class="wrap">
       <div class="section-head">
@@ -178,7 +180,7 @@
 
       <div class="chapters" data-chapters>
         <div class="chapters__stage" data-stage aria-hidden="true">
-          <div class="chapters__progress"><span></span><span></span><span></span><span></span></div>
+          <div class="chapters__progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
         </div>
         <ol role="list" class="chapters__list">
           <li class="chapter" data-chapter>
@@ -249,47 +251,90 @@
     </div>
   </section>
 
-  <!-- 5. White-label portal -->
-  <section class="portal section" aria-labelledby="portal-title">
-    <div class="wrap portal-grid">
-      <div class="portal-copy">
+  <!-- 5. White-label portal (violet-50, centred, interactive) -->
+  <section class="portal section bg-tint" aria-labelledby="portal-title">
+    <div class="wrap">
+      <div class="section-head section-head--center">
         <h2 id="portal-title">Your brand on the portal. Everything your partners need inside it.</h2>
-        <p class="lead">Every partner logs into a portal styled as your brand, not ours. Links and promo codes, marketing resources, payments and performance live in one place, so partners spend their time promoting instead of asking.</p>
-        <ul role="list" class="feature-list">
-          <li><strong>Links and promotions</strong> for social, podcasts and SEO</li>
-          <li><strong>Marketing resources</strong> ready to share</li>
-          <li><strong>Payments</strong> and earnings partners can track</li>
-          <li><strong>Custom FAQs</strong> and a multilingual portal</li>
-        </ul>
-        <figure class="quote quote--inline">
-          <blockquote><p>“We’ve been incredibly impressed with Inflektion’s platform; it’s user-friendly for our influencers and has advanced features that integrate seamlessly into our custom e-commerce stack.”</p></blockquote>
-          <figcaption><strong>Kellie Wesser</strong>, Growth Marketing &amp; Media, Oura Ring</figcaption>
-        </figure>
+        <p class="lead">Every partner logs into a portal styled as your brand, not ours. Links, assets, payments and performance live in one place, so partners spend their time promoting instead of asking.</p>
       </div>
-      <div class="portal-stage" aria-hidden="true">
-        <div class="kit portal-kit portal-kit--back">
-          <div class="k-panel"><div class="k-app">
-            <div class="k-side"><div class="k-logo"></div><div class="k-nav is-active"></div><div class="k-nav"></div><div class="k-nav"></div><div class="k-nav"></div></div>
-            <div class="k-main"><div class="k-line k-line--strong w-45"></div><div class="k-grid-2"><div class="k-stat k-stat--a"><span>Earnings</span><b>$2.1k</b></div><div class="k-stat k-stat--c"><span>Clicks</span><b>940</b></div></div><div class="k-line w-80"></div><div class="k-line w-60"></div></div>
-          </div></div>
+
+      <div class="brand-demo" data-brand-demo>
+        <div class="brand-switch" role="group" aria-label="Preview the portal in a brand theme">
+          <button type="button" aria-pressed="true" data-theme-key="sleep"><span class="swatch" style="--s1:#04093F;--s2:#FF14B9" aria-hidden="true"></span>Sleep tech</button>
+          <button type="button" aria-pressed="false" data-theme-key="supps"><span class="swatch" style="--s1:#0F3D2E;--s2:#E9B949" aria-hidden="true"></span>Supplements</button>
+          <button type="button" aria-pressed="false" data-theme-key="fit"><span class="swatch" style="--s1:#1F2937;--s2:#F97316" aria-hidden="true"></span>Fitness</button>
+          <button type="button" aria-pressed="false" data-theme-key="skin"><span class="swatch" style="--s1:#4A1D3F;--s2:#E8A0BF" aria-hidden="true"></span>Skincare</button>
         </div>
-        <div class="kit portal-kit portal-kit--front">
-          <div class="k-panel"><div class="k-app">
-            <div class="k-side"><div class="k-logo"></div><div class="k-nav"></div><div class="k-nav is-active"></div><div class="k-nav"></div><div class="k-nav"></div></div>
-            <div class="k-main">
-              <div class="k-row k-row--between"><span class="k-title">Marketing resources</span><span class="k-chip">12 assets</span></div>
-              <div class="asset-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="k-row"><span class="k-btn">Copy link</span><span class="k-btn k-btn--ghost">Promo code</span></div>
+        <p class="visually-hidden" aria-live="polite" data-theme-status>Portal preview shown in the Sleep tech theme.</p>
+
+        <div class="brand-stage">
+          <div class="kit portal-mock" data-brand="sleep" aria-hidden="true">
+            <div class="k-panel">
+              <div class="k-app">
+                <div class="k-side">
+                  <div class="pm-brand"><span class="pm-mark"></span><span class="pm-name">Your brand</span></div>
+                  <div class="pm-nav is-active">Dashboard</div>
+                  <div class="pm-nav">Links &amp; promotions</div>
+                  <div class="pm-nav">Marketing resources</div>
+                  <div class="pm-nav">Payments</div>
+                  <div class="pm-nav">FAQ</div>
+                </div>
+                <div class="k-main">
+                  <div class="k-row k-row--between"><span class="k-title">Welcome back</span><span class="k-btn">Copy my link</span></div>
+                  <div class="k-grid-4 pm-stats">
+                    <div class="k-stat pm-stat-1"><span>Earnings</span><b>$5,322</b></div>
+                    <div class="k-stat pm-stat-2"><span>Per click</span><b>$4.25</b></div>
+                    <div class="k-stat pm-stat-3"><span>Conversions</span><b>478</b></div>
+                    <div class="k-stat pm-stat-4"><span>Rate</span><b>38.1%</b></div>
+                  </div>
+                  <div class="pm-row">
+                    <div class="k-panel k-pad k-chart pm-chart">
+                      <svg viewBox="0 0 240 80" preserveAspectRatio="none"><line class="axis" x1="0" y1="79" x2="240" y2="79"/><g class="pm-bars"><rect x="4" y="50" width="10" height="29" rx="2"/><rect x="20" y="40" width="10" height="39" rx="2"/><rect x="36" y="58" width="10" height="21" rx="2"/><rect x="52" y="30" width="10" height="49" rx="2"/><rect x="68" y="44" width="10" height="35" rx="2"/><rect x="84" y="20" width="10" height="59" rx="2"/><rect x="100" y="48" width="10" height="31" rx="2"/><rect x="116" y="26" width="10" height="53" rx="2"/><rect x="132" y="36" width="10" height="43" rx="2"/><rect x="148" y="14" width="10" height="65" rx="2"/><rect x="164" y="40" width="10" height="39" rx="2"/><rect x="180" y="22" width="10" height="57" rx="2"/><rect x="196" y="32" width="10" height="47" rx="2"/><rect x="212" y="10" width="10" height="69" rx="2"/><rect x="228" y="28" width="10" height="51" rx="2"/></g></svg>
+                    </div>
+                    <div class="k-panel k-pad pm-assets">
+                      <span class="k-title">New assets</span>
+                      <div class="pm-thumbs"><span></span><span></span><span></span><span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div></div>
+          </div>
+
+          <figure class="t-card t-card--float">
+            <blockquote><p>“We’ve been incredibly impressed with Inflektion’s platform; it’s user-friendly for our influencers and has advanced features that integrate seamlessly into our custom e-commerce stack.”</p></blockquote>
+            <figcaption><span class="t-name">Kellie Wesser</span><span class="t-role">Growth Marketing &amp; Media, Oura Ring</span></figcaption>
+          </figure>
         </div>
-        <p class="portal-stage__label portal-stage__label--a">Brand A</p>
-        <p class="portal-stage__label portal-stage__label--b">Brand B</p>
+
+        <ul role="list" class="feature-strip">
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></span>
+            <h3>Links and promotions</h3>
+            <p>Tracked links and promo codes for social, podcasts and SEO.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M4 15l4-4 4 4 3-3 5 5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/></svg></span>
+            <h3>Marketing resources</h3>
+            <p>On-brand creative, ready to share.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><rect x="3" y="6" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M3 10h18M7 15h4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></span>
+            <h3>Payments</h3>
+            <p>Earnings partners can track, paid globally.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.75"/></svg></span>
+            <h3>FAQs in any language</h3>
+            <p>Custom FAQs and a multilingual portal.</p>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 6. Personalized funnels -->
+  <!-- 6. Personalized funnels (white, scroll-driven) -->
   <section class="funnels section" aria-labelledby="funnels-title">
     <div class="wrap">
       <div class="funnels-head">
@@ -299,93 +344,96 @@
         </div>
         <p class="big-stat"><strong>Up to 200%</strong> <span>higher conversion rates with personalized funnels</span></p>
       </div>
+    </div>
 
-      <div class="funnel-demo">
-        <div class="funnel-tabs" role="tablist" aria-label="Audience">
-          <button role="tab" type="button" id="tab-generic" aria-selected="true" aria-controls="funnel-panel" data-variant="generic">Generic page</button>
-          <button role="tab" type="button" id="tab-bio" aria-selected="false" aria-controls="funnel-panel" tabindex="-1" data-variant="bio">Biohackers</button>
-          <button role="tab" type="button" id="tab-moms" aria-selected="false" aria-controls="funnel-panel" tabindex="-1" data-variant="moms">Mothers</button>
-          <button role="tab" type="button" id="tab-hcp" aria-selected="false" aria-controls="funnel-panel" tabindex="-1" data-variant="hcp">Health care professionals</button>
+    <div class="funnel-scroll" data-funnel>
+      <div class="funnel-sticky wrap">
+        <p class="funnel-label" aria-hidden="true">Personalized for <strong data-funnel-label>the generic page</strong></p>
+        <div class="funnel-frame">
+          <div class="funnel-bar" aria-hidden="true"><span class="k-dot"></span><span class="k-dot"></span><span class="k-dot"></span><span class="funnel-url" data-funnel-url>ouraring.com</span></div>
+          <ol role="list" class="funnel-shots" aria-label="Oura homepage, personalized for four audiences">
+            <li class="funnel-shot is-active" data-label="the generic page" data-url="ouraring.com">
+              <figure><img src="../../assets/funnels/oura-slider-1.jpg" width="1600" height="726" alt="Generic Oura homepage: “The revolutionary smart ring”, with a cascade of rings."><figcaption>Generic page</figcaption></figure>
+            </li>
+            <li class="funnel-shot" data-label="biohackers" data-url="ouraring.com">
+              <figure><img src="../../assets/funnels/oura-slider-2.jpg" width="1600" height="726" loading="lazy" alt="Oura page for biohackers: “A Sleep Lab, Wrapped Around Your Finger”, with a smiling man in a T-shirt."><figcaption>Biohackers</figcaption></figure>
+            </li>
+            <li class="funnel-shot" data-label="mothers" data-url="ouraring.com">
+              <figure><img src="../../assets/funnels/oura-slider-3.jpg" width="1600" height="726" loading="lazy" alt="Oura page for mothers: “Beauty Sleep Realized”, with a mother holding her toddler."><figcaption>Mothers</figcaption></figure>
+            </li>
+            <li class="funnel-shot" data-label="health care professionals" data-url="ouraring.com">
+              <figure><img src="../../assets/funnels/oura-slider-4.jpg" width="1600" height="726" loading="lazy" alt="Oura page for health care professionals: “Restful Nights Ahead with Oura”, with a doctor in a white coat."><figcaption>Health care professionals</figcaption></figure>
+            </li>
+          </ol>
         </div>
-        <div id="funnel-panel" class="funnel-panel" role="tabpanel" aria-labelledby="tab-generic" tabindex="0">
-          <div class="browser">
-            <div class="browser__bar" aria-hidden="true"><span class="k-dot"></span><span class="k-dot"></span><span class="k-dot"></span><span class="browser__url" data-url>brand.com</span></div>
-            <div class="browser__page" data-page="generic">
-              <div class="browser__copy">
-                <p class="browser__partner" data-partner>Your brand’s homepage</p>
-                <p class="browser__headline" data-headline>A sleep lab, wrapped around your finger.</p>
-                <p class="browser__body" data-body>Track, analyze and improve how your body recovers.</p>
-                <span class="browser__btn" aria-hidden="true">Shop now</span>
-              </div>
-              <div class="browser__product" aria-hidden="true"><span class="ring"></span></div>
-            </div>
-          </div>
-          <p class="funnel-note">Illustrative example for a fictional sleep tracker.</p>
-        </div>
+        <div class="funnel-progress" aria-hidden="true"><span class="is-active"></span><span></span><span></span><span></span></div>
       </div>
+    </div>
 
-      <figure class="quote quote--wide">
+    <div class="wrap">
+      <figure class="t-card t-card--wide">
         <blockquote><p>“Inflektion didn’t just replace our old platform, it reinvigorated our entire partnership program. Affiliate engagement is up, and we now have capabilities we simply didn’t have before, like personalized landing pages and advanced commission tiering.”</p></blockquote>
-        <figcaption><strong>Orlando Petit</strong>, Director of Affiliate &amp; Influencer Marketing, Truly Free Home</figcaption>
+        <figcaption><span class="t-name">Orlando Petit</span><span class="t-role">Director of Affiliate &amp; Influencer Marketing, Truly Free Home</span></figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 7. Recognition -->
-  <section class="recognition section" id="recognition" aria-labelledby="recognition-title">
-    <div class="wrap recognition-grid">
-      <div>
+  <!-- 7. Recognition (violet-50, plaques) -->
+  <section class="recognition section bg-tint" id="recognition" aria-labelledby="recognition-title">
+    <div class="wrap">
+      <div class="section-head section-head--center">
         <h2 id="recognition-title">Recognized for the technology behind it.</h2>
-        <p class="lead">Shortlisted three years running, and a gold winner in 2025.</p>
+        <p class="lead">A gold winner in 2025, and shortlisted three years running.</p>
       </div>
-      <div class="awards">
-        <div class="award award--gold">
-          <svg class="award__medal" aria-hidden="true" focusable="false" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="44" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
-            <circle cx="48" cy="48" r="34" fill="currentColor" opacity=".14"/>
-            <circle cx="48" cy="48" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M48 30l5.3 10.8 11.9 1.7-8.6 8.4 2 11.8L48 57.1l-10.6 5.6 2-11.8-8.6-8.4 11.9-1.7z" fill="currentColor"/>
-          </svg>
-          <div>
-            <p class="award__year">2025 Gold Winner</p>
-            <p class="award__name">Most Innovative Technology</p>
-          </div>
-        </div>
-        <ul role="list" class="award-list">
-          <li><span class="award__year">2026 Finalist</span> <span class="award__name">US Partnership Awards</span></li>
-          <li><span class="award__year">2025 Finalist</span> <span class="award__name">Best Platform</span></li>
-          <li><span class="award__year">2024 Finalist</span> <span class="award__name">Best Tech for Partnership Marketing</span></li>
-        </ul>
-      </div>
+      <ul role="list" class="plaques">
+        <li class="plaque plaque--gold">
+          <img src="../../assets/awards/uspa-2025-gold.png" width="191" height="88" alt="">
+          <p><strong>2025 Gold Winner</strong> Most Innovative Technology</p>
+        </li>
+        <li class="plaque">
+          <img src="../../assets/awards/uspa-2026-finalist.svg" width="88" height="88" alt="">
+          <p><strong>2026 Finalist</strong> US Partnership Awards</p>
+        </li>
+        <li class="plaque">
+          <img src="../../assets/awards/uspa-2025-finalist.png" width="167" height="88" alt="">
+          <p><strong>2025 Finalist</strong> Best Platform</p>
+        </li>
+        <li class="plaque">
+          <img src="../../assets/awards/gpma-2024-finalist.png" width="153" height="83" alt="">
+          <p><strong>2024 Finalist</strong> Best Tech for Partnership Marketing</p>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- 8. Switching and protection -->
-  <section class="proof section" id="results" aria-labelledby="proof-title">
+  <!-- 8. Proof (white with static particle curve) -->
+  <section class="proof section has-fx" id="results" aria-labelledby="proof-title">
+    <canvas class="fx-particles" data-fx="light" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="section-head">
         <h2 id="proof-title">Built for real programs, real complexity and real growth.</h2>
         <p class="lead">Moving from another platform? Program transition is included on Enterprise and available as an add-on on every other plan.</p>
       </div>
       <div class="proof-grid">
-        <figure class="quote quote--feature">
+        <figure class="t-card t-card--feature">
           <blockquote><p>“Our biggest concern was discount-code leakage quietly eating our margin. Inflektion built a smart fix that keeps our conversion rates intact. Inflektion doesn’t just track our program, they protect it.”</p></blockquote>
-          <figcaption><strong>Shannon McInerney</strong>, Partnerships/Operations Manager, Aires Tech</figcaption>
+          <figcaption><span class="t-name">Shannon McInerney</span><span class="t-role">Partnerships/Operations Manager, Aires Tech</span></figcaption>
         </figure>
-        <figure class="quote">
+        <figure class="t-card">
           <blockquote><p>“Wow you guys have thought of everything! It makes it all so easy. This is so much better than Refersion, I’m glad we switched over.”</p></blockquote>
-          <figcaption><strong>Zeeshan Aziz</strong>, Operations, Upgraded Formulas</figcaption>
+          <figcaption><span class="t-name">Zeeshan Aziz</span><span class="t-role">Operations, Upgraded Formulas</span></figcaption>
         </figure>
-        <figure class="quote">
+        <figure class="t-card">
           <blockquote><p>“Inflektion has revolutionized how we manage our affiliate relationships. It’s truly a game-changer in affiliate marketing technology.”</p></blockquote>
-          <figcaption><strong>Summer Martin</strong>, Head of Community Partners, Muse</figcaption>
+          <figcaption><span class="t-name">Summer Martin</span><span class="t-role">Head of Community Partners, Muse</span></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- 9. Creators -->
-  <section class="creators section" id="creators" aria-labelledby="creators-title">
+  <!-- 9. Creators (violet-50 with static particle curve) -->
+  <section class="creators section bg-tint has-fx" id="creators" aria-labelledby="creators-title">
+    <canvas class="fx-particles" data-fx="light" data-seed="23" data-bend="0.4" aria-hidden="true"></canvas>
     <div class="wrap creators-grid">
       <div class="creators-copy">
         <h2 id="creators-title">Creator or affiliate? More ways to earn, less work to promote.</h2>
@@ -398,6 +446,10 @@
         <a class="btn btn--secondary" href="https://partners.inflektion.ai">Join the network</a>
       </div>
       <div class="creators-stage kit" aria-hidden="true">
+        <div class="k-panel k-pad creator-card">
+          <div class="k-row"><span class="k-avatar" style="--c1:#FBCFE8;--c2:#F472B6;width:40px;height:40px"></span><div class="k-stack" style="gap:4px;flex:1"><span class="k-title">Your partner page</span><span class="k-meta">3 brand matches this week</span></div><span class="k-chip k-chip--ok">Earning</span></div>
+          <div class="k-chart"><svg viewBox="0 0 240 60"><polyline points="0,52 40,50 80,46 120,40 150,30 180,20 210,12 240,6" fill="none" stroke="var(--brand-pink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
         <div class="k-panel k-pad asset-card"><div class="k-row k-row--between"><span class="k-title">Email</span><span class="k-chip k-chip--ok">Ready to send</span></div><div class="k-line w-80"></div><div class="k-line w-60"></div></div>
         <div class="k-panel k-pad asset-card"><div class="k-row k-row--between"><span class="k-title">Social post</span><span class="k-chip k-chip--ok">Ready to share</span></div><div class="asset-thumb"></div></div>
         <div class="k-panel k-pad asset-card"><div class="k-row k-row--between"><span class="k-title">Video script</span><span class="k-chip k-chip--accent">Written for you</span></div><div class="k-line w-60"></div><div class="k-line w-45"></div></div>
@@ -405,20 +457,23 @@
     </div>
   </section>
 
-  <!-- 10. Final CTA -->
-  <section class="final section" id="demo" aria-labelledby="final-title">
+  <!-- 10. Final CTA (dark, animated particle curve) -->
+  <section class="final section surface-dark has-fx" id="demo" aria-labelledby="final-title">
+    <canvas class="fx-particles" data-fx="final" aria-hidden="true"></canvas>
     <div class="wrap final-inner">
       <h2 id="final-title">Make partnerships your most scalable growth channel.</h2>
       <p class="lead">See how Inflektion would run your program, from discovery and launch to a funnel for every partner’s audience.</p>
       <div class="cta-row cta-row--center">
         <a class="btn btn--primary btn--lg" href="#demo">Book a demo</a>
+        <a class="text-link" href="#creators">Join as a creator or affiliate <span aria-hidden="true">→</span></a>
       </div>
       <p class="price-line">Plans from $495 a month plus performance revenue share. No long-term contract. <a aria-disabled="true">See pricing<span class="visually-hidden"> (coming soon)</span></a></p>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer surface-dark">
+  <svg class="footer-mark" aria-hidden="true" focusable="false" viewBox="0 0 27 28"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.0824 21.7308C15.264 25.1568 10.0158 27.491 4.29888 27.491H0V23.0201H4.29888C8.80984 23.0201 13.0258 21.1687 16.1146 18.3973C19.228 15.6038 21.3832 11.628 21.3832 8.39971H25.8367C25.8367 13.2186 22.8761 18.3269 19.0824 21.7308Z" fill="currentColor"/><circle cx="23.88" cy="2.98" r="2.97" fill="currentColor"/></svg>
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <a class="brand" href="#top" aria-label="Inflektion home"><svg class="logo" aria-hidden="true" focusable="false" width="146" height="24" viewBox="0 0 173 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -436,6 +491,7 @@
 <path d="M26.8503 2.98269C26.8503 4.62998 25.5199 5.96537 23.8789 5.96537C22.2378 5.96537 20.9075 4.62998 20.9075 2.98269C20.9075 1.33539 22.2378 0 23.8789 0C25.5199 0 26.8503 1.33539 26.8503 2.98269Z" fill="#FF14B9"/>
 </svg></a>
       <p>The influencer and affiliate partnership platform built for health and wellness.</p>
+      <a class="btn btn--primary" href="#demo">Book a demo</a>
     </div>
     <nav aria-label="Company">
       <h2 class="footer-title">Company</h2>
