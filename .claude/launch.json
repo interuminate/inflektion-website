@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "concepts", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "4321"], "port": 4321 }
+    { "name": "concepts", "runtimeExecutable": "python3", "runtimeArgs": ["tools/serve.py", "4321", "site"], "port": 4321 },
+    { "name": "archive", "runtimeExecutable": "python3", "runtimeArgs": ["tools/serve.py", "4322", "archive/round-1"], "port": 4322 }
   ]
 }

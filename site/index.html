@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Inflektion | Homepage versions</title>
+<meta name="description" content="Homepage versions for the Inflektion website.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<style>
+  /* Same structure as the Power Plate picker, in Inflektion colours: violet-50 page, navy cards, pink tags. */
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; min-height: 100dvh; display: flex; flex-direction: column; background: #F4F4FB; color: #04093F; font: 400 18px/26px Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  header { padding: 24px 48px; }
+  header img { display: block; width: 152px; height: auto; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 48px; }
+  h1 { margin: 0; font-size: 56px; line-height: 60px; font-weight: 600; letter-spacing: -0.03em; }
+  p { margin: 0; }
+  .lede { margin-top: 16px; max-width: 560px; color: #4B5563; }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  a.card { display: flex; flex-direction: column; gap: 16px; padding: 40px; border-radius: 24px; background: #04093F; color: #FFFFFF; text-decoration: none; box-shadow: 0 20px 25px rgb(4 9 63 / 0.08); transition: transform .2s ease, box-shadow .2s ease; }
+  a.card:hover { transform: translateY(-4px); box-shadow: 0 28px 40px rgb(4 9 63 / 0.14); }
+  a.card:focus-visible { outline: 3px solid #6946F4; outline-offset: 4px; }
+  .tag { align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: rgb(255 20 185 / 0.18); color: #FF6CCB; font-size: 16px; line-height: 22px; font-weight: 600; }
+  h2 { margin: 0; font-size: 36px; line-height: 42px; font-weight: 600; letter-spacing: -0.02em; }
+  .desc { color: #B4B9D9; }
+  .go { margin-top: auto; padding-top: 16px; font-weight: 600; }
+  .go span { display: inline-block; transition: transform .2s ease; }
+  a.card:hover .go span { transform: translateX(3px); }
+  footer { padding: 24px 48px; font-size: 16px; color: #4B5563; }
+  @media (prefers-reduced-motion: reduce) { a.card, .go span { transition: none; } a.card:hover { transform: none; } }
+  @media (max-width: 760px) {
+    header, footer { padding: 16px; text-align: center; }
+    header img { margin: 0 auto; }
+    main { padding: 32px 16px 48px; gap: 32px; text-align: center; }
+    h1 { font-size: 36px; line-height: 40px; }
+    .lede { margin: 12px auto 0; font-size: 16px; }
+    .cards { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    a.card { padding: 28px 24px; text-align: left; }
+    h2 { font-size: 28px; line-height: 34px; }
+  }
+</style>
+</head>
+<body>
+<header><img src="assets/inflektion-logo-dark.svg" width="173" height="28" alt="Inflektion"></header>
+<main>
+  <div>
+    <h1>Homepage versions</h1>
+    <p class="lede">Concept homepages for the Inflektion website. Open each one to explore it on desktop and mobile.</p>
+  </div>
+  <div class="cards">
+    <a class="card" href="concepts/v1-portal-views/">
+      <span class="tag">Version 1</span>
+      <h2>Portal views</h2>
+      <p class="desc">A product-led homepage with a dark hero and a rising particle field, an interactive white-label portal you can switch between brand themes, and a scroll-driven funnel that shows one page for every audience.</p>
+      <span class="go">Open Version 1 <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="card" href="concepts/v2-lifestyle-frame/">
+      <span class="tag">Version 2</span>
+      <h2>Lifestyle frame</h2>
+      <p class="desc">A light, technical homepage built around lifestyle photography, with rotating customer logos, a portal that cycles through brand themes, and a looping testimonial carousel.</p>
+      <span class="go">Open Version 2 <span aria-hidden="true">→</span></span>
+    </a>
+  </div>
+</main>
+<footer>Inflektion homepage concepts, for review</footer>
+</body>
+</html>
