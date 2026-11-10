@@ -107,13 +107,13 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .hero-copy { display: grid; gap: var(--sp-5); justify-items: start; }
 .hero-copy h1 .hl { display: block; }
 .award-teaser { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: 44px; color: var(--text-muted); font-size: var(--fs-small); text-decoration: none; margin-top: var(--sp-2); }
-.award-teaser img { height: 40px; width: auto; }
+.award-teaser img { height: 56px; width: auto; }
 .award-teaser strong { display: block; color: var(--text); }
 .hero-media { position: relative; padding: var(--sp-6) var(--sp-5) var(--sp-7) var(--sp-6); }
-.photo--hero { aspect-ratio: 1 / 1; }
-.photo--hero img { object-position: 100% 35%; } /* subjects sit right in the source; a square crop centres them */
+.photo--hero { aspect-ratio: 6 / 5; }
+.photo--hero img { object-position: 100% 0%; transform: scale(1.14); transform-origin: 100% 0%; } /* zoom from the top-right: trims the floor and the empty left side */
 .chip-card--match { left: 0; top: 0; }
-.chip-card--ready { left: 0; bottom: var(--sp-2); }
+.chip-card--ready { right: 0; bottom: var(--sp-8); }
 
 /* ---------- 2. Logos ---------- */
 .logos > .wrap { padding-block: var(--sp-6) 0; }
@@ -183,7 +183,7 @@ html:not(.js) .logo-cell__stack img:not(.is-active) { display: none; }
 .portal-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
 .portal-copy { display: grid; gap: var(--sp-5); }
 .feature-list { margin: var(--sp-2) 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; }
-.feature-list li { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-5) var(--sp-5) var(--sp-5) 0; color: var(--text-muted); }
+.feature-list li { display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-5) var(--sp-5) var(--sp-5) 0; color: var(--text-muted); }
 .feature-list li:nth-child(odd) { border-right: 1px solid var(--line); }
 .feature-list li:nth-child(even) { padding-left: var(--sp-5); padding-right: 0; }
 .feature-list li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -197,7 +197,7 @@ html:not(.js) .logo-cell__stack img:not(.is-active) { display: none; }
 .portal-stage[data-brand="fit"] { --t-side: #1F2937; --t-active: #374151; --t-accent: #F97316; --t-btn: #F97316; --t-btn-ink: #1F2937; --t-bar: #FED7AA; --t-bar-hi: #EA580C; }
 .portal-stage[data-brand="skin"] { --t-side: #4A1D3F; --t-active: #6B2F5C; --t-accent: #E8A0BF; --t-btn: #E8A0BF; --t-btn-ink: #4A1D3F; --t-bar: #F5C9DD; --t-bar-hi: #9D4E84; }
 .portal-stage .kit * { transition-property: background-color, color, opacity; transition-duration: calc(var(--dur-4) * 1.5); transition-timing-function: var(--ease-out); }
-.theme-decal { position: absolute; top: calc(-1 * var(--sp-5)); right: calc(-1 * var(--sp-4)); z-index: 2; display: grid; justify-items: center; gap: 8px; min-width: 112px; padding: 14px 16px 12px; background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--block); }
+.theme-decal { position: absolute; top: calc(-1 * var(--sp-5)); right: calc(-1 * var(--sp-4)); z-index: 2; display: grid; justify-items: center; gap: 8px; width: 136px; box-sizing: border-box; padding: 14px 16px 12px; background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--block); }
 .theme-decal__swatch { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--t-side) 50%, var(--t-accent) 50%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4), 0 0 0 1px var(--line); }
 .theme-decal__label { font-size: 13px; font-weight: 600; color: var(--brand-navy); white-space: nowrap; }
 .theme-decal.is-swapping .theme-decal__swatch, .theme-decal.is-swapping .theme-decal__label { opacity: 0; }
@@ -266,27 +266,21 @@ html:not(.js) .audience-tabs { display: none; }
 /* ---------- 8. Proof ---------- */
 .proof-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--sp-5); margin-bottom: var(--sp-6); }
 .proof-head .sec-head { margin-bottom: 0; }
-.carousel { display: grid; gap: var(--sp-4); }
+.proof { overflow-x: clip; } /* cards bleed past the content margin and are clipped only at the viewport */
+.carousel { --gap: var(--sp-6); --per: 2.4; }
 .carousel__controls { display: none; flex: none; gap: var(--sp-2); }
 .js .carousel__controls { display: flex; }
-.carousel__btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-ui); background: var(--surface); color: var(--text); cursor: pointer; transition: border-color var(--dur-2) var(--ease-out), opacity var(--dur-2) var(--ease-out); }
-.carousel__btn:hover:not(:disabled) { border-color: var(--border-ui); }
-.carousel__btn:disabled { opacity: 0.4; cursor: default; }
-.carousel__track {
-  margin: 0; padding: 0 var(--sp-2) var(--sp-3) 0; list-style: none;
-  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--sp-6)) / 2.4); gap: var(--sp-6);
-  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.carousel__track::-webkit-scrollbar { display: none; }
-.carousel__ticks { display: none; gap: 4px; }
-.js .carousel__ticks { display: flex; }
-.carousel__ticks span { width: 20px; height: 3px; border-radius: 1px; background: var(--line); transition: background-color var(--dur-3) var(--ease-out), width var(--dur-3) var(--ease-out); }
-.carousel__ticks span.is-on { width: 36px; background: var(--brand-violet); }
-.carousel__track:focus-visible { outline-offset: 6px; }
-.slide { scroll-snap-align: start; display: flex; }
+.carousel__btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-ui); background: var(--surface); color: var(--text); cursor: pointer; transition: border-color var(--dur-2) var(--ease-out); }
+.carousel__btn:hover { border-color: var(--border-ui); }
+.carousel__track { margin: 0; padding: 0 0 var(--sp-4); list-style: none; display: flex; gap: var(--gap); }
+.slide { flex: 0 0 calc((100% - 2 * var(--gap)) / var(--per)); display: flex; }
 .slide .q-card { flex: 1; }
-@media (prefers-reduced-motion: reduce) { .carousel__track { scroll-behavior: auto; } }
+/* Without JS: a plain horizontal scroller */
+html:not(.js) .carousel__track { overflow-x: auto; scroll-snap-type: x mandatory; padding-right: var(--sp-2); }
+html:not(.js) .slide { scroll-snap-align: start; }
+/* With JS: a looping track moved by transform */
+.js .carousel__track { will-change: transform; touch-action: pan-y; user-select: none; }
+.js .carousel__track.is-animating { transition: transform calc(var(--dur-4) * 2) var(--ease-in-out); }
 
 /* ---------- 9. Creators ---------- */
 .creators-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
@@ -298,9 +292,9 @@ html:not(.js) .audience-tabs { display: none; }
 .creators-stage { position: relative; display: grid; justify-items: center; padding: var(--sp-7) var(--sp-6); }
 .asset-stack { position: relative; z-index: 1; }
 .decal { position: absolute; border-radius: 16px; border: 4px solid #FFFFFF; box-shadow: var(--block); background-repeat: no-repeat; }
-.decal--a { top: 0; left: 2%; width: 132px; height: 150px; background-image: url("../../assets/lifestyle/creator.jpg"); background-size: 320%; background-position: 32% 14%; }
-.decal--b { top: 28%; right: 0; width: 112px; height: 112px; background-image: url("../../assets/lifestyle/hero.jpg"); background-size: 300%; background-position: 78% 22%; }
-.decal--c { bottom: 0; left: 18%; width: 104px; height: 104px; background-image: url("../../assets/lifestyle/creator.jpg"); background-size: 420%; background-position: 84% 92%; }
+.decal--a { top: calc(-1 * var(--sp-6)); left: 0; width: 128px; height: 148px; background: 50% 32% / 190% auto no-repeat url("../../assets/lifestyle/creators/creator-fitness-man.jpg"); }
+.decal--b { top: 26%; right: 0; width: 112px; height: 112px; background: 60% 40% / cover no-repeat url("../../assets/lifestyle/creators/creator-yoga-woman.jpg"); border-radius: 50%; }
+.decal--c { bottom: calc(-1 * var(--sp-8)); left: 14%; width: 104px; height: 104px; background: 56% 40% / cover no-repeat url("../../assets/lifestyle/creators/creator-yoga-man.jpg"); }
 .asset-stack { display: grid; gap: var(--sp-3); width: min(100%, 400px); }
 .asset { display: flex; align-items: center; gap: 12px; padding: 10px 14px 10px 10px; background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--block-sm); }
 .asset:nth-child(2) { margin-left: 8%; }
@@ -350,14 +344,14 @@ html:not(.js) .audience-tabs { display: none; }
   .logo-cells { grid-template-columns: repeat(3, 1fr); }
   .logo-cells li:nth-child(4) { border-left: 0; }
   .logo-cells li:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .carousel__track { grid-auto-columns: calc((100% - var(--sp-6)) / 1.6); }
+  .carousel { --per: 1.6; }
   .portal-stage { padding: 0 0 var(--sp-7) var(--sp-6); }
 }
 @media (max-width: 767.98px) {
   .stages, .feature-list { grid-template-columns: 1fr; }
   .feature-list li:nth-child(n) { border-right: 0; border-bottom: 0; padding: var(--sp-4) 0; }
   .feature-list li + li { border-top: 1px solid var(--line); }
-  .carousel__track { grid-auto-columns: 86%; gap: var(--sp-4); }
+  .carousel { --per: 1.12; --gap: var(--sp-4); }
   .stage + .stage { border-left: 0; border-top: 1px solid var(--line); }
   .logo-cells { grid-template-columns: 1fr 1fr; }
   .logo-cells li:nth-child(n) { border-left: 0; border-top: 0; }
@@ -369,7 +363,7 @@ html:not(.js) .audience-tabs { display: none; }
   .hero-media { padding: var(--sp-5) 0 var(--sp-8); }
   .chip-card { width: 210px; }
   .chip-card--match { left: var(--sp-2); }
-  .chip-card--ready { left: var(--sp-2); }
+  .chip-card--ready { right: var(--sp-2); bottom: var(--sp-6); }
   .portal-stage { padding: 0 0 var(--sp-9); }
   .mini-portal { width: 88%; }
   .theme-decal { right: var(--sp-2); }

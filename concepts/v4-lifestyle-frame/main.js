@@ -33,32 +33,39 @@
     }));
   }
 
-  /* Testimonial carousel: buttons page through the scroll-snapped track; ticks show what is in view */
+  /* Testimonial carousel: a looping track. Clones before and after the real cards let the
+     arrows run forever; the cards bleed past the margin and are clipped by the viewport. */
   const carousel = document.querySelector('[data-carousel]');
   if (carousel) {
     const section = carousel.closest('section');
     const track = carousel.querySelector('.carousel__track');
-    const slides = [...track.querySelectorAll('.slide')];
-    const prev = section.querySelector('[data-prev]');
-    const next = section.querySelector('[data-next]');
-    const ticksEl = carousel.querySelector('[data-ticks]');
-    const ticks = slides.map(() => ticksEl.appendChild(document.createElement('span')));
-    const step = () => slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
-    const sync = () => {
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
-      const box = track.getBoundingClientRect();
-      slides.forEach((sl, n) => {
-        const r = sl.getBoundingClientRect();
-        const seen = Math.min(r.right, box.right) - Math.max(r.left, box.left);
-        ticks[n].classList.toggle('is-on', seen > r.width * 0.6);
-      });
+    const originals = [...track.querySelectorAll('.slide')];
+    const n = originals.length;
+    const clone = (el) => { const c = el.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.classList.add('is-clone'); return c; };
+    track.prepend(...originals.map(clone));
+    track.append(...originals.map(clone));
+    track.removeAttribute('tabindex');
+    let index = n;
+    const step = () => { const s = track.querySelector('.slide'); return s.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap); };
+    const place = (animate) => {
+      track.classList.toggle('is-animating', animate && !reduce.matches);
+      track.style.transform = `translateX(${-index * step()}px)`;
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
-    next.addEventListener('click', () => track.scrollBy({ left: step() }));
-    track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
+    const jump = (to) => { index = to; place(false); void track.offsetWidth; };
+    const move = (dir) => {
+      if (index + dir >= 2 * n) jump(index - n);
+      if (index + dir < n) jump(index + n);
+      index += dir;
+      place(true);
+    };
+    track.addEventListener('transitionend', () => { if (index >= 2 * n) jump(index - n); else if (index < n) jump(index + n); });
+    section.querySelector('[data-prev]').addEventListener('click', () => move(-1));
+    section.querySelector('[data-next]').addEventListener('click', () => move(1));
+    let x0 = null;
+    track.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+    track.addEventListener('pointerup', (e) => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) move(dx < 0 ? 1 : -1); });
+    window.addEventListener('resize', () => place(false));
+    place(false);
   }
 
   /* Pausable timers: stop when off screen, when the tab is hidden, or under reduced motion */

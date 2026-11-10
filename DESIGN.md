@@ -141,5 +141,6 @@ There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px box
 - Light header and footer; no dark bands.
 - Sections are divided by 1px `#E7E5F3` hairlines. Side rails (desktop only) appear just on the logos, how-it-works, portal and recognition sections (`.railed`); there are no crosshair marks. The hero and final CTA add a faint 48px grid that fades out.
 - Logos, the four stages and the award plaques sit in hairline cells that run to the rails.
-- All five testimonials sit in one scroll-snap carousel with previous and next buttons; without JS it is a horizontally scrollable list.
+- All five testimonials sit in one looping carousel: the arrows run forever in either direction, cards bleed past the content margin and are clipped only by the viewport. Without JS it is a horizontally scrollable list.
+- Creator decals use three Unsplash portraits (sources in `assets/lifestyle/CREDITS.md`).
 - Lifestyle photos (from the client's mockup, placeholders until licensed or replaced) carry the hero and portal; soft UI is reduced to small white cards with a hairline and a flat violet block shadow.
