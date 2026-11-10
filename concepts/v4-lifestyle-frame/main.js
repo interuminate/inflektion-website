@@ -107,26 +107,32 @@
     });
   }
 
-  /* Portal themes: cycle the brand theme with a long idle between swaps */
-  const themeStage = document.querySelector('[data-theme-cycle]');
-  if (themeStage && !reduce.matches) {
+  /* Portal themes: cycle automatically with a long idle; arrows let visitors switch by hand
+     (manual use stops the automatic cycle). Each theme changes the decal, the mini portal and the photo. */
+  const themeBox = document.querySelector('[data-theme-cycle]');
+  if (themeBox) {
+    const stage = themeBox.querySelector('.portal-stage');
     const themes = [['sleep', 'Sleep tech'], ['supps', 'Supplements'], ['fit', 'Fitness'], ['skin', 'Skincare']];
-    const decal = themeStage.querySelector('.theme-decal');
-    const label = themeStage.querySelector('[data-theme-label]');
-    let k = 0, timer = 0, hover = false, onScreen = false;
-    const next = () => {
-      k = (k + 1) % themes.length;
+    const decal = stage.querySelector('.theme-decal');
+    const label = stage.querySelector('[data-theme-label]');
+    const photos = [...stage.querySelectorAll('.theme-photo')];
+    const status = themeBox.querySelector('[data-theme-status]');
+    let k = 0, timer = 0, hover = false, onScreen = false, manual = false;
+    photos.forEach((p) => { p.loading = 'eager'; if (!p.classList.contains('is-active')) p.setAttribute('aria-hidden', 'true'); });
+    const show = (to, announce) => {
+      k = (to + themes.length) % themes.length;
+      const [key, name] = themes[k];
       decal.classList.add('is-swapping');
-      setTimeout(() => {
-        themeStage.dataset.brand = themes[k][0];
-        label.textContent = themes[k][1];
-        decal.classList.remove('is-swapping');
-      }, 300);
+      photos.forEach((p) => { const on = p.dataset.theme === key; p.classList.toggle('is-active', on); p.toggleAttribute('aria-hidden', !on); });
+      setTimeout(() => { stage.dataset.brand = key; label.textContent = name; decal.classList.remove('is-swapping'); }, reduce.matches ? 0 : 300);
+      if (announce) status.textContent = `Portal theme: ${name}`;
     };
-    const update = () => { clearInterval(timer); if (onScreen && !hover) timer = setInterval(next, 3600); };
-    themeStage.addEventListener('mouseenter', () => { hover = true; update(); });
-    themeStage.addEventListener('mouseleave', () => { hover = false; update(); });
-    whenVisible(themeStage, (v) => { onScreen = v; update(); });
+    const update = () => { clearInterval(timer); if (!manual && !reduce.matches && onScreen && !hover) timer = setInterval(() => show(k + 1, false), 4200); };
+    stage.addEventListener('mouseenter', () => { hover = true; update(); });
+    stage.addEventListener('mouseleave', () => { hover = false; update(); });
+    themeBox.querySelector('[data-theme-prev]').addEventListener('click', () => { manual = true; update(); show(k - 1, true); });
+    themeBox.querySelector('[data-theme-next]').addEventListener('click', () => { manual = true; update(); show(k + 1, true); });
+    whenVisible(stage, (v) => { onScreen = v; update(); });
   }
 
   /* Section reveal */

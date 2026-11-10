@@ -190,7 +190,17 @@ html:not(.js) .logo-cell__stack img:not(.is-active) { display: none; }
 .feature-list strong { display: block; color: var(--text); }
 .portal-stage { position: relative; padding: 0 0 var(--sp-8) var(--sp-8); }
 .photo--portal { aspect-ratio: 4 / 3.4; }
-.photo--portal img { object-position: 35% center; }
+.portal-visual { display: grid; gap: var(--sp-4); }
+.photo--portal { position: relative; }
+.theme-photo { position: absolute; inset: 0; opacity: 0; transition: opacity calc(var(--dur-4) * 2) var(--ease-in-out); }
+.theme-photo.is-active { opacity: 1; }
+.theme-photo[data-theme="sleep"] { object-position: 35% center; }
+.theme-photo[data-theme="supps"] { object-position: 48% center; }
+.theme-photo[data-theme="fit"] { object-position: 30% center; }
+.theme-photo[data-theme="skin"] { object-position: 62% center; }
+html:not(.js) .theme-photo:not(.is-active) { display: none; }
+.theme-controls { display: none; justify-content: flex-end; gap: var(--sp-2); margin-top: calc(var(--sp-4) - var(--sp-8) - var(--sp-4)); position: relative; z-index: 1; } /* sits in the strip below the photo, right of the mini portal */
+.js .theme-controls { display: flex; }
 /* Brand themes cycle automatically (JS); each changes the decal and the mini portal */
 .portal-stage[data-brand="sleep"] { --t-side: #04093F; --t-active: #391296; --t-accent: #FF14B9; --t-btn: #D32691; --t-btn-ink: #FFFFFF; --t-bar: #C7BCFB; --t-bar-hi: #6946F4; }
 .portal-stage[data-brand="supps"] { --t-side: #0F3D2E; --t-active: #1C5C45; --t-accent: #E9B949; --t-btn: #E9B949; --t-btn-ink: #0F3D2E; --t-bar: #B7E0C8; --t-bar-hi: #3F7A5E; }
@@ -367,6 +377,7 @@ html:not(.js) .slide { scroll-snap-align: start; }
   .portal-stage { padding: 0 0 var(--sp-9); }
   .mini-portal { width: 88%; }
   .theme-decal { right: var(--sp-2); }
+  .theme-controls { margin-top: calc(-1 * var(--sp-5)); }
   .asset:nth-child(n) { margin-left: 0; }
   .creators { overflow-x: clip; }
   .creators-stage { padding: var(--sp-8) var(--sp-4) var(--sp-9); }
