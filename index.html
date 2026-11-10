@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inflektion · Homepage concepts</title>
+  <meta name="robots" content="noindex">
+  <style>
+    /* Deliberately neutral: this page should not lean toward either concept. */
+    :root { --fg: #111; --muted: #6b6b6b; --line: #e4e4e4; --bg: #fff; --hover: #f6f6f6; }
+    @media (prefers-color-scheme: dark) { :root { --fg: #eee; --muted: #9a9a9a; --line: #2c2c2c; --bg: #121212; --hover: #1a1a1a; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 400 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+    main { max-width: 880px; margin: 0 auto; padding: clamp(48px, 10vw, 120px) 16px 64px; }
+    .meta { font: 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); letter-spacing: .02em; margin: 0 0 20px; }
+    h1 { font-size: clamp(28px, 4vw, 36px); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; margin: 0 0 12px; }
+    .lede { color: var(--muted); max-width: 520px; margin: 0 0 48px; }
+    ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    a.row { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: baseline; padding: 24px 12px; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; transition: background-color .15s; }
+    a.row:hover { background: var(--hover); }
+    a.row:focus-visible { outline: 2px solid var(--fg); outline-offset: -2px; }
+    .n { font: 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); }
+    .title { display: block; font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+    .desc { display: block; color: var(--muted); margin-top: 4px; max-width: 560px; }
+    .open { font-size: 14px; white-space: nowrap; }
+    .open span { display: inline-block; transition: transform .15s; }
+    a.row:hover .open span { transform: translateX(3px); }
+    footer { margin-top: 48px; font-size: 13px; color: var(--muted); }
+    @media (max-width: 560px) { a.row { grid-template-columns: 36px 1fr; } .open { grid-column: 2; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">INFLEKTION · HOMEPAGE CONCEPTS · FOR REVIEW</p>
+    <h1>Homepage concepts</h1>
+    <p class="lede">Two directions for the new Inflektion homepage, built on the same copy. Open each on desktop and on your phone. Illustrations are placeholders for now.</p>
+    <ul>
+      <li>
+        <a class="row" href="concepts/v1-minimal/">
+          <span class="n">01</span>
+          <span><span class="title">Minimal</span><span class="desc">Brand-led and restrained, with interface-driven layouts and quiet motion.</span></span>
+          <span class="open">Open <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="row" href="concepts/v2-illustrated/">
+          <span class="n">02</span>
+          <span><span class="title">Illustrated</span><span class="desc">Warmer and more graphic, with space made for illustration throughout.</span></span>
+          <span class="open">Open <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+    </ul>
+    <footer>Concept work in progress. Not the final site.</footer>
+  </main>
+</body>
+</html>
