@@ -55,7 +55,7 @@ All pairs below are checked (WCAG 2.x ratios). Text needs at least 4.5:1. UI par
 
 ## Typography
 
-One family: **Inter** (Google Fonts). At most three weights per concept: 400/600/700 (v4 may swap 700 for 800 on display only). Body ≥ 16px, line length 60–72ch.
+One family: **Inter** (Google Fonts). At most three weights per concept: 400/600/700. Both concepts now set titles at 600. Body ≥ 16px, line length 60–72ch.
 
 | Token | Size | Line height | Weight | Use |
 |---|---|---|---|---|
@@ -90,7 +90,7 @@ Two queries, three bands: narrow `max-width: 767.98px`, medium `max-width: 1023.
 | `--shadow-1` | `0 1px 2px rgb(4 9 63 / .06)` | `3px 3px 0 var(--ink)` |
 | `--shadow-2` | `0 2px 4px rgb(4 9 63 / .04), 0 12px 32px -8px rgb(4 9 63 / .07)` | `6px 6px 0 var(--ink)` |
 
-In v3, depth comes from a border first and then a soft shadow. In v4, depth is a solid offset shadow in ink, with no blur. This is a deliberate thematic exception (user-directed Gumroad reference) to the soft-shadow rule.
+In v3, depth comes from a border first and then a soft shadow. In v4 (after the first v4 review), depth is a 1px hairline plus a flat offset shadow in pale violet (`6px 6px 0 #ECE9FB`, pink variant `#FBE3F1`), with no blur and no ink outline. The earlier thick-stroke Gumroad style is retired.
 
 ## Motion
 | Token | Value | Use |
@@ -135,3 +135,10 @@ There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px box
 
 - Icon tiles (`.icon-tile`, feature, pain-point and check-list tiles): white, 1px `#E4E0FB` stroke, violet glyph, soft violet shadow.
 - Chapter chips: Lucide-style icon plus label in pink-700 at `--fs-lead`. The active chapter gets a pink outline, a `#FFF9FC` fill (4.54:1 with the label) and a 4% scale-up. The fill stays that pale so the label passes AA.
+
+## v4 frame (first v4 review)
+
+- Light header and footer; no dark bands.
+- Sections are divided by 1px `#E7E5F3` hairlines. On desktop the content column has side rails in the same hairline, with small `+` crosshairs where a section line meets a rail. The hero and final CTA add a faint 48px grid that fades out.
+- Logos, the four stages and the award plaques sit in hairline cells that run to the rails.
+- Lifestyle photos (from the client's mockup, placeholders until licensed or replaced) carry the hero and portal; soft UI is reduced to small white cards with a hairline and a flat violet block shadow.

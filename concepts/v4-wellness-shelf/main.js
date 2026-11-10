@@ -1,75 +1,47 @@
-// v4 · The wellness shelf. Progressive enhancement only: the page reads fully without this file.
-(function () {
-  document.body.classList.add('js');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// v4: progressive enhancement only. Without JS every section reads in order and all four funnel pages show.
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // Mobile menu
-  const toggle = document.querySelector('.menu-toggle');
+  /* Mobile menu */
+  const btn = document.querySelector('.menu-btn');
   const nav = document.getElementById('site-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('is-open', !open);
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-        toggle.focus();
-      }
-    });
-  }
-
-  // Audience switch for the personalised funnel demo
-  const copy = {
-    generic: { kicker: 'Sleep support', head: 'Better sleep starts tonight', label: 'the generic page' },
-    biohackers: { kicker: 'For biohackers', head: 'Track it. Tune it. Sleep deeper.', label: 'the page for biohackers' },
-    mothers: { kicker: 'For mothers', head: 'Rest that fits around family life', label: 'the page for mothers' },
-    hcp: { kicker: 'For health care professionals', head: 'Evidence-led sleep support for your patients', label: 'the page for health care professionals' }
-  };
-  const frame = document.querySelector('.funnel-frame');
-  const status = document.getElementById('funnel-status');
-  const buttons = document.querySelectorAll('.switch-buttons button');
-  buttons.forEach((btn) => {
+  if (btn && nav) {
+    const close = () => { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
     btn.addEventListener('click', () => {
-      const key = btn.dataset.audience;
-      if (!copy[key] || !frame) return;
-      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      frame.dataset.audience = key;
-      frame.querySelector('[data-for="kicker"]').textContent = copy[key].kicker;
-      frame.querySelector('[data-for="head"]').textContent = copy[key].head;
-      if (status) status.textContent = 'Showing ' + copy[key].label + '.';
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
     });
-  });
-
-  // "What's inside" label tracks the chapter in view
-  const rows = document.querySelectorAll('.inside-rows a');
-  const chapters = document.querySelectorAll('.chapter');
-  if ('IntersectionObserver' in window && rows.length && chapters.length) {
-    const setActive = (step) => rows.forEach((a) => {
-      if (a.dataset.step === step) a.setAttribute('aria-current', 'step');
-      else a.removeAttribute('aria-current');
+    nav.addEventListener('click', (e) => { if (e.target.closest('a[href]')) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { close(); btn.focus(); }
     });
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.dataset.step); });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    chapters.forEach((c) => io.observe(c));
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', close);
   }
 
-  // Gentle reveal of sticker elements (skipped entirely with reduced motion)
-  if (!reduceMotion.matches && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.label-card, .sticker-quote, .seal, .asset-card, .claim-sticker');
-    const io2 = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io2.unobserve(entry.target); }
-      });
+  /* Funnel: audience buttons swap the Oura page */
+  const funnel = document.querySelector('[data-funnel]');
+  if (funnel) {
+    const shots = [...funnel.querySelectorAll('.shot')];
+    const buttons = [...funnel.querySelectorAll('[data-shot]')];
+    const status = funnel.querySelector('[data-funnel-status]');
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      const i = Number(b.dataset.shot);
+      buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      shots.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      status.textContent = `Showing the Oura page for ${b.textContent.trim().toLowerCase()}.`;
+    }));
+  }
+
+  /* Section reveal */
+  if (!reduce.matches && 'IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('.sec-head, .stat-panel, .stages, .portal-stage, .browser, .award-cells, .quote-wall, .creators-stage');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); } });
     }, { rootMargin: '0px 0px -10% 0px' });
     targets.forEach((t) => {
-      const r = t.getBoundingClientRect();
-      if (r.top < window.innerHeight) return; // already on screen: leave as is
-      t.classList.add('reveal');
-      io2.observe(t);
+      if (t.getBoundingClientRect().top < window.innerHeight) return;
+      t.classList.add('reveal'); io.observe(t);
     });
   }
 })();
