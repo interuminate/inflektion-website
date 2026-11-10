@@ -53,6 +53,7 @@
   --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 0.75rem; --sp-4: 1rem; --sp-5: 1.5rem;
   --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4rem; --sp-9: 6rem; --sp-10: 8rem;
   --section-y: clamp(4rem, 2.8rem + 5vw, 8rem);
+  --section-y-compact: clamp(3.5rem, 1rem + 6.5vw, 6.25rem); /* 56px → 100px */
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
   --w-page: 75rem;
   --w-text: 40rem;

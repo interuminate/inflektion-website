@@ -76,10 +76,8 @@
 .k-avatar--sm { width: 20px; height: 20px; }
 .k-btn { display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 6px; background: var(--kit-accent); color: #fff; font-weight: 600; font-size: 10px; white-space: nowrap; }
 .k-btn--ghost { background: transparent; color: var(--kit-ink); border: var(--kit-stroke); }
-.k-check { width: 16px; height: 16px; border-radius: 50%; flex: none; background: var(--chart-green); display: grid; place-items: center; }
-.k-check::after { content: ""; width: 6px; height: 3px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.k-check { width: 16px; height: 16px; border-radius: 50%; flex: none; background: var(--chart-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9'/%3E%3C/svg%3E") center / 100% no-repeat; }
 .k-check--todo { background: transparent; border: 2px solid var(--kit-faint); }
-.k-check--todo::after { display: none; }
 
 /* List row */
 .k-list { display: grid; }

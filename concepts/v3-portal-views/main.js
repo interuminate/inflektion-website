@@ -86,7 +86,13 @@
       dots.forEach((d, n) => d.classList.toggle('is-active', n === i));
       url.textContent = shots[i].dataset.url;
       label.classList.add('is-swapping');
-      setTimeout(() => { label.textContent = shots[i].dataset.label; label.classList.remove('is-swapping'); }, swapDelay());
+      setTimeout(() => {
+        const { label: prefix, audience } = shots[i].dataset;
+        const strong = document.createElement('strong');
+        strong.textContent = audience;
+        label.replaceChildren(...(prefix ? [`${prefix} `, strong] : [strong]));
+        label.classList.remove('is-swapping');
+      }, swapDelay());
     };
     const update = () => {
       ticking = false;

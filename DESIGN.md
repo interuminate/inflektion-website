@@ -75,7 +75,7 @@ Two queries, three bands: narrow `max-width: 767.98px`, medium `max-width: 1023.
 
 ## Spacing
 4/8 grid: `--sp-1` 4 · `--sp-2` 8 · `--sp-3` 12 · `--sp-4` 16 · `--sp-5` 24 · `--sp-6` 32 · `--sp-7` 48 · `--sp-8` 64 · `--sp-9` 96 · `--sp-10` 128 (px).
-- Section padding: `--section-y: clamp(4rem, 2.8rem + 5vw, 8rem)`
+- Section padding: `--section-y: clamp(4rem, 2.8rem + 5vw, 8rem)`; v3 uses the tighter `--section-y-compact: clamp(3.5rem, 1rem + 6.5vw, 6.25rem)` (56px to 100px)
 - Page gutter: `--gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem)` (16px at 375)
 - Content width: `--w-page 1200px`, `--w-text 40rem`
 
@@ -123,10 +123,15 @@ Tune it per preset in the page's `window.INFLEKTION_FX` block, or per canvas wit
 v3 is a fixed light page (`data-theme="light"`) with dark bookends:
 - Dark navy hero (animated particles), then a lighter navy logo band.
 - Violet-50 and white alternating: problem, how it works, portal, funnels, recognition, proof (static particles), creators (static particles).
-- Dark final CTA (animated particles), then the deepest navy footer with a logo-mark watermark.
+- A compact two-column final CTA in the footer navy `#02052A`, so it reads as one block with the footer.
 - `.surface-dark` re-maps the role tokens for navy sections. Product-UI kit panels stay light everywhere.
 
-Testimonials use one card style everywhere (`.t-card`): a white card with the name in pink-700 `#D32691`. Brand pink `#FF14B9` fails text contrast on white (3.6:1), so it isn't used for the name.
+Testimonials use one card style everywhere (`.t-card`): a white card with the brand logo top left, the quote at one size, and the name in pink-700 `#D32691`. Brand pink `#FF14B9` fails text contrast on white (3.6:1), so it isn't used for the name.
 
 ## Imagery and icons
 There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px boxes. Client logos are monochrome (inverted in dark mode).
+
+## v3 icon tiles and chapter chips
+
+- Icon tiles (`.icon-tile`, feature, pain-point and check-list tiles): white, 1px `#E4E0FB` stroke, violet glyph, soft violet shadow.
+- Chapter chips: Lucide-style icon plus label in pink-700 at `--fs-lead`. The active chapter gets a pink outline, a `#FFF9FC` fill (4.54:1 with the label) and a 4% scale-up. The fill stays that pale so the label passes AA.
