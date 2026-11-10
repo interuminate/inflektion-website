@@ -68,6 +68,62 @@
     place(false);
   }
 
+  /* Testimonials: clamp each quote to a few lines with "… Read more"; the full quote opens in a dialog.
+     Runs after the carousel has cloned its cards, so clones get the same treatment. */
+  const dialog = document.querySelector('.quote-dialog');
+  const qCards = [...document.querySelectorAll('.carousel .q-card')];
+  if (qCards.length && dialog && typeof dialog.showModal === 'function') {
+    const body = dialog.querySelector('[data-body]');
+    const scroller = dialog.querySelector('[data-scroll]');
+    let opener = null;
+    const openQuote = (card, paras, btn) => {
+      opener = btn;
+      const logo = card.querySelector('.q-logo');
+      dialog.querySelector('[data-logo]').replaceChildren(...(logo ? [logo.cloneNode()] : []));
+      body.replaceChildren(...paras.map((t) => { const q = document.createElement('p'); q.textContent = t; return q; }));
+      dialog.querySelector('[data-name]').textContent = card.querySelector('.q-name').textContent;
+      dialog.querySelector('[data-role]').textContent = card.querySelector('.q-role').textContent;
+      dialog.showModal();
+      body.scrollTop = 0;
+      scroller.classList.toggle('is-scrollable', body.scrollHeight > body.clientHeight + 1);
+      scroller.classList.remove('is-end');
+    };
+    const cards = qCards.map((card) => {
+      const bq = card.querySelector('blockquote');
+      const paras = [...bq.querySelectorAll('p')].map((p) => p.textContent);
+      const full = paras.join(' ');
+      const p = document.createElement('p');
+      bq.replaceChildren(p);
+      const name = card.querySelector('.q-name').textContent;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 't-more';
+      btn.innerHTML = 'Read more<span class="visually-hidden">: ' + name + '’s full testimonial</span>';
+      if (card.closest('.is-clone')) btn.tabIndex = -1;
+      btn.addEventListener('click', () => openQuote(card, paras, btn));
+      return { p, full, btn };
+    });
+    const LINES = 6;
+    const fit = ({ p, full, btn }) => {
+      p.textContent = full;
+      const max = parseFloat(getComputedStyle(p).lineHeight) * LINES + 2;
+      if (p.offsetHeight <= max) return;
+      const words = full.split(' ');
+      let lo = 1, hi = words.length - 1;
+      const tryK = (k) => { p.textContent = words.slice(0, k).join(' ').replace(/[\s,.;:!?—–-]+$/, '') + '… '; p.append(btn); return p.offsetHeight <= max; };
+      while (lo < hi) { const mid = Math.ceil((lo + hi) / 2); if (tryK(mid)) lo = mid; else hi = mid - 1; }
+      tryK(lo);
+    };
+    const fitAll = () => cards.forEach(fit);
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fitAll, 120); });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitAll);
+    body.addEventListener('scroll', () => scroller.classList.toggle('is-end', body.scrollTop + body.clientHeight >= body.scrollHeight - 2), { passive: true });
+    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => { if (opener) opener.focus(); });
+  }
+
   /* Pausable timers: stop when off screen, when the tab is hidden, or under reduced motion */
   const whenVisible = (el, onChange) => {
     let seen = false;

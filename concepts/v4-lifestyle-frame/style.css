@@ -393,3 +393,31 @@ html:not(.js) .slide { scroll-snap-align: start; }
   .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
   .js .reveal.is-in { opacity: 1; transform: none; }
 }
+
+/* ---------- Testimonial "Read more" and dialog (JS only; without JS the full quote shows) ---------- */
+.t-more { display: inline; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: #4B5563; cursor: pointer; white-space: nowrap; position: relative; transition: color var(--dur-2) var(--ease-out); }
+.t-more::after { content: ""; position: absolute; inset: -12px -6px; } /* 44px tall hit area */
+.t-more:hover { color: var(--brand-navy); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
+
+.quote-dialog { color-scheme: light; width: min(800px, calc(100vw - 2 * var(--gutter))); max-height: min(600px, calc(100dvh - 2 * var(--gutter))); padding: 0; border: 1px solid var(--line); border-radius: 18px; background: #FFFFFF; color: var(--brand-navy); box-shadow: 10px 10px 0 #ECE9FB; overflow: hidden; }
+.quote-dialog::backdrop { background: rgb(4 9 63 / 0.4); }
+.quote-dialog[open] { display: flex; }
+.quote-dialog__inner { --pad: clamp(1.5rem, 1rem + 2vw, 2.5rem); position: relative; display: flex; flex-direction: column; gap: var(--sp-5); width: 100%; max-height: inherit; padding: var(--pad); }
+.quote-dialog__logo img { height: 32px; width: auto; max-width: 180px; object-fit: contain; object-position: left center; }
+.quote-dialog__logo img.q-logo--tall { height: 48px; }
+/* Scroll area reaches into the right padding, so the scrollbar sits clear of the text */
+.quote-dialog__scroll { position: relative; flex: 1 1 auto; min-height: 0; display: flex; margin-right: calc(var(--sp-3) - var(--pad)); }
+.quote-dialog__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; font-size: var(--fs-body); line-height: 1.6; padding: 0 calc(var(--pad) - var(--sp-3)) var(--sp-5) 0; scrollbar-width: thin; scrollbar-color: #D4D1E6 transparent; }
+.quote-dialog__body::-webkit-scrollbar { width: 8px; }
+.quote-dialog__body::-webkit-scrollbar-track { background: transparent; }
+.quote-dialog__body::-webkit-scrollbar-thumb { background: #D4D1E6; border-radius: 4px; }
+.quote-dialog__body p + p { margin-top: var(--sp-4); }
+.quote-dialog__scroll::after { content: ""; position: absolute; left: 0; right: calc(var(--pad) - var(--sp-3)); bottom: 0; height: var(--sp-7); background: linear-gradient(to top, #FFFFFF 15%, rgb(255 255 255 / 0)); pointer-events: none; opacity: 0; transition: opacity var(--dur-2) var(--ease-out); }
+.quote-dialog__scroll.is-scrollable:not(.is-end)::after { opacity: 1; }
+.quote-dialog__who { display: grid; gap: 2px; padding-top: var(--sp-4); border-top: 1px solid var(--line); }
+.quote-dialog__close { position: absolute; top: var(--sp-3); right: var(--sp-3); width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid transparent; border-radius: 50%; background: transparent; color: var(--brand-navy); cursor: pointer; }
+.quote-dialog__close:hover { border-color: var(--line-ui); }
+@media (prefers-reduced-motion: no-preference) {
+  .quote-dialog[open] { animation: dialog-in var(--dur-4) var(--ease-out); }
+  @keyframes dialog-in { from { opacity: 0; transform: translateY(12px); } }
+}
