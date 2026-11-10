@@ -1,10 +1,11 @@
 # Inflektion website: working rules
 
-Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/content-architecture.md` (approved narrative) before changing any page. Preview with `.claude/launch.json` ("concepts", `python3 tools/serve.py 4321`, which sends no-cache headers).
+Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/content-architecture.md` (approved narrative) before changing any page. Preview with `.claude/launch.json` ("concepts", `python3 tools/serve.py 4321 site`, which sends no-cache headers). Only `site/` is deployed (see `docs/deploy.md`).
 
 ## Scope
 - Only the homepage is built. Other pages (Who we help, Why Inflektion, Pricing) appear as **inactive** nav items: `aria-disabled="true"`, no `href`, with "(coming soon)" for screen readers.
-- Each concept lives in its own folder under `concepts/`. Shared foundations are in `concepts/shared/`. Reusable brand assets are in `assets/` (logo, favicon, client logos).
+- The deployable site is `site/`: the version picker (`site/index.html`), Version 1 (`site/concepts/v1-portal-views/`) and Version 2 (`site/concepts/v2-lifestyle-frame/`). Shared foundations are in `site/concepts/shared/`. Reusable brand assets are in `site/assets/`.
+- Round 1 concepts are archived in `archive/round-1/` (and the `round-1-concepts` git tag). They are not deployed; preview them with the "archive" launch config.
 
 ## Accessibility (WCAG 2.2 AA)
 - Text contrast ≥ 4.5:1. Large text (≥ 24px, or ≥ 18.66px bold) and UI parts or focus indicators ≥ 3:1. Check new colour pairs before using them.

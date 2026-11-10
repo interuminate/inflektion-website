@@ -1,4 +1,4 @@
-// v4: progressive enhancement only. Without JS every section reads in order and all four funnel pages show.
+// Version 2, Lifestyle frame: progressive enhancement only. Without JS every section reads in order and all four funnel pages show.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 

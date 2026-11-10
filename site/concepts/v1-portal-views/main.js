@@ -1,4 +1,4 @@
-// v3 Portal views: progressive enhancement only. Without JS every section is readable in order.
+// Version 1, Portal views: progressive enhancement only. Without JS every section is readable in order.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const swapDelay = () => (reduce.matches ? 0 : 150);

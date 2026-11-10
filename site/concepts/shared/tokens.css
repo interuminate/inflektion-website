@@ -14,7 +14,7 @@
   --chart-blue: #60A5FA;
   --chart-orange: #FB923C;
 
-  /* Shelf palette (v4 thematic layer) */
+  /* Shelf palette (unused since the Version 2 rework; kept for reference) */
   --shelf-cream: #FFF6E5;
   --shelf-pink: #FF9BD8;
   --shelf-lilac: #B9A8FF;
@@ -58,7 +58,7 @@
   --w-page: 75rem;
   --w-text: 40rem;
 
-  /* Shape and depth (v3 defaults; v4 overrides) */
+  /* Shape and depth (Version 1 defaults; Version 2 overrides) */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
