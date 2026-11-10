@@ -33,9 +33,27 @@
     }));
   }
 
+  /* Testimonial carousel: buttons page through the scroll-snapped track */
+  const carousel = document.querySelector('[data-carousel]');
+  if (carousel) {
+    const track = carousel.querySelector('.carousel__track');
+    const prev = carousel.querySelector('[data-prev]');
+    const next = carousel.querySelector('[data-next]');
+    const step = () => { const s = track.querySelector('.slide'); return s ? s.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap) : track.clientWidth; };
+    const sync = () => {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
+    next.addEventListener('click', () => track.scrollBy({ left: step() }));
+    track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
   /* Section reveal */
   if (!reduce.matches && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.sec-head, .stat-panel, .stages, .portal-stage, .browser, .award-cells, .quote-wall, .creators-stage');
+    const targets = document.querySelectorAll('.sec-head, .stat-panel, .stages, .portal-stage, .browser, .award-cells, .carousel, .creators-stage');
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); } });
     }, { rootMargin: '0px 0px -10% 0px' });
