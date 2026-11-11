@@ -54,6 +54,9 @@
     wide.addEventListener('change', mount);
   }
 
+  /* V1 colour review: ?colour=original shows the page without the review colours, for comparison */
+  if (new URLSearchParams(location.search).get('colour') === 'original') document.body.classList.remove('colour-review');
+
   /* White-label brand switcher */
   const demo = document.querySelector('[data-brand-demo]');
   if (demo) {
@@ -63,7 +66,7 @@
     buttons.forEach((b) => b.addEventListener('click', () => {
       if (b.getAttribute('aria-pressed') === 'true') return;
       buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
-      const apply = () => { mock.dataset.brand = b.dataset.themeKey; mock.classList.remove('is-swapping'); };
+      const apply = () => { mock.dataset.brand = b.dataset.themeKey; demo.closest('section').dataset.brand = b.dataset.themeKey; mock.classList.remove('is-swapping'); };
       mock.classList.add('is-swapping');
       setTimeout(apply, swapDelay());
       status.textContent = `Portal preview shown in the ${b.textContent.trim()} theme.`;

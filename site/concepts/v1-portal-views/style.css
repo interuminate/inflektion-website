@@ -409,3 +409,61 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   .quote-dialog[open] { animation: dialog-in var(--dur-4) var(--ease-out); }
   @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
 }
+
+/* ==========================================================================
+   V1 colour review (after the V3 round). Everything below applies only while <body> has
+   .colour-review. Undo: remove that class in index.html, or open the page with ?colour=original.
+   Product UI (kit panels), testimonial cards, plaques and the funnel frame stay white.
+   ========================================================================== */
+
+/* Portal: the section takes the selected brand theme (default Sleep tech = navy) */
+.colour-review .portal {
+  --theme-bg: #04093F; --theme-accent: #FF14B9;  /* accent 5.4:1 on navy */
+  --bg: var(--theme-bg); --text: #FFFFFF; --text-muted: rgb(255 255 255 / 0.78); --border: rgb(255 255 255 / 0.18);
+  --border-ui: rgb(255 255 255 / 0.6); --focus: #FFFFFF;
+  background: var(--theme-bg); color: var(--text);
+  transition: background-color var(--dur-4) var(--ease-out);
+}
+.colour-review .portal[data-brand="supps"] { --theme-bg: #0F3D2E; --theme-accent: #E9B949; } /* 6.7:1 */
+.colour-review .portal[data-brand="fit"]   { --theme-bg: #1F2937; --theme-accent: #FB923C; } /* 6.5:1 */
+.colour-review .portal[data-brand="skin"]  { --theme-bg: #4A1D3F; --theme-accent: #E8A0BF; } /* 6.6:1 */
+.colour-review .portal .hl { color: var(--theme-accent); transition: color var(--dur-4) var(--ease-out); }
+.colour-review .portal .brand-switch button { background: transparent; border-color: rgb(255 255 255 / 0.35); color: #FFFFFF; }
+.colour-review .portal .brand-switch button:hover { border-color: #FFFFFF; }
+.colour-review .portal .brand-switch button[aria-pressed="true"] { background: #FFFFFF; border-color: #FFFFFF; color: var(--theme-bg); }
+.colour-review .portal .feature-icon { color: var(--theme-bg); border-color: transparent; }
+
+/* One campaign: deep violet, white type, white navigation */
+.colour-review .funnels {
+  --bg: #391296; --text: #FFFFFF; --text-muted: #D1D2EE; --border: rgb(255 255 255 / 0.18); --focus: #FFFFFF;  /* muted 8.3:1 */
+  background: #391296; color: var(--text);
+}
+.colour-review .funnels .hl { color: #FF6CCB; } /* 4.9:1, large text */
+.colour-review .funnels .big-stat, .colour-review .funnels .funnel-frame { --text: #04093F; --text-muted: #4B5563; --border: #E5E7EB; --surface: #FFFFFF; }
+.colour-review .funnels .big-stat { color: #04093F; }
+.colour-review .funnels .funnel-label strong { color: #FFFFFF; }
+.colour-review .funnels .funnel-progress span { background: rgb(255 255 255 / 0.25); }
+.colour-review .funnels .funnel-progress span.is-active { background: #FFFFFF; }
+
+/* Recognition: brand pink, navy type, every plaque the same neutral treatment */
+.colour-review .recognition {
+  --bg: #FF14B9; --text: #04093F; --text-muted: #04093F; --focus: #04093F;  /* navy 5.4:1 */
+  background: #FF14B9; color: var(--text);
+}
+.colour-review .recognition .hl { color: #FFFFFF; } /* 3.5:1, large text only */
+.colour-review .recognition .plaque { --text-muted: #4B5563; --border: #E5E7EB; }
+.colour-review .recognition .plaque--gold { border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+
+/* Creators: violet, white type */
+.colour-review .creators {
+  --bg: #6945F4; --text: #FFFFFF; --text-muted: #FFFFFF; --border: rgb(255 255 255 / 0.22); --focus: #FFFFFF;  /* white 5.6:1 */
+  background: #6945F4; color: var(--text);
+}
+.colour-review .creators .hl { color: #FFD1F0; } /* 4.2:1, large text */
+.colour-review .creators .btn--secondary { background: #FFFFFF; border-color: #FFFFFF; color: #04093F; }
+.colour-review .creators .btn--secondary:hover { background: #F4F4FB; }
+/* Product UI stays light inside the recoloured sections (same reset as .surface-dark .kit) */
+.colour-review :is(.portal, .funnels, .recognition, .creators) .kit {
+  --kit-surface: #FFFFFF; --kit-surface-2: #F9FAFB; --kit-ink: #04093F;
+  --kit-muted: rgb(4 9 63 / 0.55); --kit-faint: rgb(4 9 63 / 0.1); --kit-stroke: 1px solid #E5E7EB;
+}

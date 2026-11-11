@@ -126,6 +126,8 @@ A canvas background: a particle cloud that drifts up a logistic inflection curve
 Tune it per preset in the page's `window.INFLEKTION_FX` block, or per canvas with `data-*` attributes: `density`, `size`, `speed`, `opacity`, `colors`, `spread`, `rise`, `bend`, `steepness`, `curve`, `curveOpacity`, `curveColor`, `motion`, `seed`. The defaults are documented in the file header. The continuous loop is a deliberate, user-requested exception to the "no infinite decorative loops" rule.
 
 ## Version 1 background rhythm
+
+**Colour review (PR #5, toggleable):** while `<body>` carries `.colour-review` (remove it to undo, or open the page with `?colour=original`), four sections take saturated fills. Portal: the section takes the selected brand theme (Sleep tech navy `#04093F` with pink accent by default; Supplements `#0F3D2E`/gold, Fitness `#1F2937`/orange `#FB923C`, Skincare `#4A1D3F`/rose), white type, white active theme button. One campaign: deep violet `#391296`, white type, `#D1D2EE` muted, light-pink `#FF6CCB` accent, white progress dashes. Recognition: brand pink `#FF14B9`, navy type, white accent word, and the gold plaque now matches the other plaques. Creators: violet `#6945F4`, white type, light-pink `#FFD1F0` accent, white Join the network button. Kit panels, testimonial cards, plaques and the funnel frame stay white in all four.
 Version 1 is a fixed light page (`data-theme="light"`) with dark bookends:
 - Dark navy hero (animated particles), then a lighter navy logo band.
 - Violet-50 and white alternating: problem, how it works, portal, funnels, recognition, proof (static particles), creators (static particles).
