@@ -21,7 +21,7 @@
   h1 { margin: 0; font-size: 56px; line-height: 60px; font-weight: 600; letter-spacing: -0.03em; }
   p { margin: 0; }
   .lede { margin-top: 16px; max-width: 560px; color: #4B5563; }
-  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   a.card { display: flex; flex-direction: column; gap: 16px; padding: 40px; border-radius: 24px; background: #04093F; color: #FFFFFF; text-decoration: none; box-shadow: 0 20px 25px rgb(4 9 63 / 0.08); transition: transform .2s ease, box-shadow .2s ease; }
   a.card:hover { transform: translateY(-4px); box-shadow: 0 28px 40px rgb(4 9 63 / 0.14); }
   a.card:focus-visible { outline: 3px solid #6946F4; outline-offset: 4px; }
@@ -33,6 +33,7 @@
   a.card:hover .go span { transform: translateX(3px); }
   footer { padding: 24px 48px; font-size: 16px; color: #4B5563; }
   @media (prefers-reduced-motion: reduce) { a.card, .go span { transition: none; } a.card:hover { transform: none; } }
+  @media (max-width: 1080px) { .cards { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 760px) {
     header, footer { padding: 16px; text-align: center; }
     header img { margin: 0 auto; }
@@ -64,6 +65,12 @@
       <h2>Lifestyle frame</h2>
       <p class="desc">A light, technical homepage built around lifestyle photography, with rotating customer logos, a portal that cycles through brand themes, and a looping testimonial carousel.</p>
       <span class="go">Open Version 2 <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="card" href="concepts/v3-brand-blocks/">
+      <span class="tag">Version 3</span>
+      <h2>Brand blocks</h2>
+      <p class="desc">A typographic, colour-blocked homepage with full-bleed pink, violet and navy sections, a centred hero that pairs lifestyle photos with the product, a horizontal “how it works” track, a portal you can explore feature by feature, and a testimonial deck.</p>
+      <span class="go">Open Version 3 <span aria-hidden="true">→</span></span>
     </a>
   </div>
 </main>
