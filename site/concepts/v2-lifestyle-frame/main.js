@@ -191,15 +191,50 @@
     whenVisible(stage, (v) => { onScreen = v; update(); });
   }
 
-  /* Section reveal */
+  /* Section reveal: V2 "Lifestyle frame": a 28px rise, hairline cells fill in left to right 80ms apart, photo frames ease out of a zoom.
+     Fires once an element is about a fifth of the way up the screen. Elements that arrive together are
+     staggered top to bottom, left to right. Anything on screen at load stays put; helper classes are
+     removed after the reveal so hover transitions are the element's own again. */
   if (!reduce.matches && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.sec-head, .stat-panel, .stages, .portal-stage, .browser, .award-cells, .carousel, .creators-stage');
+    const settle = (el) => { el.classList.remove('reveal', 'is-in'); el.style.removeProperty('--d'); };
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); } });
-    }, { rootMargin: '0px 0px -10% 0px' });
-    targets.forEach((t) => {
-      if (t.getBoundingClientRect().top < window.innerHeight) return;
-      t.classList.add('reveal'); io.observe(t);
+      const arriving = entries.filter((e) => e.isIntersecting).map((e) => e.target)
+        .sort((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
+      arriving.forEach((el, n) => {
+        const d = Math.min(n * 80, 480);
+        el.style.setProperty('--d', d + 'ms');
+        el.classList.add('is-in');
+        setTimeout(() => settle(el), d + 1000);
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    const targets = [
+      '.sec-head > *',
+      '.problem-copy > *',
+      '.pain-list > li',
+      '.stat-panel',
+      '.stages > li',
+      '.portal-copy > *',
+      '.feature-list > li',
+      '.portal-visual',
+      '.audience-tabs',
+      '.browser',
+      '.award-cells > li',
+      '.carousel',
+      '.creators-copy > *',
+      '.creators-stage',
+      '.final-inner > *',
+    ];
+    document.querySelectorAll(targets.join(',')).forEach((el) => {
+      if (el.hidden || el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add('reveal');
+      io.observe(el);
     });
+  }
+
+  /* Hero load-in: the class is set in <head>; clear it after the run, or at once if the page reopened mid-scroll */
+  if (document.documentElement.classList.contains('intro')) {
+    if (window.scrollY > 40) document.documentElement.classList.remove('intro');
+    else setTimeout(() => document.documentElement.classList.remove('intro'), 2400);
   }
 })();

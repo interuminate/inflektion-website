@@ -9,7 +9,7 @@ Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/conten
 
 ## Accessibility (WCAG 2.2 AA)
 - Text contrast ≥ 4.5:1. Large text (≥ 24px, or ≥ 18.66px bold) and UI parts or focus indicators ≥ 3:1. Check new colour pairs before using them.
-- `--brand-pink` (#FF14B9) is never used for text on light backgrounds. Exception: Version 3 uses it for the hero accent line and white-label primary CTAs at the client's request (see DESIGN.md, Version 3, Contrast).
+- `--brand-pink` (#FF14B9) is never used for text on light backgrounds. Exception, at the client's request: all three versions use it for white-label primary CTAs and large heading accents (V1/V2 through the shared `--primary` token; see DESIGN.md). Small pink text on light surfaces uses `--primary-ink` (#D32691).
 - Every interactive element has a visible focus style (3px `--focus` ring, 2px offset). Never remove an outline without a replacement.
 - Targets are at least 44×44px for primary controls and at least 24×24px for everything else.
 - **Motion**: every animation and transition respects `prefers-reduced-motion: reduce`. With motion off and with JS off, all content is present and reads in DOM order. Scroll-driven effects are progressive enhancement only.

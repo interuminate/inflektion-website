@@ -141,7 +141,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .chapters { position: relative; }
 .chapters__list { margin: 0; padding: 0; display: grid; gap: var(--sp-9); }
 .chapter { display: grid; gap: var(--sp-3); max-width: 34rem; }
-.chapter__marker { justify-self: start; display: inline-flex; align-items: center; gap: 0.45em; padding: var(--sp-1) 0; min-height: 44px; border-radius: var(--radius-pill); font-size: var(--fs-small); font-weight: 600; line-height: 1.2; color: var(--primary); transition: font-size var(--dur-4) var(--ease-out), padding var(--dur-4) var(--ease-out), background-color var(--dur-4) var(--ease-out), color var(--dur-4) var(--ease-out); }
+.chapter__marker { justify-self: start; display: inline-flex; align-items: center; gap: 0.45em; padding: var(--sp-1) 0; min-height: 44px; border-radius: var(--radius-pill); font-size: var(--fs-small); font-weight: 600; line-height: 1.2; color: var(--primary-ink); transition: font-size var(--dur-4) var(--ease-out), padding var(--dur-4) var(--ease-out), background-color var(--dur-4) var(--ease-out), color var(--dur-4) var(--ease-out); }
 .chapter__marker svg { flex: none; width: 1.15em; height: 1.15em; }
 .chapter p:not(.chapter__marker) { color: var(--text-muted); }
 .chapter__visual { margin-top: var(--sp-4); }
@@ -159,7 +159,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   .js .chapters { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(2rem, 1rem + 4vw, 5rem); }
   .js .chapters__list { grid-column: 1; grid-row: 1; gap: 0; padding-block: 8vh 16vh; }
   .js .chapter { min-height: 44vh; align-content: center; }
-  .js .chapter.is-active .chapter__marker { font-size: calc(var(--fs-body) * 1.125); padding-inline: var(--sp-3) var(--sp-4); background: #FCE7F3; color: var(--primary-hover); } /* 18px; #B01E78 on #FCE7F3 is 5.4:1 */
+  .js .chapter.is-active .chapter__marker { font-size: calc(var(--fs-body) * 1.125); padding-inline: var(--sp-3) var(--sp-4); background: #FCE7F3; color: var(--link); } /* 18px; #B01E78 on #FCE7F3 is 5.4:1 */
   .js .chapter .chapter__visual { display: none; }
   .js .chapters__stage { display: grid; grid-column: 2; grid-row: 1; position: sticky; top: calc(72px + 10vh); height: min(56vh, 460px); align-self: start; background: var(--bg-tint); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 3rem); place-items: center; overflow: hidden; }
   .js .chapters__stage > .chapter__visual { grid-area: 1 / 1; width: 100%; max-width: 440px; margin: 0; opacity: 0; transform: translateY(32px) scale(0.96); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
@@ -350,10 +350,28 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   .hero-kit .k-app { grid-template-columns: 22% 1fr; }
 }
 
-/* Section reveal (progressive, motion-safe) */
+/* Section reveal (progressive, motion-safe): 40px rise + soft scale-in, staggered by JS through --d */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
+  .js .reveal { opacity: 0; transform: translateY(40px) scale(.98); transform-origin: 50% 100%;
+    transition: opacity 700ms var(--ease-out), transform 950ms cubic-bezier(.2, .9, .1, 1); transition-delay: var(--d, 0ms); }
   .js .reveal.is-in { opacity: 1; transform: none; }
+
+  /* Hero load-in (once, on load): particles fade up, copy rises line by line, the portal settles, the cards pop */
+  @keyframes v1-rise { from { opacity: 0; transform: translateY(var(--intro-y, 28px)); } }
+  @keyframes v1-settle { from { opacity: 0; transform: translateY(48px) scale(.97); } }
+  @keyframes v1-pop { from { opacity: 0; transform: translateY(16px) scale(.94); } }
+  @keyframes v1-fade { from { opacity: 0; } }
+  .intro .hero .fx-particles { animation: v1-fade 1600ms var(--ease-out) backwards; }
+  .intro .hero-copy > * { animation: v1-rise 800ms cubic-bezier(.2, .9, .1, 1) backwards; }
+  .intro .hero-copy > :nth-child(1) { animation-delay: 150ms; }
+  .intro .hero-copy > :nth-child(2) { --intro-y: 20px; animation-delay: 300ms; }
+  .intro .hero-copy > :nth-child(3) { --intro-y: 20px; animation-delay: 420ms; }
+  .intro .hero-copy > :nth-child(4) { --intro-y: 12px; animation-delay: 540ms; }
+  .intro .hero-app { animation: v1-settle 1000ms cubic-bezier(.2, .9, .1, 1) 450ms backwards; transform-origin: 50% 100%; }
+  .intro .hero-float { animation: v1-pop 700ms cubic-bezier(.2, .9, .1, 1) backwards; }
+  .intro .hero-float--match { animation-delay: 950ms; }
+  .intro .hero-float--funnel { animation-delay: 1080ms; }
+  .intro .logos > * { animation: v1-fade 800ms var(--ease-out) 1100ms backwards; }
 }
 
 @media (max-width: 1023.98px) {
@@ -367,7 +385,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 /* Testimonial "Read more" (JS only; without JS the full quote shows) */
 .t-more { display: inline; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: #4B5563; cursor: pointer; transition: color var(--dur-2) var(--ease-out); white-space: nowrap; position: relative; }
 .t-more::after { content: ""; position: absolute; inset: -12px -6px; } /* 44px tall hit area */
-.t-more:hover { color: var(--primary); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
+.t-more:hover { color: var(--primary-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
 
 .quote-dialog { color-scheme: light; width: min(800px, calc(100vw - 2 * var(--gutter))); max-height: min(600px, calc(100dvh - 2 * var(--gutter))); padding: 0; border: 1px solid #E5E7EB; border-radius: var(--radius-lg); background: #FFFFFF; color: #04093F; box-shadow: 0 24px 64px -12px rgb(4 9 63 / 0.35); overflow: hidden; }
 .quote-dialog::backdrop { background: rgb(4 9 63 / 0.55); }

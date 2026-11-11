@@ -30,8 +30,9 @@
   --text-muted: #4B5563;
   --border: #E5E7EB;
   --border-ui: #6B7280;
-  --primary: #D32691;
-  --primary-hover: #B01E78;
+  --primary: #FF14B9;        /* brand pink: CTAs and large heading accents (white label 3.47:1, client-directed exception; see DESIGN.md) */
+  --primary-hover: #E6119F;
+  --primary-ink: #D32691;    /* pink for small text that must pass AA on light surfaces (4.7:1) */
   --on-primary: #FFFFFF;
   --link: #B01E78;
   --accent: #6946F4;

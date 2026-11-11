@@ -10,17 +10,19 @@
   <meta property="og:description" content="The influencer and affiliate platform built for health and wellness brands.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#04093F">
-  <link rel="icon" href="../../assets/favicon.svg?v=9" type="image/svg+xml">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png?v=9">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png?v=9">
+  <link rel="icon" href="../../assets/favicon.svg?v=10" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png?v=10">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png?v=10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="../shared/tokens.css?v=9">
-  <link rel="stylesheet" href="../shared/kit.css?v=9">
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="../shared/tokens.css?v=10">
+  <link rel="stylesheet" href="../shared/kit.css?v=10">
+  <link rel="stylesheet" href="style.css?v=10">
   <script>
     document.documentElement.classList.add('js');
+    /* Hero load-in: set before first paint so nothing flashes; main.js clears it after the run */
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
     /* Particle field presets. Edit these to tune the backgrounds; see ../shared/fx-particles.js for every parameter. */
     window.INFLEKTION_FX = {
       hero:  { density: 1.1, speed: 12, size: '1.4,3.6', opacity: 0.6, colors: '#FF14B9,#9D86FF,#FFFFFF', spread: 0.2, rise: 0.72, bend: 0.6, curveOpacity: 0.28 },
@@ -28,8 +30,8 @@
       light: { density: 0.6, opacity: 0.35, colors: '#6946F4,#FF14B9,#B9A8FF', spread: 0.18, rise: 0.55, bend: 0.65, curveOpacity: 0.22, curveColor: '#6946F4', motion: 'static', seed: 11 },
     };
   </script>
-  <script src="../shared/fx-particles.js?v=9" defer></script>
-  <script src="main.js?v=9" defer></script>
+  <script src="../shared/fx-particles.js?v=10" defer></script>
+  <script src="main.js?v=10" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
