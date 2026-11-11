@@ -8,7 +8,8 @@ Homepage concepts for Inflektion, prepared for client review.
   - `index.html`: the version picker
   - `concepts/v1-portal-views/`: Version 1, Portal views
   - `concepts/v2-lifestyle-frame/`: Version 2, Lifestyle frame
-  - `concepts/shared/`: tokens, soft-UI kit and the particle field shared by both versions
+  - `concepts/v3-brand-blocks/`: Version 3, Brand blocks
+  - `concepts/shared/`: tokens, soft-UI kit and the particle field shared by the versions
   - `assets/`: logo, favicon, client logos, awards, funnel screenshots, lifestyle photos
   - `robots.txt`: keeps the review site out of search engines
 - `archive/round-1/`: the round 1 concepts (Minimal, Illustrated). Not deployed. Also tagged `round-1-concepts`.

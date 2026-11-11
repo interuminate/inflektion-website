@@ -4,12 +4,12 @@ Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/conten
 
 ## Scope
 - Only the homepage is built. Other pages (Who we help, Why Inflektion, Pricing) appear as **inactive** nav items: `aria-disabled="true"`, no `href`, with "(coming soon)" for screen readers.
-- The deployable site is `site/`: the version picker (`site/index.html`), Version 1 (`site/concepts/v1-portal-views/`) and Version 2 (`site/concepts/v2-lifestyle-frame/`). Shared foundations are in `site/concepts/shared/`. Reusable brand assets are in `site/assets/`.
+- The deployable site is `site/`: the version picker (`site/index.html`), Version 1 (`site/concepts/v1-portal-views/`), Version 2 (`site/concepts/v2-lifestyle-frame/`) and Version 3 (`site/concepts/v3-brand-blocks/`). Shared foundations are in `site/concepts/shared/`. Reusable brand assets are in `site/assets/`.
 - Round 1 concepts are archived in `archive/round-1/` (and the `round-1-concepts` git tag). They are not deployed; preview them with the "archive" launch config.
 
 ## Accessibility (WCAG 2.2 AA)
 - Text contrast ≥ 4.5:1. Large text (≥ 24px, or ≥ 18.66px bold) and UI parts or focus indicators ≥ 3:1. Check new colour pairs before using them.
-- `--brand-pink` (#FF14B9) is never used for text on light backgrounds.
+- `--brand-pink` (#FF14B9) is never used for text on light backgrounds. Exception: Version 3 uses it for the hero accent line and white-label primary CTAs at the client's request (see DESIGN.md, Version 3, Contrast).
 - Every interactive element has a visible focus style (3px `--focus` ring, 2px offset). Never remove an outline without a replacement.
 - Targets are at least 44×44px for primary controls and at least 24×24px for everything else.
 - **Motion**: every animation and transition respects `prefers-reduced-motion: reduce`. With motion off and with JS off, all content is present and reads in DOM order. Scroll-driven effects are progressive enhancement only.
