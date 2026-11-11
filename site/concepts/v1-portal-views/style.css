@@ -433,12 +433,15 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .colour-review .portal .brand-switch button[aria-pressed="true"] { background: #FFFFFF; border-color: #FFFFFF; color: var(--theme-bg); }
 .colour-review .portal .feature-icon { color: var(--theme-bg); border-color: transparent; }
 
+/* Wellness partnerships: lilac fill only (the brand-pink accent drops to 2.83:1 here) */
+.colour-review .problem { background: #E9E5FF; }
+
 /* One campaign: deep violet, white type, white navigation */
 .colour-review .funnels {
   --bg: #391296; --text: #FFFFFF; --text-muted: #D1D2EE; --border: rgb(255 255 255 / 0.18); --focus: #FFFFFF;  /* muted 8.3:1 */
   background: #391296; color: var(--text);
 }
-.colour-review .funnels .hl { color: #FF6CCB; } /* 4.9:1, large text */
+.colour-review .funnels .hl { color: #FF3DC4; } /* near brand pink, 3.95:1, large text */
 .colour-review .funnels .big-stat, .colour-review .funnels .funnel-frame { --text: #04093F; --text-muted: #4B5563; --border: #E5E7EB; --surface: #FFFFFF; }
 .colour-review .funnels .big-stat { color: #04093F; }
 .colour-review .funnels .funnel-label strong { color: #FFFFFF; }
@@ -450,7 +453,8 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   --bg: #FF14B9; --text: #04093F; --text-muted: #04093F; --focus: #04093F;  /* navy 5.4:1 */
   background: #FF14B9; color: var(--text);
 }
-.colour-review .recognition .hl { color: #FFFFFF; } /* 3.5:1, large text only */
+.colour-review .recognition .section-head { --text: #FFFFFF; --text-muted: #FFFFFF; } /* white title and subtitle: 3.47:1 (title passes as large text; subtitle is below AA, client-directed) */
+.colour-review .recognition .hl { color: #FFFFFF; }
 .colour-review .recognition .plaque { --text-muted: #4B5563; --border: #E5E7EB; }
 .colour-review .recognition .plaque--gold { border: 1px solid var(--border); box-shadow: var(--shadow-1); }
 
@@ -459,7 +463,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   --bg: #6945F4; --text: #FFFFFF; --text-muted: #FFFFFF; --border: rgb(255 255 255 / 0.22); --focus: #FFFFFF;  /* white 5.6:1 */
   background: #6945F4; color: var(--text);
 }
-.colour-review .creators .hl { color: #FFD1F0; } /* 4.2:1, large text */
+.colour-review .creators .hl { color: #FFA6DF; } /* pinkest tone that keeps 3:1 on violet (3.13:1, large text) */
 .colour-review .creators .btn--secondary { background: #FFFFFF; border-color: #FFFFFF; color: #04093F; }
 .colour-review .creators .btn--secondary:hover { background: #F4F4FB; }
 /* Product UI stays light inside the recoloured sections (same reset as .surface-dark .kit) */
