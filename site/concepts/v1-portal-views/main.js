@@ -54,6 +54,9 @@
     wide.addEventListener('change', mount);
   }
 
+  /* V1 colour review: ?colour=original shows the page without the review colours, for comparison */
+  if (new URLSearchParams(location.search).get('colour') === 'original') document.body.classList.remove('colour-review');
+
   /* White-label brand switcher */
   const demo = document.querySelector('[data-brand-demo]');
   if (demo) {
@@ -63,7 +66,7 @@
     buttons.forEach((b) => b.addEventListener('click', () => {
       if (b.getAttribute('aria-pressed') === 'true') return;
       buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
-      const apply = () => { mock.dataset.brand = b.dataset.themeKey; mock.classList.remove('is-swapping'); };
+      const apply = () => { mock.dataset.brand = b.dataset.themeKey; demo.closest('section').dataset.brand = b.dataset.themeKey; mock.classList.remove('is-swapping'); };
       mock.classList.add('is-swapping');
       setTimeout(apply, swapDelay());
       status.textContent = `Portal preview shown in the ${b.textContent.trim()} theme.`;
@@ -161,15 +164,49 @@
     dialog.addEventListener('close', () => { if (opener) opener.focus(); });
   }
 
-  /* Section reveal */
+  /* Section reveal: V1 "Portal views": a 40px rise with a soft scale-in, rows ripple 90ms apart.
+     Fires once an element is about a fifth of the way up the screen. Elements that arrive together are
+     staggered top to bottom, left to right. Anything on screen at load stays put; helper classes are
+     removed after the reveal so hover transitions are the element's own again. */
   if (!reduce.matches && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.section-head, .problem-copy, .why-now, .brand-demo, .funnels-head, .plaques, .proof-grid, .creators-copy, .final-inner');
+    const settle = (el) => { el.classList.remove('reveal', 'is-in'); el.style.removeProperty('--d'); };
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); } });
-    }, { rootMargin: '0px 0px -10% 0px' });
-    targets.forEach((t) => {
-      if (t.getBoundingClientRect().top < window.innerHeight) return;
-      t.classList.add('reveal'); io.observe(t);
+      const arriving = entries.filter((e) => e.isIntersecting).map((e) => e.target)
+        .sort((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
+      arriving.forEach((el, n) => {
+        const d = Math.min(n * 90, 540);
+        el.style.setProperty('--d', d + 'ms');
+        el.classList.add('is-in');
+        setTimeout(() => settle(el), d + 1100);
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    const targets = [
+      '.section-head > *',
+      '.problem-copy > *',
+      '.pain-list > li',
+      '.why-now',
+      '.brand-switch',
+      '.brand-stage',
+      '.feature-strip > li',
+      '.funnels-head > *',
+      '.t-card--wide',
+      '.plaques > li',
+      '.proof-grid > *',
+      '.creators-copy > *',
+      '.creators-stage',
+      '.final-inner > *',
+    ];
+    document.querySelectorAll(targets.join(',')).forEach((el) => {
+      if (el.hidden || el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add('reveal');
+      io.observe(el);
     });
+  }
+
+  /* Hero load-in: the class is set in <head>; clear it after the run, or at once if the page reopened mid-scroll */
+  if (document.documentElement.classList.contains('intro')) {
+    if (window.scrollY > 40) document.documentElement.classList.remove('intro');
+    else setTimeout(() => document.documentElement.classList.remove('intro'), 2400);
   }
 })();

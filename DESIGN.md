@@ -29,8 +29,9 @@ All pairs below are checked (WCAG 2.x ratios). Text needs at least 4.5:1. UI par
 | `--text-muted` | `#4B5563` | Secondary text | 7.6 on white, 6.9 on tint |
 | `--border` | `#E5E7EB` | Hairlines (decorative only) | – |
 | `--border-ui` | `#6B7280` | Borders that carry meaning (inputs, toggles) | 4.8 |
-| `--primary` | `#D32691` | Primary button fill (pink-700) | white text 4.7 |
-| `--primary-hover` | `#B01E78` | Hover/active | white text 6.4 |
+| `--primary` | `#FF14B9` | Primary button fill and large heading accents (`.hl`), brand pink since the V1/V2 pink pass | white text 3.47 (client-directed exception, see below) |
+| `--primary-hover` | `#E6119F` | Button hover | white text 4.25 |
+| `--primary-ink` | `#D32691` | Pink for small text on light surfaces (V1 chapter chips, V2 stage markers, Read more hover) | 4.7 on white |
 | `--link` | `#B01E78` | Inline links (underlined) | 6.4 on white |
 | `--accent` | `#6946F4` | Violet emphasis, charts | 5.6 on white |
 | `--focus` | `#6946F4` | 3px focus ring + 2px offset | 5.6 |
@@ -43,7 +44,7 @@ All pairs below are checked (WCAG 2.x ratios). Text needs at least 4.5:1. UI par
 | `--text` | `#F3F4F6` | 17.4 |
 | `--text-muted` | `#A9AFCF` | 8.9 on bg, 7.8 on surface |
 | `--border-ui` | `#7A82B8` | ≥3 on bg and surface |
-| `--primary` | `#D32691` (white text) | 4.7 |
+| `--primary` | `#FF14B9` (white text) | 3.47, see exception |
 | `--link` | `#FF6CCB` | 7.5 |
 | `--accent` / `--focus` | `#9D86FF` | 6.7 |
 
@@ -102,10 +103,15 @@ In Version 1, depth comes from a border first and then a soft shadow. In Version
 | `--ease-out` | `cubic-bezier(.2,.7,.2,1)` | Entering |
 | `--ease-in-out` | `cubic-bezier(.6,0,.3,1)` | State swaps |
 
+**Versions 1 and 2 (pink and motion pass, after Version 3):** both keep their own choreography but made more noticeable. Reveals fire once an element is about a fifth of the way up the screen (IntersectionObserver `rootMargin: 0px 0px -20% 0px`), run 2–3× longer than before, and stagger elements that arrive together (V1 90ms, V2 80ms). Helper classes are removed after each reveal.
+- **V1, Portal views:** sections rise 40px with a soft 98% → 100% scale-in (opacity 700ms, transform 950ms); rows (pain points, feature strip, plaques, quote cards) ripple. Hero load-in: the particle field fades up over 1.6s, the copy rises line by line (150–540ms), the portal dashboard settles from 97% with a 48px rise (450ms), the floating cards pop (950ms, 1080ms), the logo band's contents fade in (1100ms). The sticky chapters and the scroll-driven funnel are unchanged.
+- **V2, Lifestyle frame:** sections rise 28px (opacity 650ms, transform 850ms); hairline cells (stages, awards) fill in left to right; the portal photo eases out of a 108% zoom inside its frame. Hero load-in: the faint grid fades in, the copy rises (100–480ms), the hero photo fades in and eases from 126% back to its 114% crop (300ms, 1.6s), the chip cards slide in from opposite sides (900ms, 1040ms), the logo strip fades in (1100ms). Logo cells, the portal theme cycle and the carousel are unchanged.
+- Both load-ins are set by an inline `<head>` script before first paint, cleared by `main.js` after 2.4s (or at once if the page reopens mid-scroll), use `animation-fill-mode: backwards`, and are skipped under reduced motion and without JS.
+
 Animate only `opacity` and `transform`. Under `prefers-reduced-motion: reduce`, durations collapse to 0ms (opacity fades of at most 120ms are allowed). Sticky scrollytelling falls back to stacked static chapters, and all content stays visible without JS.
 
 ## Components
-- **Buttons**: primary (pink fill, white text), secondary (border-ui outline, text colour), quiet (text link with arrow). Minimum height 44px, labels start with a verb. Focus is a 3px `--focus` ring with a 2px offset. Hover darkens by one step; press translates 1px (Version 2: the shadow collapses).
+- **Buttons**: primary (brand-pink `--primary` fill, white text), secondary (border-ui outline, text colour), quiet (text link with arrow). Minimum height 44px, labels start with a verb. Focus is a 3px `--focus` ring with a 2px offset. Hover darkens by one step; press translates 1px (Version 2: the shadow collapses).
 - **Links**: `--link`, underlined with a 0.12em thickness and a 0.2em offset.
 - **Nav**: logo, three inactive page items (`aria-disabled="true"`, "coming soon" for screen readers, muted), Log in, Book a demo. On mobile it collapses to a menu button.
 - **Footer**: three link groups, legal line.
@@ -120,6 +126,8 @@ A canvas background: a particle cloud that drifts up a logistic inflection curve
 Tune it per preset in the page's `window.INFLEKTION_FX` block, or per canvas with `data-*` attributes: `density`, `size`, `speed`, `opacity`, `colors`, `spread`, `rise`, `bend`, `steepness`, `curve`, `curveOpacity`, `curveColor`, `motion`, `seed`. The defaults are documented in the file header. The continuous loop is a deliberate, user-requested exception to the "no infinite decorative loops" rule.
 
 ## Version 1 background rhythm
+
+**Colour review (PR #5, toggleable):** while `<body>` carries `.colour-review` (remove it to undo, or open the page with `?colour=original`), four sections take saturated fills. Portal: the section takes the selected brand theme (Sleep tech navy `#04093F` with pink accent by default; Supplements `#0F3D2E`/gold, Fitness `#1F2937`/orange `#FB923C`, Skincare `#4A1D3F`/rose), white type, white active theme button. Wellness partnerships: lilac `#E9E5FF` fill only (the brand-pink accent drops to 2.83:1 there, below the 3:1 large-text minimum). One campaign: deep violet `#391296`, white type, `#D1D2EE` muted, near-brand-pink `#FF3DC4` accent (3.95:1), white progress dashes. Recognition: brand pink `#FF14B9`, white title and subtitle (3.47:1; the subtitle is below AA, client-directed), and the gold plaque now matches the other plaques. Creators: violet `#6945F4`, white type, pink `#FFA6DF` accent (the pinkest tone that keeps 3:1), white Join the network button. Kit panels, testimonial cards, plaques and the funnel frame stay white in all four.
 Version 1 is a fixed light page (`data-theme="light"`) with dark bookends:
 - Dark navy hero (animated particles), then a lighter navy logo band.
 - Violet-50 and white alternating: problem, how it works, portal, funnels, recognition, proof (static particles), creators (static particles).

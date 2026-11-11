@@ -161,7 +161,7 @@ html:not(.js) .logo-cell__stack img:not(.is-active) { display: none; }
 .stage + .stage { border-left: 1px solid var(--line); }
 .stage h3 { font-size: 1.25rem; }
 .stage p:not(.stage__marker) { color: var(--text-muted); }
-.stage__marker { display: inline-flex; align-items: center; gap: var(--sp-2); justify-self: start; font-size: var(--fs-body); font-weight: 600; color: var(--primary); }
+.stage__marker { display: inline-flex; align-items: center; gap: var(--sp-2); justify-self: start; font-size: var(--fs-body); font-weight: 600; color: var(--primary-ink); }
 .stage__marker svg { width: 18px; height: 18px; }
 .stage__art { height: 132px; margin-block: var(--sp-2) var(--sp-3); padding: 16px; display: grid; align-content: center; gap: 10px; background: var(--tint); border-radius: 12px; }
 .art-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; }
@@ -388,10 +388,31 @@ html:not(.js) .slide { scroll-snap-align: start; }
   .decal--c { bottom: 0; left: 6%; width: 100px; height: 110px; }
 }
 
-/* ---------- Motion (enhancement only) ---------- */
+/* ---------- Motion (enhancement only) ----------
+   Section reveal: 28px rise, staggered by JS through --d; the portal photo eases out of a zoom inside its frame.
+   Hero load-in (once, on load): grid fades in, copy rises, the hero photo eases out of a deeper zoom, the chip cards slide in from opposite sides. */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 650ms var(--ease-out), transform 850ms cubic-bezier(.2, .9, .1, 1); transition-delay: var(--d, 0ms); }
   .js .reveal.is-in { opacity: 1; transform: none; }
+  .js .portal-visual.reveal .photo--portal img { transform: scale(1.08); transition: transform 1400ms cubic-bezier(.2, .9, .1, 1), opacity calc(var(--dur-4) * 2) var(--ease-in-out); }
+  .js .portal-visual.reveal.is-in .photo--portal img { transform: none; }
+
+  @keyframes v2-rise { from { opacity: 0; transform: translateY(var(--intro-y, 24px)); } }
+  @keyframes v2-zoom { from { transform: scale(1.26); } }
+  @keyframes v2-slide { from { opacity: 0; transform: translateX(var(--intro-x, -28px)); } }
+  @keyframes v2-fade { from { opacity: 0; } }
+  .intro .hero::before { animation: v2-fade 1400ms var(--ease-out) backwards; }
+  .intro .hero-copy > * { animation: v2-rise 750ms cubic-bezier(.2, .9, .1, 1) backwards; }
+  .intro .hero-copy > :nth-child(1) { animation-delay: 100ms; }
+  .intro .hero-copy > :nth-child(2) { --intro-y: 18px; animation-delay: 240ms; }
+  .intro .hero-copy > :nth-child(3) { --intro-y: 18px; animation-delay: 360ms; }
+  .intro .hero-copy > :nth-child(4) { --intro-y: 12px; animation-delay: 480ms; }
+  .intro .photo--hero { animation: v2-fade 900ms var(--ease-out) 300ms backwards; }
+  .intro .photo--hero img { animation: v2-zoom 1600ms cubic-bezier(.2, .9, .1, 1) 300ms backwards; }
+  .intro .chip-card { animation: v2-slide 750ms cubic-bezier(.2, .9, .1, 1) backwards; }
+  .intro .chip-card--match { --intro-x: -28px; animation-delay: 900ms; }
+  .intro .chip-card--ready { --intro-x: 28px; animation-delay: 1040ms; }
+  .intro .logos > * { animation: v2-fade 800ms var(--ease-out) 1100ms backwards; }
 }
 
 /* ---------- Testimonial "Read more" and dialog (JS only; without JS the full quote shows) ---------- */
