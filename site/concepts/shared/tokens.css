@@ -142,3 +142,7 @@ a { color: var(--link); text-decoration-thickness: 0.12em; text-underline-offset
   border-radius: var(--radius-sm); box-shadow: var(--shadow-2);
 }
 .skip-link:focus { top: var(--sp-4); }
+
+/* Auto-hiding sticky header (see nav-autohide.js): slides up on scroll down, back on scroll up */
+.js .site-header { transition: transform var(--dur-4) var(--ease-out); will-change: transform; }
+.js .site-header.is-hidden { transform: translateY(-100%); }
