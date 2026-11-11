@@ -101,7 +101,7 @@
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
 
 /* ---------- Header ---------- */
-.site-header { position: relative; z-index: 50; background: var(--c-white); color: var(--c-navy); border-bottom: 1px solid #E5E7EB; }
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); color: var(--c-navy); border-bottom: 1px solid #E5E7EB; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-5); min-height: 72px; }
 .brand { display: inline-flex; color: var(--c-navy); border-radius: 4px; }
 .brand .logo { width: 146px; height: auto; }

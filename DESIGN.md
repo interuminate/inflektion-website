@@ -113,7 +113,7 @@ Animate only `opacity` and `transform`. Under `prefers-reduced-motion: reduce`, 
 ## Components
 - **Buttons**: primary (brand-pink `--primary` fill, white text), secondary (border-ui outline, text colour), quiet (text link with arrow). Minimum height 44px, labels start with a verb. Focus is a 3px `--focus` ring with a 2px offset. Hover darkens by one step; press translates 1px (Version 2: the shadow collapses).
 - **Links**: `--link`, underlined with a 0.12em thickness and a 0.2em offset.
-- **Nav**: logo, three inactive page items (`aria-disabled="true"`, "coming soon" for screen readers, muted), Log in, Book a demo. On mobile it collapses to a menu button.
+- **Nav**: logo, three inactive page items (`aria-disabled="true"`, "coming soon" for screen readers, muted), Log in, Book a demo. On mobile it collapses to a menu button. The header is sticky in all three versions and auto-hides: it slides up out of view on scroll down and returns on any scroll up (`shared/nav-autohide.js`, 8px threshold). It stays visible near the top of the page, while the mobile menu is open and while focus is inside it; without JS it is simply sticky, and under reduced motion it shows and hides without the slide.
 - **Footer**: three link groups, legal line.
 - **Quote**: blockquote plus figcaption with name, role and company. No avatars unless real photos exist.
 
