@@ -1,5 +1,7 @@
 # Inflektion website: design foundations
 
+> **Numbering note (Nov 2026):** Version 1 is now **Personalized funnels** (`site/concepts/v1-personalized-funnels/`), a colleague's self-contained design that does not use these tokens. **Portal views** moved to Version 2 (`site/concepts/v2-portal-views/`). **Lifestyle frame** is archived in `archive/round-2/`. Brand blocks stays Version 3. In the notes below, written before the change, "Version 1" means Portal views and "Version 2" means the archived Lifestyle frame.
+
 These are the foundations for the round 2 homepage concepts (`site/concepts/v1-portal-views` (Version 1, Portal views) and `site/concepts/v2-lifestyle-frame` (Version 2, Lifestyle frame); they were called v3 and v4 during round 2). They are anchored in the product design system (Partner Portal, Figma): **Inter**, the **pink primary** and **violet secondary** ramps, and Tailwind grays. The website can carry more emotion and emphasis than the product. The brand anchors stay the same.
 
 Tokens live in `site/concepts/shared/tokens.css`. The soft-UI illustration kit lives in `site/concepts/shared/kit.css`. Pages use token names, never raw values.
