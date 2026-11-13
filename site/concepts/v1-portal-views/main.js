@@ -108,7 +108,8 @@
     update();
   }
 
-  /* Testimonials: clamp each quote to its card's line count with "… Read more"; full text in a dialog */
+  /* Testimonials: clamp each quote to its card's line count with "… Read more"; full text in a dialog.
+     data-lines-wide sets a separate count from 1024px up; a quote that fits whole shows no Read more. */
   const dialog = document.querySelector('.quote-dialog');
   const quoteCards = document.querySelectorAll('.t-card[data-lines]');
   if (quoteCards.length && dialog && typeof dialog.showModal === 'function') {
@@ -125,10 +126,12 @@
       btn.className = 't-more';
       btn.innerHTML = 'Read more<span class="visually-hidden">: ' + name + '’s full testimonial</span>';
       btn.addEventListener('click', () => openQuote(card, paras, btn));
-      return { p, full, btn, lines: Number(card.dataset.lines) };
+      return { p, full, btn, lines: Number(card.dataset.lines), linesWide: Number(card.dataset.linesWide || card.dataset.lines) };
     });
 
-    const fit = ({ p, full, btn, lines }) => {
+    const wideMq = window.matchMedia('(min-width: 1024px)');
+    const fit = ({ p, full, btn, lines: base, linesWide }) => {
+      const lines = wideMq.matches ? linesWide : base;
       p.textContent = full;
       const max = parseFloat(getComputedStyle(p).lineHeight) * lines + 2;
       if (p.offsetHeight <= max) return;
@@ -190,7 +193,6 @@
       '.brand-stage',
       '.feature-strip > li',
       '.funnels-head > *',
-      '.t-card--wide',
       '.plaques > li',
       '.proof-grid > *',
       '.creators-copy > *',
