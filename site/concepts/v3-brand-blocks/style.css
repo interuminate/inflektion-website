@@ -107,8 +107,8 @@
   display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 44px;
   color: var(--ink); font-weight: var(--fw-semi); text-decoration: none;
 }
-/* Only the label is underlined, so the line doesn't run through the gap or under the arrow */
-.text-link__label { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+/* Underline on hover only, and only under the label, so it doesn't run through the gap or under the arrow (as in V2) */
+.text-link:hover .text-link__label { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
 .text-link__arrow { transition: transform var(--dur-2) var(--ease-out); display: inline-block; }
 .text-link:hover .text-link__arrow { transform: translateX(3px); }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
@@ -146,7 +146,8 @@
 .hero-line--accent { color: var(--c-pink); }
 .hero-copy { grid-area: copy; display: grid; justify-items: center; gap: var(--sp-6); margin-top: var(--sp-6); }
 .hero-copy .lead { max-width: 38rem; }
-.cta-row--center { justify-content: center; }
+/* Centred CTA clusters stack, so the button sits on the centre line instead of being pushed left by the link */
+.cta-row--center { flex-direction: column; justify-content: center; gap: var(--sp-4); }
 .hero-side { position: relative; width: min(100%, 15rem); margin-top: var(--sp-6); }
 .hero-side--left { grid-area: left; justify-self: start; }
 .hero-side--right { grid-area: right; justify-self: end; }
@@ -535,7 +536,7 @@
 .final-accent { color: var(--c-pink); }
 /* Centred: title, then the two CTAs side by side under it */
 .final-row { display: grid; justify-items: center; gap: var(--sp-6); text-align: center; }
-.final-row .cta-row { justify-content: center; }
+.final-row .cta-row { flex-direction: column; justify-content: center; gap: var(--sp-4); }
 
 .site-footer { background: var(--c-navy); color: var(--c-white); padding-block: var(--sp-8) var(--sp-6); border-top: 1px solid rgb(255 255 255 / .16); --focus: var(--c-white); }
 .site-footer .brand { color: var(--c-white); }
