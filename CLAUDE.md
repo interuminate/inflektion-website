@@ -4,8 +4,10 @@ Static HTML/CSS/JS homepage concepts. Read `DESIGN.md` (tokens) and `docs/conten
 
 ## Scope
 - Only the homepage is built. Other pages (Who we help, Why Inflektion, Pricing) appear as **inactive** nav items: `aria-disabled="true"`, no `href`, with "(coming soon)" for screen readers.
-- The deployable site is `site/`: the version picker (`site/index.html`), Version 1 (`site/concepts/v1-portal-views/`), Version 2 (`site/concepts/v2-lifestyle-frame/`) and Version 3 (`site/concepts/v3-brand-blocks/`). Shared foundations are in `site/concepts/shared/`. Reusable brand assets are in `site/assets/`.
-- Round 1 concepts are archived in `archive/round-1/` (and the `round-1-concepts` git tag). They are not deployed; preview them with the "archive" launch config.
+- The deployable site is `site/`: the version picker (`site/index.html`), Version 1 (`site/concepts/v1-personalized-funnels/`), Version 2 (`site/concepts/v2-portal-views/`) and Version 3 (`site/concepts/v3-brand-blocks/`). Shared foundations are in `site/concepts/shared/`. Reusable brand assets are in `site/assets/`.
+- **Version 1 (Personalized funnels) is a colleague's design, imported 1-for-1 from a Claude artifact (Nov 2026).** It is self-contained (inline CSS and JS, its own `home-assets/`, no `../shared/`). Our only edits are head lines (noindex, favicon) and fixes marked "Local fix" at the end of its first `<style>` block. Keep it isolated: don't apply Version 2 or 3 changes, tokens or these house rules to it unless asked, and don't let its changes reach the other versions.
+- `site/concepts/v1-portal-views/` and `site/concepts/v2-lifestyle-frame/` are redirect pages for links shared before the Nov 2026 renumbering.
+- Round 1 concepts are archived in `archive/round-1/` (and the `round-1-concepts` git tag); the round 2 Lifestyle frame (Version 2 until Nov 2026) is archived in `archive/round-2/` with its own copy of `shared/` and the assets it uses. Neither is deployed; preview them with the "archive" and "archive-round-2" launch configs.
 
 ## Accessibility (WCAG 2.2 AA)
 - Text contrast ≥ 4.5:1. Large text (≥ 24px, or ≥ 18.66px bold) and UI parts or focus indicators ≥ 3:1. Check new colour pairs before using them.

@@ -1,5 +1,7 @@
 # Inflektion homepage: content architecture
 
+> **Numbering note (Nov 2026):** Portal views is now Version 2 (`site/concepts/v2-portal-views/`), Lifestyle frame is archived in `archive/round-2/`, and Version 1 is Personalized funnels, a colleague's design imported as-is (`site/concepts/v1-personalized-funnels/`).
+>
 > **Naming note (after round 2):** the round 2 concepts called v3 and v4 below are now **Version 1, Portal views** (`site/concepts/v1-portal-views/`) and **Version 2, Lifestyle frame** (`site/concepts/v2-lifestyle-frame/`). The round 1 concepts (v1 Minimal, v2 Illustrated) are archived in `archive/round-1/`.
 
 Status: **approved 2026-11-10** (with the decisions in section 7). Scope is the homepage only. Other pages appear as inactive nav items.

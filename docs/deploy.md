@@ -7,8 +7,8 @@ Power Plate is published from a public repo on its owner's GitHub account with G
 | | Power Plate | Inflektion |
 |---|---|---|
 | Repo | public, owner's account (`krworkin-tech`) | public, owner's account (`interuminate/inflektion-website`) |
-| Pages | one repo, a folder per version, a small picker at `/` | one repo, `site/` holds the picker at `/` and both versions |
-| Version links | `/classic/`, `/dynamic/` | `/concepts/v1-portal-views/`, `/concepts/v2-lifestyle-frame/` |
+| Pages | one repo, a folder per version, a small picker at `/` | one repo, `site/` holds the picker at `/` and the three versions |
+| Version links | `/classic/`, `/dynamic/` | `/concepts/v1-personalized-funnels/`, `/concepts/v2-portal-views/`, `/concepts/v3-brand-blocks/` (the pre-Nov 2026 addresses redirect) |
 | Custom domain | `CNAME` file + Pages settings | `site/CNAME` + Pages settings |
 | DNS | `CNAME powerplate → krworkin-tech.github.io` | `CNAME inflektion → interuminate.github.io` |
 
