@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-  <link rel="stylesheet" href="../shared/tokens.css?v=2">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="../shared/tokens.css?v=4">
+  <link rel="stylesheet" href="style.css?v=7">
   <script>
     document.documentElement.classList.add('js');
     /* Hero load-in: set before first paint so nothing flashes; main.js clears it after the run */
@@ -23,7 +23,7 @@
   <script src="../shared/nav-autohide.js?v=2" defer></script>
   <script src="main.js?v=2" defer></script>
 </head>
-<body class="v3">
+<body class="v3" id="top"> <!-- #top on body: the hero sits below the in-flow header, so links to #top land at the true page top -->
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -64,7 +64,7 @@
 
   <!-- 1 + 2. Hero and logos -->
   <div class="block fill-white block--first">
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid" data-mosaic>
         <p class="hero-over"><a href="#recognition"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>2025 Gold Winner, Most Innovative Technology</span></a></p>
         <h1 id="hero-title" class="hero-title">
@@ -75,7 +75,7 @@
           <p class="lead">Inflektion is the influencer and affiliate platform built for health and wellness. Find the right partners, launch them in one flow, and give each of them a portal in your brand and a funnel made for their audience.</p>
           <div class="cta-row cta-row--center">
             <a class="btn btn--primary btn--lg" href="#demo">Book a demo</a>
-            <a class="text-link" href="#creators">Join as a creator or affiliate<span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#creators"><span class="text-link__label">Join as a creator or affiliate</span><span class="text-link__arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
         <div class="hero-side hero-side--left" data-float="-1">
@@ -450,7 +450,7 @@
         <h2 id="final-title" class="display-2 final-title">Make partnerships your <span class="final-accent">most scalable growth channel.</span></h2>
         <div class="cta-row">
           <a class="btn btn--primary btn--lg" href="#demo">Book a demo</a>
-          <a class="text-link" href="#creators">Join as a creator or affiliate<span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#creators"><span class="text-link__label">Join as a creator or affiliate</span><span class="text-link__arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -512,7 +512,10 @@
       </nav>
     </div>
   </div>
-  <div class="wrap footer-legal"><p>© Inflektion Technologies Inc. All rights reserved.</p></div>
+  <div class="wrap footer-legal">
+    <p>© Inflektion Technologies Inc. All rights reserved.</p>
+    <a class="back-to-top" href="#top">Back to top<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></a>
+  </div>
 </footer>
 </body>
 </html>
