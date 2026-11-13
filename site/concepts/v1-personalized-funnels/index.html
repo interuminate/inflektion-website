@@ -868,6 +868,10 @@ html.eb-muted.who-stack .who .panel>div:first-child::before{color:#6b7280!import
    bottom border (73px tall) while the hero is pulled up only 72px, so a 1px strip of the white page showed at
    the very top. The border is always transparent in this mode, so drop its width. ===== */
 .nav-in .nav{border-bottom-width:0!important}
+/* ===== Local fix (Nov 2026): the scrolled header blurred whatever moved behind it (marquees, floating cards, shimmer),
+   which made browsers drop frames and flicker. The bar was already 86% navy, so a near-solid navy with no blur looks
+   the same and removes the per-frame blur. ===== */
+.nav-in .nav.scrolled{background:rgba(4,9,63,.95)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 </style>
 </head>
 <body>
