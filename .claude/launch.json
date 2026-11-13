@@ -1,7 +1,35 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "concepts", "runtimeExecutable": "python3", "runtimeArgs": ["tools/serve.py", "4321", "site"], "port": 4321 },
-    { "name": "archive", "runtimeExecutable": "python3", "runtimeArgs": ["tools/serve.py", "4322", "archive/round-1"], "port": 4322 }
+    {
+      "name": "concepts",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "tools/serve.py",
+        "4321",
+        "site"
+      ],
+      "port": 4321
+    },
+    {
+      "name": "archive",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "tools/serve.py",
+        "4322",
+        "archive/round-1"
+      ],
+      "port": 4322
+    },
+    {
+      "name": "archive-round-2",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "tools/serve.py",
+        "4323",
+        "archive/round-2"
+      ],
+      "port": 4323
+    }
   ]
 }
