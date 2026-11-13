@@ -56,7 +56,7 @@ All pairs below are checked (WCAG 2.x ratios). Text needs at least 4.5:1. UI par
 
 ## Typography
 
-One family: **Inter** (Google Fonts). At most three weights per concept: 400/600/700. Both concepts now set titles at 600. Body ≥ 16px, line length 60–72ch.
+One family: **Inter** (Google Fonts). At most three weights per concept: 400/600/700. All three versions set large display type (h1, h2, final headline) at 400 and keep 600 for small headings and UI. Versions 1 and 2 (client review, Nov 2026) share `--fw-display`, `--fs-hero` (44px to 76px) and `--fs-section` (34px to 56px) from `tokens.css`; Version 1's chapter titles use its page token `--fs-phase` (24px to 32px). Version 3 keeps its own scale (see below). Body ≥ 16px, line length 60–72ch.
 
 | Token | Size | Line height | Weight | Use |
 |---|---|---|---|---|
@@ -76,9 +76,9 @@ Two queries, three bands: narrow `max-width: 767.98px`, medium `max-width: 1023.
 
 ## Spacing
 4/8 grid: `--sp-1` 4 · `--sp-2` 8 · `--sp-3` 12 · `--sp-4` 16 · `--sp-5` 24 · `--sp-6` 32 · `--sp-7` 48 · `--sp-8` 64 · `--sp-9` 96 · `--sp-10` 128 (px).
-- Section padding: `--section-y: clamp(4rem, 2.8rem + 5vw, 8rem)`; Version 1 uses the tighter `--section-y-compact: clamp(3.5rem, 1rem + 6.5vw, 6.25rem)` (56px to 100px)
+- Section padding: `--section-y: clamp(4rem, 2.8rem + 5vw, 8rem)`; Version 2 uses the tighter `--section-y-compact: clamp(3.5rem, 1rem + 6.5vw, 6.25rem)` (56px to 100px); Versions 1 and 3 use `--section-y-tight: clamp(3.5rem, 2.4rem + 3vw, 5rem)` (56px to 80px). In Version 1's problem section the shorter stat card is sticky beside the text on desktop
 - Page gutter: `--gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem)` (16px at 375)
-- Content width: `--w-page 1200px`, `--w-text 40rem`
+- Content width: `--w-page 1200px`, `--w-text 40rem`. Versions 1 and 2 use the wider shared token `--w-page-wide: 82rem` (1312px including gutters), which gives a 1200px content area at a 1280px window. Version 2's railed sections pad inside the rails with `--rail-pad` (24px to 36px)
 
 ## Shape and depth
 | Token | Version 1 Portal views | Version 2 Lifestyle frame |
@@ -147,11 +147,13 @@ There are no stock photos. Icons are inline SVG at a 1.5px stroke in 20/24px box
 ## Version 2 frame (first Version 2 review)
 
 - Light header and footer; no dark bands.
-- Sections are divided by 1px `#E7E5F3` hairlines. Side rails (desktop only) appear just on the logos, how-it-works, portal and recognition sections (`.railed`); there are no crosshair marks. The hero and final CTA add a faint 48px grid that fades out.
+- Sections are divided by 1px `#E7E5F3` hairlines. Side rails (desktop only) appear just on the logos, how-it-works and recognition sections (`.railed`); there are no crosshair marks. The hero and final CTA add a faint 48px grid that fades out.
 - Logos, the four stages and the award plaques sit in hairline cells that run to the rails.
 - All five testimonials sit in one looping carousel: the arrows run forever in either direction, cards bleed past the content margin and are clipped only by the viewport. Without JS it is a horizontally scrollable list.
 - Creator decals use three designer-supplied portraits as rounded squares with no white frame (sources in `docs/image-credits.md`).
 - Lifestyle photos (from the client's mockup, placeholders until licensed or replaced) carry the hero and portal; soft UI is reduced to small white cards with a hairline and a flat violet block shadow.
+- Client review (Nov 2026): the hero photo is a client-supplied creator shot (`assets/lifestyle/hero-creator.jpg`), with the match card over its top-right corner and the campaign card low on the left. The problem section has a lilac fill (`#E2DBFF`, highlight in `--primary-ink`). The portal section is dark in the selected brand theme (navy, forest, slate or plum, with that theme's accent for the title highlight) and changes with the theme switcher.
+- Second V2 review: rails only on the logos, how-it-works and recognition sections (the portal has none). The problem section has no subtitle; its four pain points run in one row under the title and chart, icon over text, with vertical hairlines between them. The creators section has a brand-pink fill; its text column is white with a navy title highlight (white body text on pink is 3.47:1, below AA, client-directed). The pain points are centred, with hairlines on both outer edges too. The footer has a Back to top pill. Secondary buttons are flat (no block shadow). The recognition section has no subtitle.
 
 ## Version 3, Brand blocks (`site/concepts/v3-brand-blocks`)
 
@@ -180,3 +182,4 @@ Same copy as Versions 1 and 2, told with saturated full-bleed colour blocks, lig
 - **Logo strip**: centred "Trusted by…" line above a scrolling marquee. The visible pause button was removed at the client's request (seventh review); the marquee pauses on hover and keyboard focus and is a static wrapped row under reduced motion. Strictly, WCAG 2.2.2 asks for a visible pause control on motion that runs longer than five seconds.
 - **Testimonial cards**: the quote sits at the top and the divider plus author block is pinned to the bottom of every card (flex column, `margin-top: auto`), with at least 32px between the quote and the divider.
 - **Reduced motion and no JS**: no pinning, scrubbing or parallax; the chapters stack vertically, every block reads top to bottom, and the logo marquee becomes a static wrapped row.
+- **Client review (Nov 2026)**: block sections pad with `--block-y` (= shared `--section-y-tight`, 56px to 80px; the final CTA uses `--block-y-final`, 40px to 50px; the pinned How it works track is full height). Phase titles use `--fs-phase` (26px to 36px) at 400. In the problem block the text column is sticky beside the taller stat cards. The logo strip's top border is the same light gray (`#E5E7EB`) as the dividers between logos. Text links underline only their label (`.text-link__label`), never the gap or the arrow. The final CTA is centred (title up to 30ch, two lines on desktop), with the two CTAs side by side under the title. The footer has an outlined white Back to top pill.
