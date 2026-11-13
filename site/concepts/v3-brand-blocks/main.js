@@ -3,6 +3,17 @@
   const root = document.documentElement;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const wide = window.matchMedia('(min-width: 1024px)');
+
+  /* Overscroll fill: switch the root colour to the footer's once past halfway (see style.css) */
+  {
+    const setEnd = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      document.documentElement.classList.toggle('is-lower', window.scrollY > max / 2);
+    };
+    window.addEventListener('scroll', setEnd, { passive: true });
+    window.addEventListener('resize', setEnd);
+    setEnd();
+  }
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
