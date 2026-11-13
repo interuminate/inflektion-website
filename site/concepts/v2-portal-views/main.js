@@ -3,6 +3,17 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const swapDelay = () => (reduce.matches ? 0 : 150);
 
+  /* Overscroll fill: switch the root colour to the footer's once past halfway (see style.css) */
+  {
+    const setEnd = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      document.documentElement.classList.toggle('is-lower', window.scrollY > max / 2);
+    };
+    window.addEventListener('scroll', setEnd, { passive: true });
+    window.addEventListener('resize', setEnd);
+    setEnd();
+  }
+
   /* Mobile menu */
   const btn = document.querySelector('.menu-btn');
   const nav = document.getElementById('site-nav');

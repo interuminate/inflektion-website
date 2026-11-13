@@ -1,5 +1,11 @@
 /* Version 3, Brand blocks. Tokens from ../shared/tokens.css plus the Version 3 layer below. See DESIGN.md. */
 
+/* Overscroll fill: when a trackpad or free-spinning wheel bounces past either end of the page, the browser shows the
+   root (html) background. Set it to the colour at that end (top until halfway down, then the footer colour; main.js
+   toggles .is-lower) and lock the light scheme so a dark OS setting can't paint the gap black. */
+:root { color-scheme: light; background-color: #FFFFFF; } /* header and hero white */
+:root.is-lower { background-color: #04093F; } /* footer navy */
+
 /* ---------- Version 3 tokens ---------- */
 .v3 {
   --c-navy: #04093F;
@@ -64,7 +70,9 @@
 .fill-deep   { --fill: var(--c-violet-deep); --ink: var(--c-white); --ink-2: var(--c-mist-violet); --line: rgb(255 255 255 / .3); --shadow-c: var(--c-pink); --focus: var(--c-white); --accent-ink: var(--c-white); }
 
 /* ---------- Base ---------- */
-.v3 { background: var(--c-navy); color: var(--c-navy); }
+/* Navy page background matches the footer; the top band is white so the header's slot never shows navy while the
+   auto-hidden header slides back in (fast scroll up into the top bounce). */
+.v3 { background: linear-gradient(var(--c-white), var(--c-white)) top / 100% 160px no-repeat, var(--c-navy); color: var(--c-navy); }
 .v3 main { overflow-x: clip; background: var(--c-white); }
 .v3 strong, .v3 b { font-weight: var(--fw-semi); }
 .v3 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

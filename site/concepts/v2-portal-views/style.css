@@ -6,6 +6,14 @@
   --fs-phase: clamp(1.5rem, 1.2rem + 1vw, 2rem);  /* 24px to 32px: chapter titles, between h3 and h2 */
 }
 html { scroll-padding-top: 88px; }
+/* Overscroll fill: when a trackpad or free-spinning wheel bounces past either end of the page, the browser shows the
+   root (html) background. Set it to the colour at that end (top until halfway down, then the footer colour; main.js
+   toggles .is-lower) and lock the light scheme so a dark OS setting can't paint the gap black. */
+:root { color-scheme: light; background-color: #04093F; } /* header and hero navy */
+:root.is-lower { background-color: #02052A; } /* footer navy */
+/* The header's slot at the top of the page shows the body while the auto-hidden header slides back in (fast scroll up
+   into the top bounce). Paint that band in the header and hero navy so no strip shows above the hero. */
+body { background: linear-gradient(#04093F, #04093F) top / 100% 160px no-repeat, var(--bg); }
 .wrap { width: 100%; max-width: var(--w-page-wide); margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: var(--section-y-tight); } /* 56px to 80px (was up to 100px) */
 .bg-tint { background: var(--bg-tint); }
