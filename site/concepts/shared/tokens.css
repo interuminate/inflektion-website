@@ -55,9 +55,15 @@
   --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4rem; --sp-9: 6rem; --sp-10: 8rem;
   --section-y: clamp(4rem, 2.8rem + 5vw, 8rem);
   --section-y-compact: clamp(3.5rem, 1rem + 6.5vw, 6.25rem); /* 56px → 100px */
+  --section-y-tight: clamp(3.5rem, 2.4rem + 3vw, 5rem);       /* 56px → 80px (Versions 1 and 3, client review Nov 2026) */
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
   --w-page: 75rem;
   --w-text: 40rem;
+  /* Versions 1 and 2 (client review, Nov 2026): wider page and light, larger display type */
+  --w-page-wide: 82rem;  /* 1312px incl. gutters: content 1200px at a 1280px window, up to 1232px on wider screens */
+  --fw-display: 400;     /* hero, section titles and the final headline (Version 3 sets its own) */
+  --fs-hero: clamp(2.75rem, 1.4rem + 4.4vw, 4.75rem);     /* 44px to 76px */
+  --fs-section: clamp(2.125rem, 1.4rem + 2.6vw, 3.5rem);  /* 34px to 56px */
 
   /* Shape and depth (Version 1 defaults; Version 2 overrides) */
   --radius-sm: 8px;
