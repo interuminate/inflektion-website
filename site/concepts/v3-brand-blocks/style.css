@@ -374,12 +374,14 @@
 .portal-app[data-view-current="resources"] [data-nav="resources"],
 .portal-app[data-view-current="payments"] [data-nav="payments"],
 .portal-app[data-view-current="faq"] [data-nav="faq"] { background: var(--s2); color: var(--s2-ink); font-weight: var(--fw-semi); }
-.p-main { padding: 20px; background: #F9FAFB; }
-.p-view { display: none; gap: 14px; align-content: start; }
+/* All four views share one grid cell and only the current one is visible, so the mockup always takes the
+   tallest view's height and the section never changes height when switching views */
+.p-main { display: grid; padding: 20px; background: #F9FAFB; }
+.p-view { grid-area: 1 / 1; display: grid; gap: 14px; align-content: start; visibility: hidden; }
 .portal-app[data-view-current="links"] [data-panel="links"],
 .portal-app[data-view-current="resources"] [data-panel="resources"],
 .portal-app[data-view-current="payments"] [data-panel="payments"],
-.portal-app[data-view-current="faq"] [data-panel="faq"] { display: grid; animation: view-in var(--dur-5) var(--ease-snap) both; }
+.portal-app[data-view-current="faq"] [data-panel="faq"] { visibility: visible; animation: view-in var(--dur-5) var(--ease-snap) both; }
 @keyframes view-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .p-btn { padding: 7px 12px; border-radius: var(--radius-pill); background: var(--s2); color: var(--s2-ink); font-weight: var(--fw-semi); font-size: 12px; border: 1px solid var(--s1); transition: background-color var(--dur-4) var(--ease-out); }
 .p-btn--ghost { background: var(--c-white); color: var(--c-navy); border-color: var(--c-navy); }
