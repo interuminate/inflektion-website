@@ -1,9 +1,13 @@
 /* Version 1, Portal views: product-led, light page with dark bookends. Tokens: ../shared/tokens.css
    Background rhythm: dark hero, lighter-navy logos, then violet-50 / white alternating, dark final CTA and footer. */
 
+/* Page width and display type come from the shared tokens (--w-page-wide, --fw-display, --fs-hero, --fs-section) */
+:root {
+  --fs-phase: clamp(1.5rem, 1.2rem + 1vw, 2rem);  /* 24px to 32px: chapter titles, between h3 and h2 */
+}
 html { scroll-padding-top: 88px; }
-.wrap { width: 100%; max-width: var(--w-page); margin-inline: auto; padding-inline: var(--gutter); }
-.section { padding-block: var(--section-y-compact, clamp(3.5rem, 1rem + 6.5vw, 6.25rem)); }
+.wrap { width: 100%; max-width: var(--w-page-wide); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y-tight); } /* 56px to 80px (was up to 100px) */
 .bg-tint { background: var(--bg-tint); }
 .has-fx, .hero, .final, .site-footer { position: relative; isolation: isolate; }
 .fx-particles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
@@ -22,15 +26,16 @@ html { scroll-padding-top: 88px; }
 }
 
 h1, h2, h3 { color: var(--text); font-weight: 600; letter-spacing: -0.02em; line-height: var(--lh-head); text-wrap: balance; }
-h1 { font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: -0.03em; }
-h2 { font-size: var(--fs-h2); }
+h1, h2 { font-weight: var(--fw-display); letter-spacing: -0.03em; }
+h1 { font-size: var(--fs-hero); line-height: 1.02; letter-spacing: -0.04em; }
+h2 { font-size: var(--fs-section); }
 h3 { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -0.01em; }
 p { text-wrap: pretty; }
 /* Pink highlight for key terms in titles (large text: #D32691 is 4.3:1 or more on white and violet-50) */
 .hl { color: var(--primary); }
 .surface-dark .hl { color: var(--brand-pink); } /* 5.4:1 on navy */
 .lead { font-size: var(--fs-lead); color: var(--text-muted); max-width: var(--w-text); }
-.section-head { max-width: 46rem; display: grid; gap: var(--sp-4); margin-bottom: var(--sp-8); }
+.section-head { max-width: 50rem; display: grid; gap: var(--sp-4); margin-bottom: var(--sp-8); }
 .section-head--center { margin-inline: auto; text-align: center; justify-items: center; }
 .section-head--wide { max-width: 60rem; }
 .section-head--wide .lead { max-width: 50rem; }
@@ -89,9 +94,10 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 
 /* 1. Hero (dark + particle field) */
 .hero { padding-block: calc(var(--sp-7) + var(--sp-3)); overflow: clip; } /* 60px top and bottom */
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
 .hero-copy { display: grid; gap: var(--sp-5); justify-items: start; }
-.hero-copy h1 { max-width: 12ch; }
+.hero-copy h1 { max-width: 11ch; }
+.hero-copy .lead { max-width: 34rem; }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-6); margin-top: var(--sp-2); }
 .award-teaser { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--text-muted); font-size: var(--fs-small); }
 .award-teaser a { color: inherit; display: inline-flex; min-height: 44px; align-items: center; text-decoration: none; }
@@ -140,10 +146,11 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 /* 4. How it works (white, compact sticky chapters) */
 .chapters { position: relative; }
 .chapters__list { margin: 0; padding: 0; display: grid; gap: var(--sp-9); }
-.chapter { display: grid; gap: var(--sp-3); max-width: 34rem; }
+.chapter { display: grid; gap: var(--sp-3); max-width: 36rem; }
+.chapter h3 { font-size: var(--fs-phase); font-weight: var(--fw-display); letter-spacing: -0.025em; }
 .chapter__marker { justify-self: start; display: inline-flex; align-items: center; gap: 0.45em; padding: var(--sp-1) 0; min-height: 44px; border-radius: var(--radius-pill); font-size: var(--fs-small); font-weight: 600; line-height: 1.2; color: var(--primary-ink); transition: font-size var(--dur-4) var(--ease-out), padding var(--dur-4) var(--ease-out), background-color var(--dur-4) var(--ease-out), color var(--dur-4) var(--ease-out); }
 .chapter__marker svg { flex: none; width: 1.15em; height: 1.15em; }
-.chapter p:not(.chapter__marker) { color: var(--text-muted); }
+.chapter p:not(.chapter__marker) { color: var(--text-muted); font-size: var(--fs-lead); } /* 20px on desktop, matching the section subtitle */
 .chapter__visual { margin-top: var(--sp-4); }
 .chapters__stage { display: none; }
 .k-item--hi { background: color-mix(in srgb, var(--brand-pink) 7%, transparent); }
@@ -161,8 +168,8 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   .js .chapter { min-height: 44vh; align-content: center; }
   .js .chapter.is-active .chapter__marker { font-size: calc(var(--fs-body) * 1.125); padding-inline: var(--sp-3) var(--sp-4); background: #FCE7F3; color: var(--link); } /* 18px; #B01E78 on #FCE7F3 is 5.4:1 */
   .js .chapter .chapter__visual { display: none; }
-  .js .chapters__stage { display: grid; grid-column: 2; grid-row: 1; position: sticky; top: calc(72px + 10vh); height: min(56vh, 460px); align-self: start; background: var(--bg-tint); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 3rem); place-items: center; overflow: hidden; }
-  .js .chapters__stage > .chapter__visual { grid-area: 1 / 1; width: 100%; max-width: 440px; margin: 0; opacity: 0; transform: translateY(32px) scale(0.96); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
+  .js .chapters__stage { display: grid; grid-column: 2; grid-row: 1; position: sticky; top: calc(72px + 10vh); height: min(56vh, 500px); align-self: start; background: var(--bg-tint); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 3rem); place-items: center; overflow: hidden; }
+  .js .chapters__stage > .chapter__visual { grid-area: 1 / 1; width: 100%; max-width: 480px; margin: 0; opacity: 0; transform: translateY(32px) scale(0.96); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); }
   .js .chapters__stage > .chapter__visual.is-before { transform: translateY(-32px) scale(0.96); }
   .js .chapters__stage > .chapter__visual.is-active { opacity: 1; transform: none; }
   .chapters__progress { position: absolute; left: 50%; bottom: var(--sp-5); transform: translateX(-50%); display: flex; gap: 6px; }
@@ -182,7 +189,7 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .brand-switch button:hover { border-color: var(--border-ui); }
 .brand-switch button[aria-pressed="true"] { background: var(--on); border-color: var(--on); color: #fff; }
 .swatch { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--s1) 50%, var(--s2) 50%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4); }
-.brand-stage { position: relative; width: 100%; max-width: 960px; }
+.brand-stage { position: relative; width: 100%; max-width: 1040px; }
 .portal-mock { transition: opacity var(--dur-2) var(--ease-out); }
 .portal-mock.is-swapping { opacity: 0.25; }
 .portal-mock .k-app { grid-template-columns: 200px 1fr; min-height: 470px; }
@@ -226,11 +233,11 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .t-card figcaption { display: grid; gap: 2px; }
 .t-name { color: #D32691; font-weight: 600; }
 .t-role { color: #4B5563; font-size: var(--fs-small); }
-.t-card--float { position: absolute; right: clamp(-112px, calc((960px - 100vw) / 2 + 64px), -24px); top: 104px; width: 300px; z-index: 2; text-align: left; }
+.t-card--float { position: absolute; right: clamp(-112px, calc((1040px - 100vw) / 2 + 64px), -24px); top: 104px; width: 300px; z-index: 2; text-align: left; }
 .portal { overflow-x: clip; }
 .t-card--wide { max-width: 52rem; margin: var(--sp-8) auto 0; }
 
-.feature-strip { width: 100%; max-width: 960px; margin: var(--sp-10) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-6); text-align: center; }
+.feature-strip { width: 100%; max-width: 1040px; margin: var(--sp-10) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-6); text-align: center; }
 .feature-strip li { display: grid; justify-items: center; gap: var(--sp-2); }
 .feature-strip h3 { font-size: 1.125rem; }
 .feature-strip p { color: var(--text-muted); }
@@ -297,22 +304,29 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .plaque--gold { border: 2px solid #E9B949; box-shadow: var(--shadow-2); }
 
 /* 8. Proof (white + static particle curve) */
-.proof-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--sp-5); }
-.t-card--feature { grid-row: span 2; }
+/* Four quotes as a bento masonry: the long Aires quote runs the full height on the left, Truly Free spans
+   the top right, the two shorter quotes sit side by side under it. Two columns on tablets, one on phones. */
+.proof-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); /* a slimmer Aires column: its full quote fills the tall card at the same 16px as every quote */ grid-template-areas: "feature long long" "feature short mid"; gap: var(--sp-5); }
+.t-card--feature { grid-area: feature; }
+.t-card--long { grid-area: long; }
+.t-card--short { grid-area: short; }
+.t-card--mid { grid-area: mid; }
 .proof-grid .t-card { display: flex; flex-direction: column; }
 @media (max-width: 1023.98px) {
-  .proof-grid { grid-template-columns: 1fr; }
-  .t-card--feature { grid-row: auto; }
+  .proof-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "long long" "feature short" "feature mid"; }
+}
+@media (max-width: 767.98px) {
+  .proof-grid { grid-template-columns: 1fr; grid-template-areas: "feature" "long" "short" "mid"; }
 }
 
 /* 9. Creators (violet-50 + static particle curve) */
 .creators-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
 .creators-copy { display: grid; gap: var(--sp-5); justify-items: start; }
-.creators-copy p { color: var(--text-muted); max-width: var(--w-text); }
+.creators-copy p { color: var(--text-muted); max-width: var(--w-text); font-size: var(--fs-lead); } /* subtitle at the lead size, like every section */
 .check-list { margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
 .check-list li { position: relative; display: flex; align-items: center; gap: var(--sp-3); min-height: 32px; font-weight: 600; }
 .check-list li::before { content: ""; flex: none; width: 32px; height: 32px; border-radius: 10px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236946F4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 18px no-repeat; border: 1px solid #E4E0FB; box-shadow: 0 1px 2px rgb(105 70 244 / 0.08), 0 6px 16px -6px rgb(105 70 244 / 0.22); }
-.creators-stage { display: grid; gap: var(--sp-3); max-width: 380px; justify-self: center; width: 100%; }
+.creators-stage { display: grid; gap: var(--sp-3); max-width: 400px; justify-self: end; width: 100%; } /* flush with the right edge of the content area */
 .creator-card { display: grid; gap: 12px; }
 .asset-card { display: grid; gap: 10px; }
 .asset-card:nth-of-type(2) { margin-left: 10%; }
@@ -324,10 +338,14 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 /* 10. Final CTA (dark + moving particle curve) */
 .final { --bg: #02052A; padding-block: var(--sp-7); }
 .final-inner { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--sp-6) var(--sp-8); align-items: center; }
-.final-inner h2 { font-size: var(--fs-h3); max-width: 24ch; }
-.final-actions { display: grid; gap: var(--sp-3); justify-items: start; }
-.final-actions .cta-row { margin-top: 0; }
-@media (max-width: 1023.98px) { .final-inner { grid-template-columns: 1fr; } }
+.final-inner h2 { max-width: 20ch; }
+.final-actions { display: grid; gap: var(--sp-3); justify-items: end; } /* CTAs flush with the right edge of the content area */
+.final-actions .cta-row { margin-top: 0; justify-content: flex-end; }
+@media (max-width: 1023.98px) {
+  .final-inner { grid-template-columns: 1fr; }
+  .final-actions { justify-items: start; }
+  .final-actions .cta-row { justify-content: flex-start; }
+}
 
 /* Footer (deepest navy, logo-mark watermark) */
 .site-footer { --bg: #02052A; padding-block: 0 var(--sp-6); }
@@ -340,7 +358,12 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
 .site-footer ul { margin: 0; padding: 0; display: grid; }
 .site-footer nav a { color: var(--text-muted); text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
 .site-footer nav a[href]:hover { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: color-mix(in srgb, currentColor 80%, transparent); }
-.footer-legal { margin-top: var(--sp-7); padding-top: var(--sp-5); border-top: 1px solid var(--border); color: var(--text-muted); font-size: var(--fs-small); }
+.footer-legal { margin-top: var(--sp-7); padding-top: var(--sp-5); border-top: 1px solid var(--border); color: var(--text-muted); font-size: var(--fs-small); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-3) var(--sp-5); }
+/* Back to top: a plain link to the hero, so it works without JS; the smooth scroll is off under reduced motion */
+.back-to-top { display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 0 var(--sp-4); border: 1.5px solid var(--border-ui); border-radius: var(--radius-pill); color: var(--text); font-size: var(--fs-body); font-weight: 600; text-decoration: none; transition: border-color var(--dur-2) var(--ease-out); }
+.back-to-top:hover { border-color: var(--text); }
+.back-to-top svg { transition: transform var(--dur-2) var(--ease-out); }
+.back-to-top:hover svg { transform: translateY(-2px); }
 @media (max-width: 767.98px) { .footer-nav { display: grid; grid-template-columns: 1fr 1fr; width: 100%; } }
 
 /* Narrow-screen kit adjustments */
@@ -374,6 +397,11 @@ a[aria-disabled="true"] { color: var(--text-muted); cursor: not-allowed; text-de
   .intro .logos > * { animation: v1-fade 800ms var(--ease-out) 1100ms backwards; }
 }
 
+/* Desktop: the shorter stat card rides along beside the taller text column, as in Version 3, so no empty gap shows above or below it */
+@media (min-width: 1024px) {
+  .problem-grid { align-items: start; }
+  .why-now-wrap { position: sticky; top: calc(72px + var(--sp-6)); }
+}
 @media (max-width: 1023.98px) {
   .problem-grid { grid-template-columns: 1fr; }
   .problem-copy, .why-now-wrap { grid-column: auto; grid-row: auto; }

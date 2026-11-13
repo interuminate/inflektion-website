@@ -30,6 +30,10 @@
   --lh-d2: 1.06;
   --track-mega: -0.04em;
   --track-d2: -0.03em;
+  --fs-phase: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem); /* 26px to 36px: phase titles in How it works (was --fs-h3, up to 24px) */
+  /* Section padding (client review, Nov 2026) */
+  --block-y: var(--section-y-tight);                        /* 56px to 80px (shared with Version 1) */
+  --block-y-final: clamp(2.5rem, 2rem + 1.5vw, 3.125rem);   /* 40px to 50px, final CTA */
 
   /* Blocks */
   --radius-sm: 6px;
@@ -93,11 +97,12 @@
 
 .text-link {
   display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 44px;
-  color: var(--ink); font-weight: var(--fw-semi);
-  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em;
+  color: var(--ink); font-weight: var(--fw-semi); text-decoration: none;
 }
-.text-link span { transition: transform var(--dur-2) var(--ease-out); text-decoration: none; display: inline-block; }
-.text-link:hover span { transform: translateX(3px); }
+/* Only the label is underlined, so the line doesn't run through the gap or under the arrow */
+.text-link__label { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+.text-link__arrow { transition: transform var(--dur-2) var(--ease-out); display: inline-block; }
+.text-link:hover .text-link__arrow { transform: translateX(3px); }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
 
 /* ---------- Header ---------- */
@@ -114,7 +119,7 @@
 .menu-btn { display: none; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 0 var(--sp-4); border: var(--stroke); border-radius: var(--radius-pill); background: var(--c-white); color: var(--c-navy); font: var(--fw-semi) var(--fs-body)/1 var(--font); cursor: pointer; }
 
 /* ---------- Blocks: full-bleed fills, square edges ---------- */
-.block { position: relative; background: var(--fill); color: var(--ink); padding-block: var(--section-y); }
+.block { position: relative; background: var(--fill); color: var(--ink); padding-block: var(--block-y); } /* 56px to 80px; the pinned How it works track sets its own */
 .block--first { padding-block: 0; }
 
 /* ---------- 1. Hero: centred title, copy flanked by two square lifestyle photos ---------- */
@@ -233,7 +238,7 @@
 .logos { padding-block: var(--sp-7) 0; }
 .logos-head { display: flex; justify-content: center; text-align: center; }
 .logos-title { font-size: var(--fs-body); font-weight: var(--fw-semi); color: var(--c-navy); }
-.marquee { margin-top: var(--sp-4); border-top: var(--stroke); }
+.marquee { margin-top: var(--sp-4); border-top: 1px solid #E5E7EB; } /* same light gray as the dividers between logos */
 .marquee__track { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; }
 .marquee__track li { display: grid; place-items: center; height: 84px; padding-inline: clamp(1.5rem, 1rem + 2vw, 3rem); border-right: 1px solid #E5E7EB; }
 .marquee__track img { height: 26px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1) brightness(.2); }
@@ -274,13 +279,15 @@
 .how-progress { display: none; }
 .how-track { display: grid; gap: var(--sp-6); width: 100%; max-width: calc(var(--w-page) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
 .how-card {
-  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--sp-6); align-items: center;
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--sp-6); align-items: stretch;
   padding: clamp(1.25rem, 1rem + 2vw, 2.75rem);
   background: var(--c-white); color: var(--c-navy);
   border: var(--stroke); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
-.how-card__copy { display: grid; gap: var(--sp-4); align-content: start; }
-.how-card h3 { font-size: var(--fs-h3); line-height: 1.2; letter-spacing: -0.02em; font-weight: var(--fw-semi); max-width: 20ch; }
+/* Copy column runs the full card height: the phase marker sits on the top padding line, title and text on the bottom one */
+.how-card__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-4); }
+.how-card__copy h3 { margin-top: auto; }
+.how-card h3 { font-size: var(--fs-phase); line-height: 1.12; letter-spacing: -0.025em; font-weight: var(--fw-display); max-width: 20ch; }
 .how-card__copy p:last-child { color: var(--c-gray-600); max-width: 34rem; }
 .chapter-marker { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-lead); font-weight: var(--fw-semi); color: var(--c-pink); }
 .chapter-marker svg { flex: none; }
@@ -288,7 +295,7 @@
 /* Phase icon tiles, after the pain-point tiles. Undo: remove "phase-tiles" from the How it works section, or open the page with ?phase=plain */
 .phase-tiles .chapter-marker { gap: var(--sp-3); }
 .phase-tiles .phase-tile { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border: var(--stroke); border-radius: var(--radius-md); background: var(--c-pink); color: var(--c-white); box-shadow: 3px 3px 0 var(--c-navy); }
-.how-card__art { display: grid; align-content: center; min-height: var(--art-h, 0px); padding: clamp(1rem, .5rem + 2vw, 2rem); background: var(--c-lilac); border-radius: var(--radius-md); border: var(--stroke); }
+.how-card__art { align-self: center; display: grid; align-content: center; min-height: var(--art-h, 0px); padding: clamp(1rem, .5rem + 2vw, 2rem); background: var(--c-lilac); border-radius: var(--radius-md); border: var(--stroke); }
 .art-panel { display: grid; gap: 10px; padding: 16px; --shadow-c: var(--c-violet); }
 /* one avatar tone and one pink across the four illustrations */
 .art-panel .b-av { background: var(--c-lilac); }
@@ -513,10 +520,12 @@
 @media (min-width: 1024px) { .creator-visual { order: -1; } }
 
 /* ---------- 10. Final CTA + footer ---------- */
-.final { padding-bottom: var(--sp-9); }
-.final-title { max-width: 20ch; }
+.final { padding-block: var(--block-y-final); }
+.final-title { max-width: 30ch; } /* two lines across the content area on desktop */
 .final-accent { color: var(--c-pink); }
-.final-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sp-6) var(--sp-8); align-items: end; }
+/* Centred: title, then the two CTAs side by side under it */
+.final-row { display: grid; justify-items: center; gap: var(--sp-6); text-align: center; }
+.final-row .cta-row { justify-content: center; }
 
 .site-footer { background: var(--c-navy); color: var(--c-white); padding-block: var(--sp-8) var(--sp-6); border-top: 1px solid rgb(255 255 255 / .16); --focus: var(--c-white); }
 .site-footer .brand { color: var(--c-white); }
@@ -529,7 +538,12 @@
 .footer-nav a { color: var(--c-mist); text-decoration: none; display: inline-block; padding-block: 2px; }
 .footer-nav a[href]:hover { color: var(--c-white); text-decoration: underline; text-underline-offset: 0.2em; }
 .footer-nav a[aria-disabled] { cursor: default; }
-.footer-legal { margin-top: var(--sp-8); padding-top: var(--sp-5); border-top: 1px solid rgb(255 255 255 / .16); color: var(--c-mist); font-size: var(--fs-small); }
+.footer-legal { margin-top: var(--sp-8); padding-top: var(--sp-5); border-top: 1px solid rgb(255 255 255 / .16); color: var(--c-mist); font-size: var(--fs-small); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-3) var(--sp-5); }
+/* Back to top: a plain link to the hero (works without JS); an outlined white pill on the navy footer */
+.back-to-top { display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 0 var(--sp-5); border: 1px solid rgb(255 255 255 / .45); border-radius: var(--radius-pill); color: var(--c-white); font: var(--fw-semi) var(--fs-body)/1 var(--font); text-decoration: none; transition: border-color var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out); }
+.back-to-top:hover { border-color: var(--c-white); background: rgb(255 255 255 / .08); }
+.back-to-top svg { transition: transform var(--dur-2) var(--ease-out); }
+.back-to-top:hover svg { transform: translateY(-2px); }
 
 /* ---------- Quote dialog ---------- */
 .quote-dialog {
@@ -653,6 +667,12 @@
   .hero-copy { margin-top: var(--sp-5); gap: var(--sp-5); }
   .hero-side { margin-top: var(--sp-5); }
   .logos { padding-top: 0; }
+}
+/* Client review (Nov 2026): the shorter problem text column rides along while the cards beside it scroll,
+   so no empty gap shows under it. (Portal and funnels keep the plain 100px padding: a full-screen minimum
+   added ~180px above and below them on tall displays.) */
+@media (min-width: 1024px) {
+  .problem-copy { position: sticky; top: calc(var(--header-h) + var(--sp-6)); }
 }
 @media (min-width: 1024px) and (max-height: 800px) {
   .hero { padding-block: var(--sp-4) var(--sp-5); }
