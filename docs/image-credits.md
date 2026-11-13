@@ -1,6 +1,7 @@
 # Lifestyle image sources (placeholders for review)
 
-- `hero.jpg`, `creator.jpg`: AI-generated images from the client's mockup site (inflektion-health-wellness-v3.missttp.chatgpt.site). Replace with licensed photography before launch.
+- `creator.jpg`: AI-generated image from the client’s mockup site (inflektion-health-wellness-v3.missttp.chatgpt.site). Replace with licensed photography before launch.
+- `hero-creator.jpg`: supplied by the client in the Nov 2026 review (Version 2 hero). Replaces the AI-generated `hero.jpg`, which has been removed.
 - `creators/creator-1.jpg`, `creator-2.jpg`, `creator-3.jpg`: crops of three photos supplied by the designer in review (source and licence to be confirmed by the designer).
 - `themes/supplements.jpg` (shutterstock_1585351738), `themes/fitness.jpg` (shutterstock_2597147283), `themes/skincare.jpg` (shutterstock_2513545355): licensed from Shutterstock, supplied by the designer.
 

@@ -168,6 +168,7 @@
   const themeBox = document.querySelector('[data-theme-cycle]');
   if (themeBox) {
     const stage = themeBox.querySelector('.portal-stage');
+    const section = themeBox.closest('section'); /* the whole section takes the theme's colours */
     const themes = [['sleep', 'Sleep tech'], ['supps', 'Supplements'], ['fit', 'Fitness'], ['skin', 'Skincare']];
     const decal = stage.querySelector('.theme-decal');
     const label = stage.querySelector('[data-theme-label]');
@@ -180,7 +181,7 @@
       const [key, name] = themes[k];
       decal.classList.add('is-swapping');
       photos.forEach((p) => { const on = p.dataset.theme === key; p.classList.toggle('is-active', on); p.toggleAttribute('aria-hidden', !on); });
-      setTimeout(() => { stage.dataset.brand = key; label.textContent = name; decal.classList.remove('is-swapping'); }, reduce.matches ? 0 : 300);
+      setTimeout(() => { stage.dataset.brand = key; section.dataset.brand = key; label.textContent = name; decal.classList.remove('is-swapping'); }, reduce.matches ? 0 : 300);
       if (announce) status.textContent = `Portal theme: ${name}`;
     };
     const update = () => { clearInterval(timer); if (!manual && !reduce.matches && onScreen && !hover) timer = setInterval(() => show(k + 1, false), 4200); };
